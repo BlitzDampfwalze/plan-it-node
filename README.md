@@ -9,34 +9,38 @@ User .... | Adding User ....
 ![.....](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/)  |  ![Add ....](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/)
 
 ## Wireframes 
-![Wireframe of homepage](https://github.com/BlitzDampfwalze/recipe-vault/blob/master/read-me-images/wireframe-Recipe-homepage.jpg)
-![Wireframe of adding recipes](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/wireframe-Recipe-enter-recipe.jpg)
-![Wireframe of your recipes](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/wireframe-Recipe-your-recipes.jpg)
+![Wireframe of homepage](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/)
+![Wireframe of ](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/)
+![Wireframe of ](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/)
 
 ## Working Prototype
 You can access a working prototype here: https://plan-it-node.herokuapp.com/
 
 ## Business Objects
 * User 
- * email
- * password 
- * username
+  * email
+  * password 
+  * username
+
 * Event 
- * title
- * description
+  * title
+  * description
+
 * Schedule 
- * event-id 
- * date 
- * details
+  * event-id 
+  * date 
+  * details
+
 * Tasks 
- * username
- * task
- * completion
+  * username
+  * task
+  * completion
+
 * Chat 
- * event-id
- * user
- * message
- * date & time
+  * event-id
+  * user
+  * message
+  * date & time
 
 ## Functionality
 The app's functionality includes:
