@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/vault.css">
+
+  <title>Recipe Vault</title>
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-items"><a href="recipe-vault.html">Recipe Vault</a></div>
+    <div class="nav-items">
+      <div><a href="index.html">Home</a></div>
+      <div class="nav-space">|</div>
+      <div class="logout" onclick="logout()">Log-out</div>
+    </div>
+  </nav>
+
+  <div id="recipe-entry-overlay">
+    <form id="recipe-entry">
+      <label for="title">Title</label>
+      <input type="text" id="title" class="inputs" placeholder="e.g., Apple Pie">
+
+      <label for="dishType">Dish Type</label>
+      <select id="dishType" class="inputs">
+        <option value="main course">Main course</option>
+        <option value="side dish">Side dish</option>
+        <option value="dessert">Dessert</option>
+        <option value="appetizer">Appetizer</option>
+        <option value="salad">Salad</option>
+        <option value="bread">Bread</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="soup">Soup</option>
+        <option value="beverage">Beverage</option>
+        <option value="sauce">Sauce</option>
+        <option value="drink">Drink</option>
+      </select>
+
+      <label for="ingredients">ingredients:</label>
+      <textarea id="ingredients" class="inputs" rows="10" cols="50" placeholder="List ingredients & quantity separated by a comma."></textarea>
+
+      <label for="instructions">Instructions: </label>
+      <textarea id="instructions" class="inputs" rows="10" cols="50" placeholder="Enter instructions here!"></textarea>
+
+      <label for="readyInMinutes">Ready in: </label>
+      <input type="number" id="readyInMinutes" class="inputs" name="readyIn" step="1" placeholder="number in minutes" />
+
+      <label for="servings">Servings: </label>
+      <input type="number" id="servings" class="inputs" name="servings" placeholder="number of servings" />
+
+      <label for="source">Source:</label>
+      <input type="text" id="source" class="inputs" name="source" placeholder="website link or author's name" />
+
+      <button type="submit">Save</button>
+    </form>
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="constants.js"></script>
+  <script type="text/javascript" src="app-common.js"></script>
+  <script type="text/javascript" src="app-vault-entry.js"></script>
+
+</body>
+
+</html>

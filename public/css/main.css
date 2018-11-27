@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+
+.h1 {
+  text-shadow:4px 4px 12px rgb(255,165,0);
+  font-weight: bold;
+  font-size: 5em;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2.2em; 
+  text-align: center;
+}
+
+.h2 {
+  text-shadow: 2px 2px black;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(255, 201, 25);
+}
+
+
+main {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  padding: 20px 35px;
+}
+
+.nav-bar {
+  width: 100vw;
+	display: flex;
+  justify-content: space-between;
+  text-shadow:4px 4px 12px black;
+  
+}
+
+.nav-items {
+  color: rgb(255, 201, 25);
+  display: flex;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-shadow:4px 4px 12px black;
+} 
+
+.nav-space {
+  padding: 0 5px;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-shadow:4px 4px 12px black;
+}
+
+.logout {
+  cursor: pointer;
+}
+
+.video-header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-header-overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #2a2b30;
+  opacity: 0.72;
+}
+
+.video-header-content {
+  z-index: 2;
+}
+
+.more {
+  font-weight: bold;
+  font-size: 1.7em;
+  text-align: center;
+}
+
+.accordion {
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+  /* text-align: center; */
+  /* outline: none; */
+  transition: 0.9s;
+}
+
+.more:hover {
+  border-radius: 8px;
+  background-color: rgba(88, 58, 0, 0.699);
+  border: 0.5px solid orange;
+  box-shadow: 2.5px 2.5px black;
+  text-shadow: 2px 2px black;
+}
+
+.panel {
+  padding: 0 18px 5px;
+  max-height: 0;
+  line-height: 1.6em;
+  max-width: 800px;
+  overflow: hidden;
+  transition: max-height 0.6s ease-out;
+}
+
+@media screen and (max-width: 615px) {
+
+  body {
+    font-size: 12px;
+  }
+
+  .nav-bar {
+    padding: 12px 21px;
+  }
+
+  .vault-recipes {
+    margin: 10px auto;
+  }
+
+  body #recipe-entry-overlay {
+    padding: 40px;
+  }
+
+}
+
+
