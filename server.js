@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-require('./routes/recipeRoutes')(app);
+require('./routes/eventRoutes')(app);
 require('./routes/userRoutes')(app);
 
 const PORT = process.env.PORT || 3000;

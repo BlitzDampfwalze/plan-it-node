@@ -4,10 +4,11 @@ const _ = {
 };
 
 const { ObjectID } = require('mongodb');
-const { Recipe } = require('../models/Recipe');
+const { Event } = require('../models/Event');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
+
   app.post('/recipes', authenticate, (req, res) => {
     console.log(req.body);
 
@@ -48,9 +49,13 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.get('/recipes', authenticate, (req, res) => {
-    Recipe.find({ userID: req.user._id }).then((recipes) => {
-      res.send({ recipes })
+  app.get('/events', 
+  // authenticate, 
+  (req, res) => {
+    Event.find(
+      // { userID: req.user._id }
+      ).then((events) => {
+      res.send({ events })
     }) //{} syntax vs res.json(...map etc.)
       .catch(err => { res.status(500).send(err) });
   });
@@ -88,4 +93,5 @@ module.exports = app => {
         res.status(500).json({ error: 'something went wrong' });
       });
   });
-}
+
+};
