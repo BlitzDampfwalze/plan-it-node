@@ -61,7 +61,7 @@ body {
   z-index: 1;
 }
 
-.vault-recipes {
+.events {
   color: rgb(255, 201, 25);
   padding: 15px;
   max-width: 400px;
@@ -77,23 +77,23 @@ body {
   text-shadow: 1px 1px black;
 }
 
-.vault-recipes div {
+.events div {
   padding: 0 0 5px;
 }
 
-.vault-recipes .recipe-button-wrapper {
+.events .recipe-button-wrapper {
   margin: 5px 0 0;
   padding: 0;
 }
 
-.vault-recipes button {
+.events button {
   margin-right: 5px;
   -webkit-box-shadow: 3px 4px 6px 1px black;
   -moz-box-shadow: 3px 4px 6px 1px black;
   box-shadow: 3px 4px 6px 1px black;
 }
 
-.vault-recipes .recipe-readyInMinutes {
+.events .recipe-readyInMinutes {
   padding-top: 8px;
 }
 

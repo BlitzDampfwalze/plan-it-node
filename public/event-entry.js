@@ -3,7 +3,7 @@ $(() => {
   const searchParams = new URLSearchParams(window.location.search)
   const isEdit = searchParams.has('edit')
   const eventID = searchParams.get('edit');
-  const authToken = localStorage.getItem(TOKEN);
+  // const authToken = localStorage.getItem(TOKEN);
 
   if (isEdit) {
     //retrieve data for this recipe, then populate the fields with it.
@@ -21,8 +21,7 @@ $(() => {
     }).then(body => {
       const event = body.event;
       $('form').find('.inputs').each(function (index, node) {
-        node.value = recipe[node.id];
-        // event[node.id] ??
+        node.value = event[node.id];
       });
     })
   }
@@ -62,6 +61,7 @@ $(() => {
         window.alert(err);
       }
       )
+
 
   })
 })

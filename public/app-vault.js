@@ -1,5 +1,5 @@
 const recipeTemplate = (id) => `
-<div class="vault-recipes">
+<div class="events">
 <h2 class="recipe-title"></h2>
 <div class="recipe-type"></div>
 <ul class="recipe-ingredients"></ul>
@@ -48,11 +48,11 @@ const getDisplayVaultRecipes = () => {
         element.find('.recipe-date').text(`Published on: ${new Date(post.created).toDateString()}`);
         return element;
       });
-      $('#vault-recipes-wrapper').html(recipe);
+      $('#events-wrapper').html(recipe);
 
     })
 
-  $('#vault-recipes-wrapper').on('click', '.delete-button', function (e) {
+  $('#events-wrapper').on('click', '.delete-button', function (e) {
     let recipeID = $(e.currentTarget).attr('data-recipe-id');
     console.log(recipeID)
 

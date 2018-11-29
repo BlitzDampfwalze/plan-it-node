@@ -24,69 +24,73 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  // app.put('/recipes/:id', authenticate, (req, res) => {
-  //   console.log(req.body);
+  app.put('/events/:id',
+    // authenticate, 
+    (req, res) => {
+      console.log(req.body);
 
-  //   Recipe.findOneAndUpdate(
-  //     { _id: req.params.id, userID: req.user._id },
-  //     {
-  //       title: req.body.title,
-  //       dishType: req.body.dishType,
-  //       ingredients: req.body.ingredients,
-  //       instructions: req.body.instructions,
-  //       readyInMinutes: req.body.readyInMinutes,
-  //       servings: req.body.servings,
-  //       source: req.body.source
-  //     }
-  //   ).then(recipe => {
-  //     res.send(recipe);
-  //   })
-  //     .catch(err => { res.status(500).send(err) });
-  // });
+      Event.findOneAndUpdate(
+        {
+          _id: req.params.id,
+          // userID: req.user._id 
+        },
+        {
+          title: req.body.title,
+          description: req.body.description
+        }
+      ).then(event => {
+        res.send(event);
+      })
+        .catch(err => { res.status(500).send(err) });
+    });
 
-  // app.get('/events', 
-  // // authenticate, 
-  // (req, res) => {
-  //   Event.find(
-  //     // { userID: req.user._id }
-  //     ).then((events) => {
-  //     res.send({ events })
-  //   }) //{} syntax vs res.json(...map etc.)
-  //     .catch(err => { res.status(500).send(err) });
-  // });
+  app.get('/events',
+    // authenticate, 
+    (req, res) => {
+      Event.find(
+        // { userID: req.user._id }
+      ).then((events) => {
+        res.send({ events })
+      }) //{} syntax vs res.json(...map etc.)
+        .catch(err => { res.status(500).send(err) });
+    });
 
-  // app.get('/recipes/:id', authenticate, (req, res) => {
+  app.get('/events/:id',
+    // authenticate, 
+    (req, res) => {
 
-  //   if (!ObjectID.isValid(req.params.id)) {
-  //     return res.sendStatus(404);
-  //   }
+      if (!ObjectID.isValid(req.params.id)) {
+        return res.sendStatus(404);
+      }
 
-  //   Recipe.findById(req.params.id).then(recipe => {
-  //     if (!recipe) {
-  //       return res.sendStatus(404);
-  //     }
-  //     res.send({ recipe });
-  //   })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.status(500).json({ error: 'something went wrong' });
-  //     });
-  // });
+      Event.findById(req.params.id).then(event => {
+        if (!event) {
+          return res.sendStatus(404);
+        }
+        res.send({ event });
+      })
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: 'something went wrong' });
+        });
+    });
 
-  // app.delete('/recipes/:id', authenticate, (req, res) => {
+  app.delete('/events/:id',
+    // authenticate, 
+    (req, res) => {
 
-  //   if (!ObjectID.isValid(req.params.id)) {
-  //     return res.status(404).send('Invalid ID');
-  //   }
+      if (!ObjectID.isValid(req.params.id)) {
+        return res.status(404).send('Invalid ID');
+      }
 
-  //   Recipe.findByIdAndRemove(req.params.id)
-  //     .then(() => {
-  //       res.sendStatus(204);
-  //     })
-  //     .catch(err => {
-  //       console.error(err);
-  //       res.status(500).json({ error: 'something went wrong' });
-  //     });
-  // });
+      Event.findByIdAndRemove(req.params.id)
+        .then(() => {
+          res.sendStatus(204);
+        })
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: 'something went wrong' });
+        });
+    });
 
 };
