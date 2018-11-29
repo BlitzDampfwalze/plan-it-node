@@ -1,4 +1,4 @@
-checkLoggedin();
+// checkLoggedin();
 
 $(() => {
   const readmore = document.getElementsByClassName('accordion');

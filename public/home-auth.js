@@ -6,7 +6,7 @@ const eventTemplate = (id) => `
 <div class="recipe-button-wrapper">
 <button><a id="edit-button" href="home-auth.html?edit=${id}" event-id="${id}">Edit</a></button>
 <button class="delete-button" event-id="${id}">Delete</button>
-<button class="join-room-button" event-id="${id}">Join</button>
+<button><a class="join-room-button" href="event-room.html?room=${id}" event-id="${id}">Join</a></button>
 </div>
 </div>
 `;
