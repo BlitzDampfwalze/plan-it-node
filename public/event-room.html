@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/event.css">
+  <link rel="stylesheet" href="css/event-room.css">
 
   <title>Plan-It</title>
-
 </head>
 
 <body>
@@ -27,24 +26,27 @@
       </div>
     </div>
   </nav>
-  
-  <div id="events-wrapper"></div>
-
-  <div id="recipe-entry-overlay">
-    <form id="recipe-entry">
-      <label for="title">Title</label>
-      <input type="text" id="title" class="inputs" placeholder="e.g., Austria Trip">
-      <label for="ingredients">Description:</label>
-      <textarea id="ingredients" class="inputs" rows="10" cols="50" placeholder="Brief description, such as the cities to be visited and/or significant activities"></textarea>
-
-      <button type="submit">Save</button>
-    </form>
+  <div class="event-room">
+    <div class="user-tasks-wrapper">
+      Tasks
+    </div>
+    <div class="schedule-wrapper">
+      <div>Event Title</div>
+      <div>event description</div>
+      Schedule
+    </div>
+    <div class="chat-wrapper">
+      <div>Number of active users</div>
+      <div>chat area</div>
+      <input type="text" id="chat-input" placeholder="write message here...">
+      <button type="submit">Enter</button>
+    </div>
   </div>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <!-- <script type="text/javascript" src="constants.js"></script> -->
-  <!-- <script type="text/javascript" src="app-common.js"></script> -->
-  <!-- <script type="text/javascript" src="app-vault.js"></script> -->
+  <script type="text/javascript" src="constants.js"></script>
+  <script type="text/javascript" src="app-common.js"></script>
+  <script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>
