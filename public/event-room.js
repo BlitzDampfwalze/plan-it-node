@@ -67,3 +67,21 @@ $(() => {
   // })
 
 })
+
+const taskTemplate = (id) => `
+<div class="event-entry-overlay">
+<div class="events">
+<h2 class="event-title"></h2>
+<div class="event-description"></div>
+<div class="recipe-button-wrapper">
+<button><a id="edit-button" href="home-auth.html?edit=${id}" event-id="${id}">Edit</a></button>
+<button class="delete-button" event-id="${id}">Delete</button>
+<button><a class="join-room-button" href="event-room.html?room=${id}" event-id="${id}">Join</a></button>
+</div>
+</div>
+`;
+
+const getDisplayTasks = () => {
+
+  
+}
