@@ -14,7 +14,7 @@ module.exports = app => {
 
     const task = new Task({
       // userID: req.user._id,
-      userName: req.body.userName,
+      // userName: req.body.userName,
       taskName: req.body.taskName,
       completed: req.body.completed
     });
@@ -36,7 +36,7 @@ module.exports = app => {
           // userID: req.user._id 
         },
         {
-          userName: req.body.userName,
+          // userName: req.body.userName,
           taskName: req.body.taskName,
           completed: req.body.completed
         }

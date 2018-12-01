@@ -5,7 +5,7 @@ const taskTemplate = (id) => `
 <div class="task-name"></div>
 <div class="completed"></div>
 <div class="task-button-wrapper">
-<button><a id="edit-button" href="home-auth.html?edit=${id}" task-id="${id}">Edit</a></button>
+<button><a id="edit-button" href="event-room.html?edit=${id}" task-id="${id}">Edit</a></button>
 <button class="delete-button" task-id="${id}">Delete</button>
 </div>
 </div>
@@ -30,12 +30,12 @@ const getDisplayTasks = () => {
       return Promise.reject();
     })
     .then(body => {
-      console.log(body)
+      // console.log(body)
       let task = body.tasks.map(task => {
-        console.log(task);
+        // console.log(task);
         let element = $(taskTemplate(task._id));
         element.attr('id', task._id);
-        element.find('.user-name').text(task.userName);
+        // element.find('.user-name').text(task.userName);
         element.find('.task-name').text(task.taskName);
         element.find('.completed').html(task.completed);
         return element;
@@ -50,7 +50,7 @@ const getDisplayTasks = () => {
 
     // const authToken = localStorage.getItem(TOKEN);
 
-    fetch(`recipes/${recipeID}`, {
+    fetch(`tasks/${taskID}`, {
       // headers: {
       //   "x-auth": authToken
       // },

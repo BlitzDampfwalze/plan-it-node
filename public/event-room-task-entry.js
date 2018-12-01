@@ -2,12 +2,12 @@ $(() => {
   // checkLoggedout();
   const searchParams = new URLSearchParams(window.location.search)
   const isEdit = searchParams.has('edit')
-  const eventID = searchParams.get('edit');
+  const taskID = searchParams.get('edit');
   // const authToken = localStorage.getItem(TOKEN);
 
   if (isEdit) {
     //retrieve data for this recipe, then populate the fields with it.
-    fetch(`/tasks/${eventID}`,
+    fetch(`/tasks/${taskID}`,
       // {
       //   headers: {
       //     "x-auth": authToken,
@@ -19,29 +19,29 @@ $(() => {
       }
       return Promise.reject();
     }).then(body => {
-      const event = body.event;
-      $('form').find('.inputs').each(function (index, node) {
-        node.value = event[node.id];
+      const task = body.task;
+      $('#task-entry').find('.inputs').each(function (index, node) {
+        node.value = task[node.id];
       });
     })
   }
 
-  $('#event-entry').submit(event => {
-    event.preventDefault();
+  $('#task-entry').submit(task => {
+    task.preventDefault();
 
     const formData = {};
 
-    $('form').find('.inputs').each(function (index, node) {
+    $('#task-entry').find('.inputs').each(function (index, node) {
       formData[node.id] = node.value;
     });
-    $('form').find('.inputs').each(function (index, node) {
+    $('#task-entry').find('.inputs').each(function (index, node) {
       node.value = '';
     });
     console.log(formData)
 
-    const url = isEdit ? `/events/${eventID}` : '/events'
+    const url = isEdit ? `/tasks/${taskID}` : '/tasks'
     const method = isEdit ? 'PUT' : 'POST'
-
+    console.log("url", url, "method", method)
     fetch(url, {
       headers: {
         // "x-auth": authToken,
@@ -52,7 +52,7 @@ $(() => {
     })
       .then(res => {
         if (res.ok) {
-          window.location = '/home-auth.html'
+          window.location = '/event-room.html'
           return
         }
         return Promise.reject('INCOMPLETE FIELD - Please fill in all fields');

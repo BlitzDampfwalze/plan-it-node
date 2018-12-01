@@ -20,7 +20,7 @@ $(() => {
       return Promise.reject();
     }).then(body => {
       const event = body.event;
-      $('form').find('.inputs').each(function (index, node) {
+      $('#event-entry').find('.inputs').each(function (index, node) {
         node.value = event[node.id];
       });
     })
