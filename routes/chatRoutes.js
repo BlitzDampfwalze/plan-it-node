@@ -4,60 +4,57 @@ const _ = {
 };
 
 const { ObjectID } = require('mongodb');
-const { Schedule } = require('../models/Schedule');
+const { Chat } = require('../models/Chat');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/schedules', (req, res) => {
+  app.post('/messages', (req, res) => {
     console.log(req.body);
 
-    const schedule = new Schedule({
+    const event = new Chat({
       // userID: req.user._id,
-      date: req.body.date,
-      time: req.body.number,
-      details: req.body.details
+      // eventID: req.event._id,
+      message: req.body.message
     });
 
-    schedule.save().then(schedule => {
-      res.send(schedule);
+    event.save().then(event => {
+      res.send(event);
     })
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.put('/schedules/:id',
+  app.put('/messages/:id',
     // authenticate, 
     (req, res) => {
       console.log(req.body);
 
-      Schedule.findOneAndUpdate(
+      Chat.findOneAndUpdate(
         {
           _id: req.params.id,
           // userID: req.user._id 
         },
         {
-          date: req.body.date,
-          time: req.body.number,
-          details: req.body.details
+          message: req.body.message
         }
-      ).then(schedule => {
-        res.send(schedule);
+      ).then(event => {
+        res.send(event);
       })
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/schedules',
+  app.get('/messages',
     // authenticate, 
     (req, res) => {
-      Schedule.find(
+      Chat.find(
         // { userID: req.user._id }
-      ).then((schedules) => {
-        res.send({ schedules })
+      ).then((messages) => {
+        res.send({ messages })
       }) //{} syntax vs res.json(...map etc.)
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/schedules/:id',
+  app.get('/messages/:id',
     // authenticate, 
     (req, res) => {
 
@@ -65,11 +62,11 @@ module.exports = app => {
         return res.sendStatus(404);
       }
 
-      Schedule.findById(req.params.id).then(schedule => {
-        if (!schedule) {
+      Chat.findById(req.params.id).then(event => {
+        if (!event) {
           return res.sendStatus(404);
         }
-        res.send({ schedule });
+        res.send({ event });
       })
         .catch(err => {
           console.error(err);
@@ -77,7 +74,7 @@ module.exports = app => {
         });
     });
 
-  app.delete('/schedules/:id',
+  app.delete('/messages/:id',
     // authenticate, 
     (req, res) => {
 
@@ -85,7 +82,7 @@ module.exports = app => {
         return res.status(404).send('Invalid ID');
       }
 
-      Schedule.findByIdAndRemove(req.params.id)
+      Chat.findByIdAndRemove(req.params.id)
         .then(() => {
           res.sendStatus(204);
         })

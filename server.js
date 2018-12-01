@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 require('./routes/eventRoutes')(app);
 require('./routes/taskRoutes')(app);
 require('./routes/scheduleRoutes')(app);
+require('./routes/chatRoutes')(app);
 require('./routes/userRoutes')(app);
 
 const PORT = process.env.PORT || 3000;
