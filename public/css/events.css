@@ -13,11 +13,16 @@
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
+  /* display: flex;
+  flex-direction: column; */
+  /* max-width: 400px; */
   margin: 0 auto;
   color: white;
   z-index: 2;
 }
 
+#events-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.25rem;
+}

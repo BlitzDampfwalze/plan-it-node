@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    userName: {
+      type: String,
+      unique: true
+    },
     tokens: [{
       access: {
         type: String,

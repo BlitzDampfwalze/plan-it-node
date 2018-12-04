@@ -46,14 +46,18 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/tasks',
-    // authenticate, 
+  app.get('/tasks/by_event/:event_id',
+    authenticate, 
     (req, res) => {
       Task.find(
         // { userID: req.user._id }
+        {
+          user: req.user._id,
+          event: req.params.event_id
+        }
       ).then((tasks) => {
         res.send({ tasks })
-      }) //{} syntax vs res.json(...map etc.)
+      }) 
         .catch(err => { res.status(500).send(err) });
     });
 

@@ -28,11 +28,11 @@ a {
 }
 
 
-main {
+/* main {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 nav {
   padding: 20px 35px;

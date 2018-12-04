@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/event.css">
+  <link rel="stylesheet" href="css/events.css">
 
   <title>Plan-It</title>
 
@@ -27,20 +27,20 @@
       </div>
     </div>
   </nav>
-  
-  <div id="events-wrapper"></div>
+  <main>
+    <div id="events-wrapper"></div>
+ 
+    <div class="event-entry-overlay">
+      <form id="event-entry">
+        <label for="title">Title</label>
+        <input type="text" id="title" class="inputs" placeholder="e.g., Austria Trip">
+        <label for="description">Description:</label>
+        <textarea id="description" class="inputs" rows="10" cols="50" placeholder="Brief description, such as the cities to be visited and/or significant activities"></textarea>
 
-  <div class="event-entry-overlay">
-    <form id="event-entry">
-      <label for="title">Title</label>
-      <input type="text" id="title" class="inputs" placeholder="e.g., Austria Trip">
-      <label for="description">Description:</label>
-      <textarea id="description" class="inputs" rows="10" cols="50" placeholder="Brief description, such as the cities to be visited and/or significant activities"></textarea>
-
-      <button type="submit">Save</button>
-    </form>
-  </div>
-
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </main>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <!-- <script type="text/javascript" src="constants.js"></script> -->
   <!-- <script type="text/javascript" src="app-common.js"></script> -->

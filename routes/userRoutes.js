@@ -6,7 +6,7 @@ const { authenticate } = require('../middleware/authenticate');
 module.exports = app => {
   //User sign-up route
   app.post('/users', (req, res) => {
-    const body = pick(req.body, ['email', 'password']);
+    const body = pick(req.body, ['email', 'password', 'userName']);
     const user = new User(body);
 
     user
@@ -15,7 +15,7 @@ module.exports = app => {
         return user.generateAuthToken();
       })
       .then(token => {
-        res.send({ id: user._id, email: user.email, token })
+        res.send({ id: user._id, email: user.email, userName: user.userName, token })
       })
       .catch(err => {
         if (err.code === 11000) {
