@@ -4,7 +4,7 @@ const { ObjectID } = require('mongodb');
 const expect = require('expect');
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
-
+const JWT_SECRET = require('./../config/config');
 
 const { Recipe } = require('../models/Recipe');
 const { User } = require('../models/User');

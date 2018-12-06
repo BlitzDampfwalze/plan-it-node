@@ -35,7 +35,7 @@ const getDisplayTasks = () => {
         // console.log(task);
         let element = $(taskTemplate(task._id));
         element.attr('id', task._id);
-        // element.find('.user-name').text(task.userName);
+        // element.find('.user-name').text(task.username);
         element.find('.task-name').text(task.taskName);
         element.find('.completed').html(task.completed);
         return element;

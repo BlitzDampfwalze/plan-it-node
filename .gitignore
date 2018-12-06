@@ -1,4 +1,6 @@
 node_modules/
 config/config.json
+config/ignored-configs.js
 api-calls.js
-
+.env
+ignored-server.js

@@ -1,9 +1,10 @@
-const env = process.env.NODE_ENV || 'development';
+// 'use strict';
+require('dotenv').config();
+require('./../server')
 
-if (env === 'development') {
-  process.env.MONGODB_URI = 'mongodb://admin:password5@ds147030.mlab.com:47030/plan-it';
-} else if (env === 'test') {
-  process.env.MONGODB_URI = 'mongodb://admin:password5@ds147030.mlab.com:47030/plan-it';
-} else if (env === 'production') {
-  process.env.MONGODB_URI = 'mongodb://admin:password5@ds147030.mlab.com:47030/plan-it';
-}
+exports.DATABASE_URL = process.env.DATABASE_URL;
+// exports.TEST_DB_URL = process.env.TEST_DB_URL;
+// exports.key = process.env.key;
+exports.PORT = process.env.PORT || 3000;
+// exports.CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:3000';
+exports.JWT_SECRET = process.env.JWT_SECRET || 'adsldkfaclsdk';

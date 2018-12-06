@@ -3,6 +3,7 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const pick = require('lodash.pick');
 const bcrypt = require('bcryptjs');
+// const JWT_SECRET = require('./../config/config');
 
 const userSchema = new mongoose.Schema(
   {
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
-    userName: {
+    username: {
       type: String,
       unique: true
     },
@@ -45,12 +46,12 @@ userSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
 
-  return pick(userObject, ['_id', 'email']);
+  return pick(userObject, ['_id', 'email', 'username']);
 };
 
 userSchema.methods.generateAuthToken = function () {
   const user = this;
-  const access = 'auth';
+  const access = 'auth'; // does this need to be 'auth'
   const token = jwt.sign({ _id: user._id.toHexString(), access }, 'abc123').toString();
 
   user.tokens = user.tokens.concat([{ access, token }]);
@@ -77,7 +78,7 @@ userSchema.statics.findByToken = function (token) {
   try {
     decoded = jwt.verify(token, 'abc123');
   } catch (err) {
-    return Promise.reject('some rejection value'); //value in err for catch on user routes
+    return Promise.reject('some rejection value'); //value in err for catch on user login routes
   }
 
   return User.findOne({

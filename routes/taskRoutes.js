@@ -14,7 +14,7 @@ module.exports = app => {
 
     const task = new Task({
       // userID: req.user._id,
-      // userName: req.body.userName,
+      // username: req.body.username,
       taskName: req.body.taskName,
       completed: req.body.completed
     });
@@ -36,7 +36,7 @@ module.exports = app => {
           // userID: req.user._id 
         },
         {
-          // userName: req.body.userName,
+          // username: req.body.username,
           taskName: req.body.taskName,
           completed: req.body.completed
         }
@@ -46,11 +46,8 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/tasks/by_event/:event_id',
-    authenticate, 
-    (req, res) => {
+  app.get('/tasks/by_event/:event_id', authenticate, (req, res) => {
       Task.find(
-        // { userID: req.user._id }
         {
           user: req.user._id,
           event: req.params.event_id
