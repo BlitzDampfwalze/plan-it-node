@@ -10,18 +10,23 @@ const { authenticate } = require('../middleware/authenticate');
 module.exports = app => {
 
   app.post('/tasks', (req, res) => {
-    console.log(req.body);
+    const { taskName } = req.body
+    if (!req.body.taskName) {
+      const err = new Error('Missing `taskName` in request body');
+      err.status = 400;
+      return next(err);
+    }
 
-    const task = new Task({
-      // userID: req.user._id,
-      // username: req.body.username,
-      taskName: req.body.taskName,
-      completed: req.body.completed
-    });
-
-    task.save().then(task => {
-      res.send(task);
-    })
+    Task
+      .create({
+        // userID: req.user._id,
+        // username: req.body.username,
+        taskName: req.body.taskName,
+        completed: req.body.completed
+      })
+      .then(newTask => {
+        res.status(201).send(newTask);
+      })
       .catch(err => { res.status(500).send(err) });
   });
 
@@ -47,16 +52,16 @@ module.exports = app => {
     });
 
   app.get('/tasks/by_event/:event_id', authenticate, (req, res) => {
-      Task.find(
-        {
-          user: req.user._id,
-          event: req.params.event_id
-        }
-      ).then((tasks) => {
-        res.send({ tasks })
-      }) 
-        .catch(err => { res.status(500).send(err) });
-    });
+    Task.find(
+      {
+        user: req.user._id,
+        event: req.params.event_id
+      }
+    ).then((tasks) => {
+      res.send({ tasks })
+    })
+      .catch(err => { res.status(500).send(err) });
+  });
 
   app.get('/tasks/:id',
     // authenticate, 

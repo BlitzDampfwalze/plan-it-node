@@ -6,25 +6,29 @@ const { authenticate } = require('../middleware/authenticate');
 module.exports = app => {
   //User sign-up route
   app.post('/users', (req, res) => {
-    const body = pick(req.body, ['email', 'password', 'username']);
-    const user = new User(body); //no need to create user manually; above is validated
-
-    user
-      .save()
-      .then(() => {
-        return user.generateAuthToken();
+    console.log(req.body);
+    // const body = pick(req.body, ['email', 'password', 'username']);
+    // const user = new User(req.body); //no need to create user manually; above is validated
+    let user;
+    User
+      .create(req.body)
+      // .save()
+      .then((newUser) => {
+        user = newUser
+        return newUser.generateAuthToken();
       })
       .then(token => {
         res.send({ id: user._id, email: user.email, username: user.username, token })
       })
       .catch(err => {
+        console.log(err)
         if (err.code === 11000) {
           return res.status(409).send({ message: 'username/email taken' })
         }
         res.sendStatus(500);
       });
   });
-  
+
   //User authentication route
   app.get('/users/me', authenticate, (req, res) => {
     res.send(req.user);

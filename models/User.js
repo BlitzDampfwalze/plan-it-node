@@ -3,7 +3,7 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 const pick = require('lodash.pick');
 const bcrypt = require('bcryptjs');
-// const JWT_SECRET = require('./../config/config');
+const { JWT_SECRET } = require('./../config/config');
 
 const userSchema = new mongoose.Schema(
   {
@@ -52,7 +52,7 @@ userSchema.methods.toJSON = function () {
 userSchema.methods.generateAuthToken = function () {
   const user = this;
   const access = 'auth'; // does this need to be 'auth'
-  const token = jwt.sign({ _id: user._id.toHexString(), access }, 'abc123').toString();
+  const token = jwt.sign({ _id: user._id.toHexString(), access }, JWT_SECRET).toString();
 
   user.tokens = user.tokens.concat([{ access, token }]);
 
@@ -76,7 +76,7 @@ userSchema.statics.findByToken = function (token) {
   let decoded;
 
   try {
-    decoded = jwt.verify(token, 'abc123');
+    decoded = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     return Promise.reject('some rejection value'); //value in err for catch on user login routes
   }

@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 const { PORT, DATABASE_URL } = require('./config/config');
 const express = require('express');
 const morgan = require('morgan');
@@ -6,10 +6,16 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
+// var http = require('http');
+// var socket_io = require('socket.io');
+
 const app = express();
 
+// var serverSocket = http.Server(app);
+// var io = socket_io(serverSocket);
+
 // app.use(express.json()); 
-// app.use('/auth', auth);
+
 app.use(express.static('public'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
@@ -24,12 +30,8 @@ require('./routes/userRoutes')(app);
 //   res.status(404).json({ message: 'Not Found' });
 // });
 
-// closeServer needs access to a server object, but that only
-// gets created when `runServer` runs, so we declare `server` here
-// and then assign a value to it in run
 let server;
 
-// this function connects to our database, then starts the server
 function runServer(databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, { useNewUrlParser: true }, err => {
@@ -51,8 +53,6 @@ function runServer(databaseUrl, port = PORT) {
   });
 }
 
-// this function closes the server, and returns a promise. we'll
-// use it in our integration tests later.
 function closeServer() {
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
@@ -67,8 +67,6 @@ function closeServer() {
   });
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
   // console.log(DATABASE_URL, PORT);
   runServer(DATABASE_URL, PORT).catch(err => {
@@ -76,5 +74,18 @@ if (require.main === module) {
     console.error(err);
   });
 }
+
+
+// io.on('connection', (socket) => {
+
+//   socket.on('SEND_MESSAGE', function(data){
+//       io.emit('RECEIVE_MESSAGE', data);
+//   });
+
+//   socket.on('USER_LOGGEDIN', function(user) {
+//       io.emit('LOG_USER', user);
+//   });
+// });
+
 
 module.exports = { runServer, app, closeServer };
