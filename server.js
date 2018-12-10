@@ -1,18 +1,21 @@
 'use strict';
 const { PORT, DATABASE_URL } = require('./config/config');
 const express = require('express');
+// const cors = require('cors'); //
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-// var http = require('http');
-// var socket_io = require('socket.io');
+// var http = require('http'); //for socket.io
+// var socket_io = require('socket.io'); //for socket.io
 
 const app = express();
 
-// var serverSocket = http.Server(app);
-// var io = socket_io(serverSocket);
+// var serverSocket = http.Server(app); //for socket.io
+// var io = socket_io(serverSocket); //for socket.io
+// app.use(cors()); //
+// app.options('*', cors()); //
 
 // app.use(express.json()); 
 
