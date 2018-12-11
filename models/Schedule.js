@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const scheduleSchema = new mongoose.Schema(
   {
-    // eventID:  { required: true, type: mongoose.Schema.Types.ObjectId, index: true },
+    event: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'},
     date: { type: Date },
     time: { type: Number },
     details: { type: String, required: true },
+    location: String,
     created: { type: Date, default: Date.now }
   }
 );

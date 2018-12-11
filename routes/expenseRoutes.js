@@ -4,66 +4,60 @@ const _ = {
 };
 
 const { ObjectID } = require('mongodb');
-const { Task } = require('../models/Task');
+const { Expense } = require('../models/Expense');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/tasks', (req, res) => {
-    const { taskName } = req.body
-    if (!req.body.taskName) {
-      const err = new Error('Missing `taskName` in request body');
-      err.status = 400;
-      return next(err);
-    }
+  app.post('/expenses', (req, res) => {
+    console.log(req.body);
 
-    Task
-      .create({
-        // userID: req.user._id,
-        // username: req.body.username,
-        taskName: req.body.taskName,
-        completed: req.body.completed
-      })
-      .then(newTask => {
-        res.status(201).send(newTask);
-      })
+    const expense = new Expense({
+      // userID: req.user._id,
+      date: req.body.date,
+      time: req.body.number,
+      details: req.body.details
+    });
+
+    expense.save().then(expense => {
+      res.send(expense);
+    })
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.put('/tasks/:id',
+  app.put('/expenses/:id',
     // authenticate, 
     (req, res) => {
       console.log(req.body);
 
-      Task.findOneAndUpdate(
+      Expense.findOneAndUpdate(
         {
           _id: req.params.id,
           // userID: req.user._id 
         },
         {
-          // username: req.body.username,
-          taskName: req.body.taskName,
-          completed: req.body.completed
+          date: req.body.date,
+          time: req.body.number,
+          details: req.body.details
         }
-      ).then(task => {
-        res.send(task);
+      ).then(expense => {
+        res.send(expense);
       })
         .catch(err => { res.status(500).send(err) });
     });
-  
-  app.get('/tasks/by_event/:event_id', authenticate, (req, res) => {
-    Task.find(
-      {
-        // user: req.user._id,
-        event: req.params.event_id
-      }
-    ).then((tasks) => {
-      res.send({ tasks })
-    })
-      .catch(err => { res.status(500).send(err) });
-  });
 
-  app.get('/tasks/:id',
+  app.get('/expenses',
+    // authenticate, 
+    (req, res) => {
+      Expense.find(
+        // { userID: req.user._id }
+      ).then((expenses) => {
+        res.send({ expenses })
+      }) //{} syntax vs res.json(...map etc.)
+        .catch(err => { res.status(500).send(err) });
+    });
+
+  app.get('/expenses/:id',
     // authenticate, 
     (req, res) => {
 
@@ -71,11 +65,11 @@ module.exports = app => {
         return res.sendStatus(404);
       }
 
-      Task.findById(req.params.id).then(task => {
-        if (!task) {
+      Expense.findById(req.params.id).then(expense => {
+        if (!expense) {
           return res.sendStatus(404);
         }
-        res.send({ task });
+        res.send({ expense });
       })
         .catch(err => {
           console.error(err);
@@ -83,7 +77,7 @@ module.exports = app => {
         });
     });
 
-  app.delete('/tasks/:id',
+  app.delete('/expenses/:id',
     // authenticate, 
     (req, res) => {
 
@@ -91,7 +85,7 @@ module.exports = app => {
         return res.status(404).send('Invalid ID');
       }
 
-      Task.findByIdAndRemove(req.params.id)
+      Expense.findByIdAndRemove(req.params.id)
         .then(() => {
           res.sendStatus(204);
         })

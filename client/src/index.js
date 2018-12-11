@@ -7,8 +7,8 @@ import store from './store';
 
 import App from './components/app';
 
-import "./components/style/normalize.css";
-import './index.css';
+// import "./components/style/normalize.css";
+// import './index.css';
 
 // import * as serviceWorker from "./serviceWorker";
 
