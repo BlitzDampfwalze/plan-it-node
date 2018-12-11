@@ -7,7 +7,8 @@
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,5 +25,8 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:3001/"
+  "proxy": "http://localhost:3001/",
+  "devDependencies": {
+    "react-router-dom": "^4.3.1"
+  }
 }
