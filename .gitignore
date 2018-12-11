@@ -4,3 +4,4 @@ config/ignored-configs.js
 api-calls.js
 .env
 ignored-server.js
+tests/test.js
