@@ -5,6 +5,7 @@ const initialState = {
   error: null,
   loading: false,
   toMain: false,
+  eventList: [],
 };
 
 export const reducer = (state = initialState, action) => {
