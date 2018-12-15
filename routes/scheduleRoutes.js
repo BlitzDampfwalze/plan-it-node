@@ -9,11 +9,23 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
+  app.post('/api/posts/:postid/schedule', (req, res) => {
+    const schedule = Schedule.create({
+
+      date: req.body.date,
+      time: req.body.number,
+      details: req.body.details
+    })
+    .then(schedule => {
+      res.send(schedule);
+    })
+
+  })
+
   app.post('/schedules', (req, res) => {
     console.log(req.body);
 
     const schedule = new Schedule({
-      // userID: req.user._id,
       date: req.body.date,
       time: req.body.number,
       details: req.body.details

@@ -19,8 +19,8 @@ module.exports = app => {
 
     Task
       .create({
-        // userID: req.user._id,
-        // username: req.body.username,
+        // user: req.user._id,
+        event: req.body.username,
         taskName: req.body.taskName,
         completed: req.body.completed
       })
@@ -29,6 +29,8 @@ module.exports = app => {
       })
       .catch(err => { res.status(500).send(err) });
   });
+
+
 
   app.put('/tasks/:id',
     // authenticate, 
