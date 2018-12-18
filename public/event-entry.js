@@ -7,12 +7,19 @@ $(() => {
 
   if (isEdit) {
     //retrieve data for this recipe, then populate the fields with it.
-    fetch(`/events/${eventID}`,
-      // {
-      //   headers: {
-      //     "x-auth": authToken,
-      //   }
-      // }
+    
+    // ${eventID} req.params.eventID
+    fetch(`/events/${eventID}?event=${eventID}`, //example for schedule
+      {
+        headers: {
+          "x-auth": authToken,
+        },
+        data: {
+          event: eventID,
+
+        }
+      
+      }
     ).then(res => {
       if (res.ok) {
         return res.json()

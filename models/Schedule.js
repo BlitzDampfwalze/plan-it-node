@@ -4,9 +4,9 @@ const scheduleSchema = new mongoose.Schema(
   {
     event: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'},
     date: { type: Date },
-    time: { type: Number },
+    // time: { type: Number },
     details: { type: String, required: true },
-    location: String,
+    location: { type: String },
     created: { type: Date, default: Date.now }
   }
 );

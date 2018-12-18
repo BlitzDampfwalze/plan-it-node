@@ -9,7 +9,7 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/messages', (req, res) => {
+  app.post('/api/messages', (req, res) => {
     console.log(req.body);
 
     const event = new Chat({
@@ -24,7 +24,7 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.put('/messages/:id',
+  app.put('/api/messages/:id',
     // authenticate, 
     (req, res) => {
       console.log(req.body);
@@ -43,7 +43,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/messages',
+  app.get('/api/messages',
     // authenticate, 
     (req, res) => {
       Chat.find(
@@ -54,7 +54,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/messages/:id',
+  app.get('/api/messages/:id',
     // authenticate, 
     (req, res) => {
 
@@ -74,7 +74,7 @@ module.exports = app => {
         });
     });
 
-  app.delete('/messages/:id',
+  app.delete('/api/messages/:id',
     // authenticate, 
     (req, res) => {
 

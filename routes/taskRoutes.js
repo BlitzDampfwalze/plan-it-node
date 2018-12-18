@@ -9,7 +9,7 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/tasks', (req, res) => {
+  app.post('/api/tasks', (req, res) => {
     const { taskName } = req.body
     if (!req.body.taskName) {
       const err = new Error('Missing `taskName` in request body');
@@ -32,7 +32,7 @@ module.exports = app => {
 
 
 
-  app.put('/tasks/:id',
+  app.put('/api/tasks/:id',
     // authenticate, 
     (req, res) => {
       console.log(req.body);
@@ -53,7 +53,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
   
-  app.get('/tasks/by_event/:event_id', authenticate, (req, res) => {
+  app.get('/api/tasks/by_event/:event_id', authenticate, (req, res) => {
     Task.find(
       {
         // user: req.user._id,
@@ -65,7 +65,7 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.get('/tasks/:id',
+  app.get('/api/tasks/:id',
     // authenticate, 
     (req, res) => {
 
@@ -85,7 +85,7 @@ module.exports = app => {
         });
     });
 
-  app.delete('/tasks/:id',
+  app.delete('/api/tasks/:id',
     // authenticate, 
     (req, res) => {
 

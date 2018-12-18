@@ -9,11 +9,10 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/events', (req, res) => {
+  app.post('/api/events', (req, res) => {
     console.log(req.body);
 
     const event = new Event({
-      // userID: req.user._id,
       title: req.body.title,
       description: req.body.description,
     });
@@ -24,7 +23,12 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.put('/events/:id',
+  //grab event and push new user to it. check that user is not already in the array.
+  // app.post('api/events/:id/join') {
+  //   Event.findOneAndUpdate()
+  // }
+
+  app.put('/api/events/:id',
     // authenticate, 
     (req, res) => {
       console.log(req.body);
@@ -44,8 +48,8 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/events',
-    // authenticate, 
+  app.get('/api/events',
+    authenticate,
     (req, res) => {
       Event.find(
         // { userID: req.user._id }
@@ -55,7 +59,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/events/:id',
+  app.get('/api/events/:id',
     // authenticate, 
     (req, res) => {
 
@@ -75,7 +79,7 @@ module.exports = app => {
         });
     });
 
-  app.delete('/events/:id',
+  app.delete('/api/events/:id',
     // authenticate, 
     (req, res) => {
 

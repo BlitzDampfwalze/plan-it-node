@@ -9,9 +9,9 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/api/posts/:postid/schedule', (req, res) => {
+  app.post('/api/schedule', (req, res) => {
     const schedule = Schedule.create({
-
+      event: req.body.event || req.body.eventID, //pass the event-id in on the front-end
       date: req.body.date,
       time: req.body.number,
       details: req.body.details
@@ -22,7 +22,7 @@ module.exports = app => {
 
   })
 
-  app.post('/schedules', (req, res) => {
+  app.post('/api/schedules', (req, res) => {
     console.log(req.body);
 
     const schedule = new Schedule({
@@ -37,7 +37,7 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.put('/schedules/:id',
+  app.put('/api/schedules/:id',
     // authenticate, 
     (req, res) => {
       console.log(req.body);
@@ -58,7 +58,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/schedules',
+  app.get('/api/schedules',
     // authenticate, 
     (req, res) => {
       Schedule.find(
@@ -69,7 +69,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/schedules/:id',
+  app.get('/api/schedules/:id',
     // authenticate, 
     (req, res) => {
 
@@ -89,7 +89,7 @@ module.exports = app => {
         });
     });
 
-  app.delete('/schedules/:id',
+  app.delete('/api/schedules/:id',
     // authenticate, 
     (req, res) => {
 

@@ -5,7 +5,7 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
   //User sign-up route
-  app.post('/users', (req, res) => {
+  app.post('/api/users', (req, res) => {
     console.log(req.body);
     // const body = pick(req.body, ['email', 'password', 'username']);
     // const user = new User(req.body); //no need to create user manually; above is validated
@@ -30,12 +30,12 @@ module.exports = app => {
   });
 
   //User authentication route
-  app.get('/users/me', authenticate, (req, res) => {
+  app.get('/api/users/me', authenticate, (req, res) => {
     res.send(req.user);
   });
 
   //User login route
-  app.post('/users/login', (req, res) => {
+  app.post('/api/users/login', (req, res) => {
     const body = pick(req.body, ['email', 'password']);
     User.findByCredentials(body.email, body.password)
       .then(user => {
@@ -48,7 +48,7 @@ module.exports = app => {
       });
   });
 
-  app.delete('/users/me/token', authenticate, (req, res) => {
+  app.delete('/api/users/me/token', authenticate, (req, res) => {
     req.user.removeToken(req.token).then(
       () => {
         res.status(200).send();

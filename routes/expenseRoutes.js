@@ -9,7 +9,7 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/expenses', (req, res) => {
+  app.post('api/expenses', (req, res) => {
     console.log(req.body);
 
     const expense = new Expense({
@@ -25,7 +25,7 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.put('/expenses/:id',
+  app.put('/api/expenses/:id',
     // authenticate, 
     (req, res) => {
       console.log(req.body);
@@ -46,7 +46,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/expenses',
+  app.get('/api/expenses',
     // authenticate, 
     (req, res) => {
       Expense.find(
@@ -57,7 +57,7 @@ module.exports = app => {
         .catch(err => { res.status(500).send(err) });
     });
 
-  app.get('/expenses/:id',
+  app.get('/api/expenses/:id',
     // authenticate, 
     (req, res) => {
 
@@ -77,7 +77,7 @@ module.exports = app => {
         });
     });
 
-  app.delete('/expenses/:id',
+  app.delete('/api/expenses/:id',
     // authenticate, 
     (req, res) => {
 
