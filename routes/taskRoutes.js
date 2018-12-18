@@ -9,20 +9,24 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/api/tasks', (req, res) => {
-    const { taskName } = req.body
-    if (!req.body.taskName) {
-      const err = new Error('Missing `taskName` in request body');
+  app.post('/api/tasks', authenticate, (req, res) => {
+    const { taskDetails } = req.body
+    if (!req.body.taskDetails) {
+      const err = new Error('Missing `taskDetails` in request body');
       err.status = 400;
       return next(err);
     }
 
     Task
       .create({
-        // user: req.user._id,
-        event: req.body.username,
-        taskName: req.body.taskName,
-        completed: req.body.completed
+        //picks up the authenticated user, but want the user to choose which user 
+        //(from list that have joined the 'event room') when creating the task
+        // having some issues with trying to have username input
+        user: req.user._id || req.user.id,
+        event: req.body.event_id,
+        taskDetails: req.body.taskDetails,
+        completed: req.body.completed,
+        // username: req.body.username
       })
       .then(newTask => {
         res.status(201).send(newTask);
@@ -32,31 +36,27 @@ module.exports = app => {
 
 
 
-  app.put('/api/tasks/:id',
-    // authenticate, 
-    (req, res) => {
-      console.log(req.body);
+  app.put('/api/tasks/:task_id', authenticate, (req, res) => {
+    console.log(req.body);
 
-      Task.findOneAndUpdate(
-        {
-          _id: req.params.id,
-          // userID: req.user._id 
-        },
-        {
-          // username: req.body.username,
-          taskName: req.body.taskName,
-          completed: req.body.completed
-        }
-      ).then(task => {
-        res.send(task);
-      })
-        .catch(err => { res.status(500).send(err) });
-    });
-  
-  app.get('/api/tasks/by_event/:event_id', authenticate, (req, res) => {
+    Task.findOneAndUpdate(
+      {
+        _id: req.params.task_id,
+      },
+      {
+        taskDetails: req.body.taskDetails,
+        completed: req.body.completed
+      }
+    ).then(task => {
+      res.send(task);
+    })
+      .catch(err => { res.status(500).send(err) });
+  });
+
+  app.get('/api/tasks/by_event_and_user/:event_id/:user_id', authenticate, (req, res) => {
     Task.find(
       {
-        // user: req.user._id,
+        user: req.params.user_id,
         event: req.params.event_id
       }
     ).then((tasks) => {
@@ -65,29 +65,27 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.get('/api/tasks/:id',
-    // authenticate, 
-    (req, res) => {
+  // app.get('/api/tasks/:id',
+  //   // authenticate, 
+  //   (req, res) => {
 
-      if (!ObjectID.isValid(req.params.id)) {
-        return res.sendStatus(404);
-      }
+  //     if (!ObjectID.isValid(req.params.id)) {
+  //       return res.sendStatus(404);
+  //     }
 
-      Task.findById(req.params.id).then(task => {
-        if (!task) {
-          return res.sendStatus(404);
-        }
-        res.send({ task });
-      })
-        .catch(err => {
-          console.error(err);
-          res.status(500).json({ error: 'something went wrong' });
-        });
-    });
+  //     Task.findById(req.params.id).then(task => {
+  //       if (!task) {
+  //         return res.sendStatus(404);
+  //       }
+  //       res.send({ task });
+  //     })
+  //       .catch(err => {
+  //         console.error(err);
+  //         res.status(500).json({ error: 'something went wrong' });
+  //       });
+  //   });
 
-  app.delete('/api/tasks/:id',
-    // authenticate, 
-    (req, res) => {
+  app.delete('/api/tasks/:id', authenticate, (req, res) => {
 
       if (!ObjectID.isValid(req.params.id)) {
         return res.status(404).send('Invalid ID');

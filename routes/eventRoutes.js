@@ -9,19 +9,21 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  app.post('/api/events', (req, res) => {
-    console.log(req.body);
+  app.post('/api/events',
+    // authenticate, 
+    (req, res) => {
+      console.log(req.body);
 
-    const event = new Event({
-      title: req.body.title,
-      description: req.body.description,
+      const event = new Event({
+        title: req.body.title,
+        description: req.body.description,
+      });
+
+      event.save().then(event => {
+        res.send(event);
+      })
+        .catch(err => { res.status(500).send(err) });
     });
-
-    event.save().then(event => {
-      res.send(event);
-    })
-      .catch(err => { res.status(500).send(err) });
-  });
 
   //grab event and push new user to it. check that user is not already in the array.
   // app.post('api/events/:id/join') {
