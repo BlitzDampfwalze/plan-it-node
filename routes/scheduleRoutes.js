@@ -28,8 +28,7 @@ module.exports = app => {
   //     .catch(err => { res.status(500).send(err) });
   // });
 
-  app.post('/api/schedule/by_event/:event_id', authenticate, (req, res) => {
-    console.log(req.body);
+  app.post('/api/events/:event_id/schedule', authenticate, (req, res) => {
 
     const schedule = new Schedule({
       event: req.params.event_id,
@@ -43,8 +42,7 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.put('/api/schedule/by_event/:event_id/:schedule_id', authenticate, (req, res) => {
-    console.log(req.body);
+  app.put('/api/events/:event_id/schedule/:schedule_id', authenticate, (req, res) => {
 
     Schedule.findOneAndUpdate(
       {
@@ -62,7 +60,7 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.get('/api/schedule/by_event/:event_id', authenticate, (req, res) => {
+  app.get('/api/events/:event_id/schedule', authenticate, (req, res) => {
     Schedule.find(
       { event: req.params.event_id }
     ).then((schedules) => {
@@ -93,9 +91,9 @@ module.exports = app => {
 
   app.delete('/api/schedule/:schedule_id', authenticate, (req, res) => {
 
-    // if (!ObjectID.isValid(req.params.schedule_id)) {
-    //   return res.status(404).send('Invalid ID');
-    // }
+    if (!ObjectID.isValid(req.params.schedule_id)) {
+      return res.status(404).send('Invalid ID');
+    }
 
     Schedule.findByIdAndRemove(req.params.schedule_id)
       .then(() => {
