@@ -5,11 +5,12 @@ const _ = {
 
 const { ObjectID } = require('mongodb');
 const { Task } = require('../models/Task');
+const { Event } = require('../models/Event');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
-
-  app.post('/api/tasks', authenticate, (req, res) => {
+  //api/events/:event_id/tasks/user/:user_id
+  app.post('/api/events/:event_id/tasks/user/:user_id', authenticate, (req, res) => {
     const { taskDetails } = req.body
     if (!req.body.taskDetails) {
       const err = new Error('Missing `taskDetails` in request body');
@@ -18,12 +19,13 @@ module.exports = app => {
     }
 
     Task
+      // find user with the users array on the event 
       .create({
         //picks up the authenticated user, but want the user to choose which user 
         //(from list that have joined the 'event room') when creating the task
         // having some issues with trying to have username input
-        user: req.user._id || req.user.id,
-        event: req.body.event_id,
+        user: req.params.user_id,
+        event: req.params.event_id,
         taskDetails: req.body.taskDetails,
         completed: req.body.completed,
         // username: req.body.username
@@ -36,11 +38,12 @@ module.exports = app => {
 
 
 
-  app.put('/api/tasks/:task_id', authenticate, (req, res) => {
+  app.put('/api/tasks/by_event/:event_id/:task_id, authenticate', (req, res) => {
     console.log(req.body);
 
     Task.findOneAndUpdate(
       {
+        event: req.params.event_id,
         _id: req.params.task_id,
       },
       {
@@ -87,18 +90,18 @@ module.exports = app => {
 
   app.delete('/api/tasks/:id', authenticate, (req, res) => {
 
-      if (!ObjectID.isValid(req.params.id)) {
-        return res.status(404).send('Invalid ID');
-      }
+    if (!ObjectID.isValid(req.params.id)) {
+      return res.status(404).send('Invalid ID');
+    }
 
-      Task.findByIdAndRemove(req.params.id)
-        .then(() => {
-          res.sendStatus(204);
-        })
-        .catch(err => {
-          console.error(err);
-          res.status(500).json({ error: 'something went wrong' });
-        });
-    });
+    Task.findByIdAndRemove(req.params.id)
+      .then(() => {
+        res.sendStatus(204);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: 'something went wrong' });
+      });
+  });
 
 };

@@ -26,9 +26,26 @@ module.exports = app => {
     });
 
   //grab event and push new user to it. check that user is not already in the array.
-  // app.post('api/events/:id/join') {
-  //   Event.findOneAndUpdate()
-  // }
+  app.post('/api/events/:event_id/join/:user_id', authenticate, (req, res) => {
+    console.log(req.body, "res.body")
+    Event.findById(req.params.event_id)
+      .then((event) => {
+        console.log(event, "event")
+        //if (event.users.length > 100) { res.status(400).send }
+        if (!event.users) {
+          event.users = [];
+        }
+        if (event.users.indexOf(req.params.user_id) === -1) {
+          event.users.push(req.params.user_id);
+          event.save();
+        }
+        res.status(200).send(event);
+      })
+      .catch(err => {
+        console.log(err, "err")
+        res.status(500).send(err)
+      })
+  });
 
   app.put('/api/events/:id',
     // authenticate, 

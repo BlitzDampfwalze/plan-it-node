@@ -28,7 +28,7 @@ module.exports = app => {
   //     .catch(err => { res.status(500).send(err) });
   // });
 
-  app.post('/api/schedule/by_event/:event_id/', authenticate, (req, res) => {
+  app.post('/api/schedule/by_event/:event_id', authenticate, (req, res) => {
     console.log(req.body);
 
     const schedule = new Schedule({
