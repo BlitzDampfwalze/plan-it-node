@@ -9,37 +9,32 @@ const { Event } = require('../models/Event');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
-  //api/events/:event_id/tasks/user/:user_id
   app.post('/api/events/:event_id/tasks/user/:user_id', authenticate, (req, res) => {
+
     const { taskDetails } = req.body
-    if (!req.body.taskDetails) {
+    if (!req.body.taskDetails || !req.params.user_id) {
       const err = new Error('Missing `taskDetails` in request body');
       err.status = 400;
       return next(err);
     }
 
     Task
-      // find user with the users array on the event 
       .create({
-        //picks up the authenticated user, but want the user to choose which user 
-        //(from list that have joined the 'event room') when creating the task
-        // having some issues with trying to have username input
         user: req.params.user_id,
         event: req.params.event_id,
         taskDetails: req.body.taskDetails,
         completed: req.body.completed,
-        // username: req.body.username
       })
       .then(newTask => {
         res.status(201).send(newTask);
       })
       .catch(err => { res.status(500).send(err) });
+
   });
 
 
 
-  app.put('/api/tasks/by_event/:event_id/:task_id, authenticate', (req, res) => {
-    console.log(req.body);
+  app.put('/api/events/:event_id/tasks/:task_id', authenticate, (req, res) => {
 
     Task.findOneAndUpdate(
       {
@@ -54,9 +49,11 @@ module.exports = app => {
       res.send(task);
     })
       .catch(err => { res.status(500).send(err) });
+
   });
 
-  app.get('/api/tasks/by_event_and_user/:event_id/:user_id', authenticate, (req, res) => {
+  app.get('/api/events/:event_id/tasks/user/:user_id', authenticate, (req, res) => {
+
     Task.find(
       {
         user: req.params.user_id,
@@ -66,6 +63,7 @@ module.exports = app => {
       res.send({ tasks })
     })
       .catch(err => { res.status(500).send(err) });
+
   });
 
   // app.get('/api/tasks/:id',
@@ -88,13 +86,13 @@ module.exports = app => {
   //       });
   //   });
 
-  app.delete('/api/tasks/:id', authenticate, (req, res) => {
+  app.delete('/api/tasks/:task_id', authenticate, (req, res) => {
 
-    if (!ObjectID.isValid(req.params.id)) {
+    if (!ObjectID.isValid(req.params.task_id)) {
       return res.status(404).send('Invalid ID');
     }
 
-    Task.findByIdAndRemove(req.params.id)
+    Task.findByIdAndRemove(req.params.task_id)
       .then(() => {
         res.sendStatus(204);
       })
