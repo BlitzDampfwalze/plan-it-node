@@ -30,7 +30,7 @@ module.exports = app => {
   });
 
   //User authentication route
-  app.get('/api/users/me', authenticate, (req, res) => {
+  app.get('/api/users/auth', authenticate, (req, res) => {
     res.send(req.user);
   });
 

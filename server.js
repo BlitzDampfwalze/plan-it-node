@@ -27,7 +27,6 @@ require('./routes/eventRoutes')(app);
 require('./routes/taskRoutes')(app);
 require('./routes/scheduleRoutes')(app);
 require('./routes/chatRoutes')(app);
-require('./routes/expenseRoutes')(app);
 require('./routes/userRoutes')(app);
 
 // app.use('*', function (req, res) {
