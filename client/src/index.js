@@ -6,14 +6,16 @@ import store from './store';
 
 import App from './App';
 
-import "./components/style/normalize.css";
 import './index.css';
+// import './style/reset.css';
+import './style/normalize.css'
+
 
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
-      <App />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

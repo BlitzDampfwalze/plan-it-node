@@ -1,0 +1,16 @@
+a {
+  text-decoration: none;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul {
+  display: flex;
+}
+
+li {
+  text-decoration: none;
+  margin: 15px;
+}

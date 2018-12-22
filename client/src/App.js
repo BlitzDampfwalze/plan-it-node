@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-import NavBar from "./components/NavBar";
+import NavBar from "./containers/NavBar";
 import Login from "./components/Login";
 
 
@@ -14,17 +14,22 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
           <header className="App-header">
-            <Route exact path="/" component={NavBar} />
-            <Login />
-            <Route exact path="/users/login" />
+            <NavBar />
           </header>
-          <Route exact path="/users/login" component={Login} />
-        </div>
       </Router>
     );
   }
 }
 
+// {/* <div className="App">
+// <header className="App-header">
+//   <NavBar />
+//   <Login />
+//   <Route exact path="/users/login" />
+// </header>
+// <Route exact path="/users/login" component={Login} />
+// </div> */}
+
 export default App;
+// {/* <Route exact path="/" component={NavBar} /> */}
