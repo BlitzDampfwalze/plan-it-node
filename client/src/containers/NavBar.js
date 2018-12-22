@@ -12,15 +12,16 @@ export class NavBar extends React.Component {
   render() {
 
     return (
-      <nav>
-      <div>Plan-it</div>
-      <Link to="/dashboard/user">{this.props.navbar.text}</Link>
-      <ul className="nav-items">
-        <li >About</li>
-        <li>Login</li>
-        <li>Sign-up</li>
-      </ul>
-    </nav>
+      <nav className="nav">
+        <div className="nav-left">Plan-it</div>      
+        <div className="nav-right">      
+            <ul>
+              <li className="list-item">About</li>
+              <li className="list-item">Login</li>
+              <li className="list-item">Sign-up</li>
+            </ul>
+        </div>
+      </nav>
     )
   }
   
@@ -35,3 +36,5 @@ const mapDispatchToProps = ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+
+{/* <Link to="/dashboard/user">{this.props.navbar.text}</Link> */}

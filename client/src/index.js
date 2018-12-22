@@ -7,8 +7,8 @@ import store from './store';
 import App from './App';
 
 import './index.css';
-// import './style/reset.css';
-import './style/normalize.css'
+import './style/reset.css';
+// import './style/normalize.css'
 
 
 import * as serviceWorker from "./serviceWorker";

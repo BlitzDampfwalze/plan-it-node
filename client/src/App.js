@@ -4,19 +4,28 @@ import React, { Component } from 'react';
 
 import NavBar from "./containers/NavBar";
 import Login from "./components/Login";
+import EventCard from "./containers/EventCard";
 
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+
 import './App.css';
+
+
 
 class App extends Component {
   render() {
     return (
       <Router>
+        <div className="root-container">
           <header className="App-header">
             <NavBar />
           </header>
+          <main>
+          <EventCard />
+          </main>   
+        </div>       
       </Router>
     );
   }
