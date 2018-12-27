@@ -11,10 +11,10 @@ export class EventCard extends React.Component {
   render() {
 
     return (
-      <div className="card-container item">
-        <div className="card-image item">IMAGE HERE</div>
-        <div className="card-description item">TRIP NAME description</div>
-        <button className="item">JOIN</button>
+      <div className="event-card-container card-item">
+        <div className="event-card-image card-item">IMAGE HERE</div>
+        <div className="event-card-description card-item">TRIP NAME description</div>
+        <button className="card-item">JOIN</button>
       </div>
     )
   }

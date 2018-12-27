@@ -1,12 +1,15 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
+
+import EventCard from './EventCard';
 
 // import List from './list';
 // import AddForm from './add-form';
 
 // import {addList, fetchBoard} from '../actions';
 
-import './Dashboard.css';
+import "../style/dashboard.css";
 
 export class Dashboard extends React.Component {
     constructor(props) {
@@ -26,30 +29,47 @@ export class Dashboard extends React.Component {
         //     </li>
         // ));
 
-        return 
+        return (
+            <div className="event-card-wrapper">
+                <EventCard />
+                <EventCard /> 
+                <EventCard />
+                <EventCard />
+                <EventCard />            
+            </div>            
+        );
         // (
-            // <div className="board">
-            //     <h2>{this.props.title}</h2>
-            //     <ul className="lists">
-            //         {lists}
-            //         <li className="add-list-wrapper">
-            //             <AddForm
-            //                 type="list"
-            //                 onAdd={title => this.addList(title)}
-            //             />
-            //         </li>
-            //     </ul>
-            // </div>
+        // <div className="board">
+        //     <h2>{this.props.title}</h2>
+        //     <ul className="lists">
+        //         {lists}
+        //         <li className="add-list-wrapper">
+        //             <AddForm
+        //                 type="list"
+        //                 onAdd={title => this.addList(title)}
+        //             />
+        //         </li>
+        //     </ul>
+        // </div>
         // );
     }
 }
 
-Dashboard.defaultProps = {
-    // title: 'Board'
-};
+const mapStateToProps = (state) => ({
+    // navbar: state.navbar
+})
 
-const mapStateToProps = state => ({
-    // lists: state.lists
-});
+const mapDispatchToProps = ({
+    // setHeaderText: setHeaderText
+})
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dashboard));
+
+// Dashboard.defaultProps = {
+//     // title: 'Board'
+// };
+
+// const mapStateToProps = state => ({
+//     // lists: state.lists
+// });
+

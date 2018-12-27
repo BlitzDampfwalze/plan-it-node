@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 
 // import { connect } from 'react-redux';
 
-import NavBar from "./containers/NavBar";
-import Login from "./components/Login";
-import EventCard from "./containers/EventCard";
+import Navbar from './components/layout/Navbar';
+import Footer from './components/Footer';
+import Landing from './components/Landing';
+import Dashboard from './components/Dashboard';
+import Login from './components/auth/Login';
+import EventRoom from './components/EventRoom';
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
 
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+
+
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 
 import './App.css';
@@ -17,23 +25,33 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div className="root-container">
           <header className="App-header">
-            <NavBar />
+            <Navbar />
           </header>
           <main>
-          <EventCard />
-          </main>   
-        </div>       
-      </Router>
+            <Switch>
+              <Route exact path='/' component={Landing} />
+              <Route exact path='/dashboard' component={Dashboard} />
+              {/* <Route exact path='/login' component={Login} /> */}
+              <Route exact path='/event/:id' component={EventRoom} />
+              <Route path='/signin' component={SignIn} />
+              <Route path='/signup' component={SignUp} />
+            </Switch>
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </div>
+      </BrowserRouter>
     );
   }
 }
 
 // {/* <div className="App">
 // <header className="App-header">
-//   <NavBar />
+//   <Navbar />
 //   <Login />
 //   <Route exact path="/users/login" />
 // </header>
@@ -41,4 +59,4 @@ class App extends Component {
 // </div> */}
 
 export default App;
-// {/* <Route exact path="/" component={NavBar} /> */}
+// {/* <Route exact path="/" component={Navbar} /> */}
