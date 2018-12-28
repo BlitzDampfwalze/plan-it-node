@@ -4,14 +4,15 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import './style/reset.css';
+
 import App from './App';
 
 import './index.css';
-import './style/reset.css';
-// import './style/normalize.css'
-
 
 import * as serviceWorker from "./serviceWorker";
+
+
 
 ReactDOM.render(
   <Provider store={store}>

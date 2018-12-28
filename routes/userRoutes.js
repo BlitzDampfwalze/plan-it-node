@@ -39,14 +39,22 @@ module.exports = app => {
     const body = pick(req.body, ['email', 'password']);
     User.findByCredentials(body.email, body.password)
       .then(user => {
+        console.log('user login', user)
         return user.generateAuthToken().then(token => {
-          res.send({ id: user._id, email: user.email, token })
+          res.send({ id: user._id, email: user.email, username: user.username, token })
         });
       })
       .catch(err => {
         res.status(401).send(err);
       });
   });
+
+  // The user exchanges a valid JWT for a new one with a later expiration
+  app.post('/api/users/refresh', authenticate, (req, res) => {
+    const authToken = createAuthToken(req.user);
+    res.json({ authToken });
+  });
+
 
   app.delete('/api/users/me/token', authenticate, (req, res) => {
     req.user.removeToken(req.token).then(

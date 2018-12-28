@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
+import { signin } from '../../actions'
 
 class SignIn extends Component {
   state = {
@@ -7,16 +10,22 @@ class SignIn extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e)
     this.setState({
       [e.target.id]: e.target.value
     })
   }
 
   handleSubmit = (e) => {
-    console.log(e)
     e.preventDefault();
     console.log(this.state)
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    // this.props.dispatch(signin(user));
+    this.props.signin(this.state);
+    // signin(user)
+    this.setState({ email: '', password: '' });
   }
 
   render() {
@@ -40,4 +49,12 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn
+const mapStateToProps = (state) => ({
+  // navbar: state.navbar
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  signin: (user) => dispatch(signin(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

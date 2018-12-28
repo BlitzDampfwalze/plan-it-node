@@ -12,9 +12,10 @@ ul {
 ul li {
   margin: 0 0 0 25px;
   text-decoration: none;
+  
 }
 
-ul li .list-item {
+ul a {
   text-decoration: none;
   color: white;
 }

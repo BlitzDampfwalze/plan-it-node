@@ -6,17 +6,17 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/Footer';
 import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
-import Login from './components/auth/Login';
+// import Login from './components/auth/Login';
 import EventRoom from './components/EventRoom';
-import SignIn from './components/auth/SignIn'
-import SignUp from './components/auth/SignUp'
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+
 
 
 
 
 
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-
 
 import './App.css';
 

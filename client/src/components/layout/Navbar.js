@@ -11,24 +11,19 @@ import { withRouter } from 'react-router-dom'
 import "../../style/navbar.css";
 
 export class Navbar extends React.Component {
+  // constructor(props) {
+  //   super(props);
 
-  handleLogoClick = () => {
-    console.log('handleLogoClick')
-    this.props.history.push('/')
-  }
+    // const { auth, profile } = props;
+    // // console.log(auth);
+    // const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
 
-  handleAboutClick = () => {
+    handleLogoClick = () => {
+      console.log('handleLogoClick')
+      this.props.history.push('/')
+    }
 
-  }
-
-  handleLoginClick = () => {
-
-  }
-
-  handleSignupClick = () => {
-
-  }
-
+  // }
 
   render() {
     //alternatively place variable: false in state and include the following:
@@ -40,12 +35,14 @@ export class Navbar extends React.Component {
         <div className="nav-left" onClick={this.handleLogoClick}>Plan-it</div>
         <div className="nav-right">
           <ul>
-            <li className="list-item" onClick={this.handleAboutClick}>About</li>
+            {/* {links} */}
+            <SignedInLinks />
+            <SignedOutLinks />
+            {/* <li className="list-item" onClick={this.handleAboutClick}>About</li>
             <li className="list-item" onClick={this.handleLoginClick}>Login</li>
-            <li className="list-item" onClick={this.handleSignupClick}>Sign-up</li>
+            <li className="list-item" onClick={this.handleSignupClick}>Sign-up</li> */}
           </ul>
-          <SignedInLinks />
-          <SignedOutLinks />
+
         </div>
       </nav>
     )

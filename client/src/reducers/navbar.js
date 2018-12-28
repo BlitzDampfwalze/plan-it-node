@@ -8,5 +8,6 @@ export default (state = {text: "hello"}, action) => {
       }
     default:
       return state
+
   }
 }

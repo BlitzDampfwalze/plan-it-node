@@ -9,16 +9,20 @@ class CreateEvent extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e)
     this.setState({
       [e.target.id]: e.target.value
     })
   }
 
   handleSubmit = (e) => {
-    console.log(e)
     e.preventDefault();
     console.log(this.state)
+    const event = {
+      title: this.state.title,
+      description: this.state.description,
+      password: this.state.password
+    }
+    
   }
 
   render() {
@@ -39,7 +43,7 @@ class CreateEvent extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
           </div>
-          <button>Sign-up</button>
+          <button>Create</button>
         </form>
       </div>
     )

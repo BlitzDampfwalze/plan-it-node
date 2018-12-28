@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
 import EventCard from './EventCard';
+import EventCardCreate from './EventCardCreate';
 
 // import List from './list';
 // import AddForm from './add-form';
@@ -35,7 +36,8 @@ export class Dashboard extends React.Component {
                 <EventCard /> 
                 <EventCard />
                 <EventCard />
-                <EventCard />            
+                <EventCard />
+                <EventCardCreate />            
             </div>            
         );
         // (
