@@ -1,7 +1,8 @@
 const initialState = {
   authToken: '',
   loading: false,
-  user: null,
+  userObject: null,
+  username: null,
   userID: '',
 };
 
@@ -17,9 +18,9 @@ export default (state = initialState, action) => {
     case 'AUTH_SUCCESS':
       return Object.assign({}, state, {
         loading: false,
-        user: action.currentUser,
-        // user: action.currentUser.username,
-        // userID: action.currentUser.id
+        userObject: action.currentUser,
+        username: action.currentUser.username,
+        userID: action.currentUser.id
       });
 
     // case 'SIGN_IN':

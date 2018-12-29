@@ -44,13 +44,16 @@ export const authError = error => ({
 
 
 
-const storeAuthInfo = (authToken, dispatch) => {
-  const decodedToken = jwtDecode(authToken);
+const storeAuthInfo = (user, dispatch) => {
+  const decodedToken = jwtDecode(user.token);
   console.log('decodedToken', decodedToken)
-  dispatch(setAuthToken(authToken));
-  dispatch(authSuccess(decodedToken.user));
+  console.log('username', user)
+  console.log('user id ', decodedToken._id)
+  dispatch(setAuthToken(user.token));
+  dispatch(authSuccess(user));
   // dispatch(logSession({ user: decodedToken.username }));
-  saveAuthToken(authToken);
+  saveAuthToken(user.token);
+
 };
 
 export const signin = user => dispatch => {
@@ -72,8 +75,8 @@ export const signin = user => dispatch => {
       return res.json();
     })
     .then((user) => {
-      console.log('user sign', user)
-      storeAuthInfo(user.token, dispatch)
+      console.log('user signin res', user)
+      storeAuthInfo(user, dispatch)
     })
     .catch(err => {
       console.log(err)
