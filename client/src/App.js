@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import {refreshAuthToken} from './actions';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/Footer';
@@ -12,17 +13,41 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 
 
-
-
-
-
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import './App.css';
 
-
-
 class App extends Component {
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.loggedIn && this.props.loggedIn) {
+        // When we are logged in, refresh the auth token periodically
+        this.startPeriodicRefresh();
+    } else if (prevProps.loggedIn && !this.props.loggedIn) {
+        // Stop refreshing when we log out
+        this.stopPeriodicRefresh();
+    }
+}
+
+componentWillUnmount() {
+    this.stopPeriodicRefresh();
+}
+
+startPeriodicRefresh() {
+    this.refreshInterval = setInterval(
+        () => this.props.dispatch(refreshAuthToken()),
+        60 * 60 * 1000 // One hour
+    );
+}
+
+stopPeriodicRefresh() {
+    if (!this.refreshInterval) {
+        return;
+    }
+
+    clearInterval(this.refreshInterval);
+}
+
   render() {
     return (
       <BrowserRouter>
@@ -49,14 +74,9 @@ class App extends Component {
   }
 }
 
-// {/* <div className="App">
-// <header className="App-header">
-//   <Navbar />
-//   <Login />
-//   <Route exact path="/users/login" />
-// </header>
-// <Route exact path="/users/login" component={Login} />
-// </div> */}
+const mapStateToProps = state => ({
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.username !== null
+});
 
-export default App;
-// {/* <Route exact path="/" component={Navbar} /> */}
+export default connect(mapStateToProps)(App);

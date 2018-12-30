@@ -4,14 +4,23 @@ const initialState = {
   userObject: null,
   username: null,
   userID: '',
+  error: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
 
+    case 'CLEAR_AUTH':
+      return Object.assign({}, state, {
+        authToken: null,
+        userObject: null,
+        username: null,
+        userID: '',
+      });
+
     case 'SET_AUTH_TOKEN':
       return Object.assign({}, state, {
-        authToken: action.token,
+        authToken: action.authToken,
         loading: false
       });
 
@@ -23,13 +32,18 @@ export default (state = initialState, action) => {
         userID: action.currentUser.id
       });
 
-    // case 'SIGN_IN':
-    //   return Object.assign({}, state, {
-    //     error: action.err
-    //   });
+    case 'AUTH_REQUEST':
+      return Object.assign({}, state, {
+        loading: true,
+        error: null
+      });
 
-    // case 'SIGN_OUT':
-    //   return 
+    case 'AUTH_ERROR':
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.error
+      });
+
 
     default:
       return state

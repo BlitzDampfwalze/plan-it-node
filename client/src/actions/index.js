@@ -4,8 +4,8 @@ import { API_ORIGIN } from '../config';
 import { normalizeResponseErrors } from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
 
-const TOKEN = 'authToken'
-const ID = 'id'
+// const TOKEN = 'authToken'
+// const ID = 'id'
 
 
 export const setHeaderText = () => ({
@@ -13,10 +13,6 @@ export const setHeaderText = () => ({
   text: 'example/test text'
 })
 
-// export const signIn = () => ({
-//   type: 'SIGN_IN',
-
-// })
 
 export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
@@ -57,8 +53,8 @@ const storeAuthInfo = (user, dispatch) => {
 };
 
 export const signin = user => dispatch => {
-  // dispatch(request());
-  fetch('/api/users/login', {
+  dispatch(authRequest());
+  fetch(`${API_ORIGIN}/api/users/login`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
