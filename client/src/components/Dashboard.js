@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
+import { fetchEvents } from '../actions/event';
+
 import EventCard from './EventCard';
 import EventCardCreate from './EventCardCreate';
 
@@ -15,8 +17,7 @@ import "../style/dashboard.css";
 export class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-
-        // this.props.dispatch(fetchBoard());
+        this.props.dispatch(fetchEvents());
     }
 
     // addList(title) {
@@ -24,21 +25,26 @@ export class Dashboard extends React.Component {
     // }
 
     render() {
+
         // const lists = this.props.lists.map((list, index) => (
         //     <li className="list-wrapper" key={index}>
         //         <List index={index} {...list} />
         //     </li>
         // ));
+        console.log(this.props.events, 'events')
+        const events = this.props.events.map((event, index) => (
+            <EventCard index={index} key={index} {...event} />
+        ))
+
+        console.log('event', events)
+
+
 
         return (
             <div className="event-card-wrapper">
-                <EventCard />
-                <EventCard /> 
-                <EventCard />
-                <EventCard />
-                <EventCard />
-                <EventCardCreate />            
-            </div>            
+                {events}
+                <EventCardCreate />
+            </div>
         );
         // (
         // <div className="board">
@@ -57,15 +63,20 @@ export class Dashboard extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    // navbar: state.navbar
-})
+const mapStateToProps = (state) => {
+    const { events } = state.protected_data;
+    console.log(events, 'events')
+    return {
+        events: state.protected_data.events,
+        protectedData: state.protected_data.data
+    }
+}
 
 const mapDispatchToProps = ({
     // setHeaderText: setHeaderText
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dashboard));
+export default connect(mapStateToProps)(withRouter(Dashboard));
 
 // Dashboard.defaultProps = {
 //     // title: 'Board'

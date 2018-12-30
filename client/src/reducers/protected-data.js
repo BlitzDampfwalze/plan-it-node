@@ -1,11 +1,7 @@
-import {
-  FETCH_PROTECTED_DATA_SUCCESS,
-  FETCH_PROTECTED_DATA_ERROR
-} from '../actions/protected-data';
-
 const initialState = {
   data: '',
-  error: null
+  error: null,
+  events: []
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +9,7 @@ export default (state = initialState, action) => {
 
     case 'FETCH_PROTECTED_DATA_SUCCESS':
       return Object.assign({}, state, {
-        data: action.data,
+        events: action.data,
         error: null
       });
 
@@ -21,7 +17,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         error: action.error
       });
-      
+
     default:
       return state;
   }

@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { createEvent } from '../actions/event'
 
 class CreateEvent extends Component {
   state = {
@@ -16,13 +19,8 @@ class CreateEvent extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
-    const event = {
-      title: this.state.title,
-      description: this.state.description,
-      password: this.state.password
-    }
-    
+    console.log(this.props.token, 'eventcard props')
+    this.props.createEvent(this.state, this.props.token);
   }
 
   render() {
@@ -50,4 +48,16 @@ class CreateEvent extends Component {
   }
 }
 
-export default CreateEvent
+const mapStateToProps = (state) => {
+  return {
+    token: state.auth.authToken
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createEvent: (inputs, token) => dispatch(createEvent(inputs, token))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent)

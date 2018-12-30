@@ -62,13 +62,15 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.get('/api/events', authenticate, (req, res) => {
-    Event.find()
-      .then((events) => {
-        res.send({ events })
-      }) //{} syntax vs res.json(...map etc.)
-      .catch(err => { res.status(500).send(err) });
-  });
+  app.get('/api/events',
+    // authenticate, 
+    (req, res) => {
+      Event.find()
+        .then((events) => {
+          res.send(events)
+        }) //{} syntax vs res.json(...map etc.)
+        .catch(err => { res.status(500).send(err) });
+    });
 
   app.get('/api/events/:id', authenticate, (req, res) => {
 

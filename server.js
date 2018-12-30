@@ -1,7 +1,7 @@
 'use strict';
 const { PORT, DATABASE_URL } = require('./config/config');
 const express = require('express');
-// const cors = require('cors'); //
+const cors = require('cors'); //
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -14,8 +14,8 @@ const app = express();
 
 // var serverSocket = http.Server(app); //for socket.io
 // var io = socket_io(serverSocket); //for socket.io
-// app.use(cors()); //
-// app.options('*', cors()); //
+app.use(cors()); //
+app.options('*', cors()); //
 
 // app.use(express.json()); 
 
