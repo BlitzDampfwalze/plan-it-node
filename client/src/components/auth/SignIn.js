@@ -30,7 +30,7 @@ class SignIn extends Component {
     this.setState({ email: '', password: '' });
   }
 
-  render(props) {
+  render() {
     // console.log('props:', this.props)
     console.log('props.loggedIn', this.props.loggedIn)
     if (this.props.loggedIn) {

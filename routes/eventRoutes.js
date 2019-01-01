@@ -13,7 +13,10 @@ module.exports = app => {
 
     const event = new Event({
       title: req.body.title,
-      description: req.body.description
+      description: req.body.description,
+      password: req.body.password,
+      imageUrl: req.body.imageUrl,
+      userCreator: req.body.user._id
     });
 
     event.save().then(event => {

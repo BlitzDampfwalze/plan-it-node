@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
-import {refreshAuthToken} from './actions';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/Footer';
@@ -11,6 +10,8 @@ import Dashboard from './components/Dashboard';
 import EventRoom from './components/EventRoom';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
+
+import {refreshAuthToken} from './actions';
 
 
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
@@ -60,9 +61,10 @@ stopPeriodicRefresh() {
               <Route exact path='/' component={Landing} />
               <Route exact path='/dashboard' component={Dashboard} />
               {/* <Route exact path='/login' component={Login} /> */}
-              <Route exact path='/event/:id' component={EventRoom} />
+              {/* <Route exact path='/event/:id' component={EventRoom} /> */}
               <Route path='/signin' component={SignIn} />
               <Route path='/signup' component={SignUp} />
+              <Route path='/event' component={EventRoom} />
             </Switch>
           </main>
           <footer>

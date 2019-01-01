@@ -16,21 +16,67 @@ export const updateEventsInState = data => ({
   data
 });
 
+
 export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
 export const fetchProtectedDataError = error => ({
   type: FETCH_PROTECTED_DATA_ERROR,
   error
 });
 
-export const createEvent = (event, token) => dispatch => {
-  // dispatch(authRequest());
+export const createEvent = (event_id, token) => dispatch => {
+  dispatch(authRequest());
   fetch(`${API_ORIGIN}/api/events`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
       'x-auth': token
     },
-    body: JSON.stringify(event)
+    body: JSON.stringify(event_id)
+  })
+
+    // .then(res => normalizeResponseErrors(res))
+    // .then(res => res.json())
+    // .then((data) => console.log(data))
+    // .then(( data ) => dispatch(updateEventsInState(data)))
+    // .catch(err => {
+    //   dispatch(fetchProtectedDataError(err));
+    // });
+
+    // .then(res => console.log(res.json(), 'create res'))
+
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      // return test
+      return res.json();
+    })
+    .then((data) => {
+      console.log('data:', data)
+      dispatch(updateEventsInState(data))
+    })
+
+    // .then((event) => {
+    //   console.log('user signin res', user)
+    //   storeAuthInfo(user, dispatch)
+    // })
+    .catch(err => {
+      console.log(err)
+      // dispatch(fetchErr(err));
+    });
+};
+
+export const joinEventRoom = (event_id) => (dispatch, getState) => {
+  const token = getState().auth.authToken;
+  const user_id = getState().auth.userID;
+  dispatch(authRequest());
+  fetch(`${API_ORIGIN}/api/events/${event_id}/join/${user_id}`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-auth': token
+    },
+    // body: JSON.stringify(event)
   })
 
     // .then(res => normalizeResponseErrors(res))
@@ -140,10 +186,31 @@ export const deleteEvent = (id, token) => dispatch => {
       'x-auth': token
     }
   })
-    .then(res => normalizeResponseErrors(res))
+    // .then(res => normalizeResponseErrors(res))
     // .then(res => res.json())
-    // .then((data) => dispatch(fetchProtectedDataSuccess(data)))
+    // .then((data) => dispatch(updateEventsInState(data)))
+    // .catch(err => {
+    //   dispatch(fetchProtectedDataError(err));
+    // });
+
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      // return test
+      return res.json();
+    })
+    .then((data) => {
+      console.log('data:', data)
+      dispatch(updateEventsInState(data))
+    })
+
+    // .then((event) => {
+    //   console.log('user signin res', user)
+    //   storeAuthInfo(user, dispatch)
+    // })
     .catch(err => {
-      dispatch(fetchProtectedDataError(err));
+      console.log(err)
+      // dispatch(fetchErr(err));
     });
 };

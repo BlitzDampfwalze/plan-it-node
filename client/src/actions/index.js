@@ -83,24 +83,27 @@ export const signin = user => dispatch => {
 
 export const refreshAuthToken = () => (dispatch, getState) => {
   dispatch(authRequest());
-  const authToken = getState().auth.authToken;
+  const token = getState().auth.authToken;
   return fetch(`${API_ORIGIN}/api/users/refresh`, {
     method: 'POST',
     headers: {
       // Provide our existing token as credentials to get a new one
-      Authorization: `Bearer ${authToken}`
+      'x-auth': token
     }
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(({ token }) => storeAuthInfo(token, dispatch))
+    .then(({ token }) => {
+      console.log(token, 'refresh token')
+      storeAuthInfo(token, dispatch)
+    })
     .catch(err => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
       // them and sign us out
       dispatch(authError(err));
       dispatch(clearAuth());
-      clearAuthToken(authToken);
+      clearAuthToken(token);
     });
 };
 
