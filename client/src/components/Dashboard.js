@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom'
 
-import { fetchEvents } from '../actions/event';
+import { fetchEvents } from '../actions/dashboard';
 
 import EventCard from './EventCard';
 import EventCardCreate from './EventCardCreate';

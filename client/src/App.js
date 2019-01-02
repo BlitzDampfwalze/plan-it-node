@@ -11,7 +11,7 @@ import EventRoom from './components/EventRoom';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 
-import {refreshAuthToken} from './actions';
+import { refreshAuthToken } from './actions';
 
 
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
@@ -22,32 +22,32 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
-        // When we are logged in, refresh the auth token periodically
-        this.startPeriodicRefresh();
+      // When we are logged in, refresh the auth token periodically
+      this.startPeriodicRefresh();
     } else if (prevProps.loggedIn && !this.props.loggedIn) {
-        // Stop refreshing when we log out
-        this.stopPeriodicRefresh();
+      // Stop refreshing when we log out
+      this.stopPeriodicRefresh();
     }
-}
+  }
 
-componentWillUnmount() {
+  componentWillUnmount() {
     this.stopPeriodicRefresh();
-}
+  }
 
-startPeriodicRefresh() {
+  startPeriodicRefresh() {
     this.refreshInterval = setInterval(
-        () => this.props.dispatch(refreshAuthToken()),
-        60 * 60 * 1000 // One hour
+      () => this.props.dispatch(refreshAuthToken()),
+      60 * 60 * 1000 // One hour
     );
-}
+  }
 
-stopPeriodicRefresh() {
+  stopPeriodicRefresh() {
     if (!this.refreshInterval) {
-        return;
+      return;
     }
 
     clearInterval(this.refreshInterval);
-}
+  }
 
   render() {
     return (
@@ -64,7 +64,7 @@ stopPeriodicRefresh() {
               {/* <Route exact path='/event/:id' component={EventRoom} /> */}
               <Route path='/signin' component={SignIn} />
               <Route path='/signup' component={SignUp} />
-              <Route path='/event' component={EventRoom} />
+              <Route path='/events' component={EventRoom} />
             </Switch>
           </main>
           <footer>

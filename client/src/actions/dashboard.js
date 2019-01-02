@@ -21,6 +21,10 @@ export const deleteEventInState = data => ({
   data
 })
 
+export const storeEventInfo = data => ({
+  type: 'SET_EVENT_INFO',
+  data
+});
 
 export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
 export const fetchProtectedDataError = error => ({
@@ -72,8 +76,11 @@ export const createEvent = (event_id, token) => dispatch => {
 };
 
 export const joinEventRoom = (event_id) => (dispatch, getState) => {
+
   const token = getState().auth.authToken;
   const user_id = getState().auth.userID;
+  const eventRoomInfo = getState().protected_data.events.filter(event => event._id === event_id).pop()
+
   dispatch(authRequest());
   fetch(`${API_ORIGIN}/api/events/${event_id}/join/${user_id}`, {
     method: 'POST',
@@ -103,6 +110,7 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
     })
     .then((data) => {
       console.log('data:', data)
+      dispatch(storeEventInfo(eventRoomInfo))
       dispatch(addEventToState(data))
     })
 

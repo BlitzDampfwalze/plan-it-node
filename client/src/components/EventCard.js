@@ -5,7 +5,7 @@ import { Redirect, withRouter, Link } from "react-router-dom";
 import {
   deleteEvent,
   joinEventRoom
-} from '../actions/event';
+} from '../actions/dashboard';
 
 
 import "../style/eventcard.css";
@@ -23,14 +23,14 @@ export class EventCard extends Component {
     console.log('room', room._id)
     if (!room.password) {
       this.props.joinEventRoom(room._id)
-      return this.props.history.push(`/event/${event_id}`)
+      return this.props.history.push(`/events/${event_id}`)
     }
     let password = prompt('Please enter the password here:');
     if (password === null || password === '') {
       return alert('must enter a value')
     } else if (password === room.password) {
       this.props.joinEventRoom(room._id)
-      return this.props.history.push(`/event/${event_id}`)
+      return this.props.history.push(`/events/${event_id}`)
     } else {
       return alert('Incorrect Password!')
     }

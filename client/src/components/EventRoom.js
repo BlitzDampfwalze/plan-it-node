@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom';
 
-// import { setHeaderText } from '../actions'
+import { fetchSchedules } from '../actions/event-room';
+
 import Tasks from './Tasks';
 import Schedule from './Schedule';
+import Chat from './Chat';
 
 
 
@@ -16,16 +18,30 @@ export class EventRoom extends React.Component {
   //   // this.onSubmit = this.onSubmit.bind(this);
   // }
 
+  componentDidMount() {
+    console.log('correct event iD?', this.props.event._id)
+    this.props.dispatch(fetchSchedules(this.props.event._id));
+  }
+
   render() {
     if (this.props.loggedIn) {
       console.log('props', this.props)
-      const id = this.props.match.params.id;
-      console.log('route param id', id)
+      // const id = this.props.match.params.id;
+      // console.log('route param id', id)
+
+      // if (this.props.events !== undefined) {
+      //   const events = this.props.events.map((event, index) => (
+      //     <EventCard index={index} key={index} {...event} />
+      //   ))
+
+      //   console.log('event', events)
 
       return (
-        <div className="event-room-container">You are now in the selected Event Room
-      <div className="Tasks-wrapper"><Tasks /></div>
+        <div className="event-room-container">
+          <h1>{this.props.event.title}</h1>
+          <div className="Tasks-wrapper"><Tasks /></div>
           <div className="schedule-wrapper"><Schedule /></div>
+          <div className="chat-wrapper"><Chat /></div>
         </div>
       )
     }
@@ -35,14 +51,20 @@ export class EventRoom extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  // navbar: state.navbar
-  loggedIn: state.auth.username !== null
+  // const event = state.event_room.event
+  // console.log('correct event iD?', event)
+  // return {
+    // events: state.protected_data.events,
+    event: state.event_room.event,
+    protectedData: state.protected_data.data,
+    loggedIn: state.auth.username !== null
+  // }
 })
 
-const mapDispatchToProps = ({
-  // setHeaderText: setHeaderText
-})
+// const mapDispatchToProps = ({
+//   // setHeaderText: setHeaderText
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EventRoom));
+export default connect(mapStateToProps)(withRouter(EventRoom));
 
 {/* <Link to="/dashboard/user">{this.props.navbar.text}</Link> */ }

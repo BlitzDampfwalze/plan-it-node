@@ -64,7 +64,7 @@ module.exports = app => {
     Schedule.find(
       { event: req.params.event_id }
     ).then((schedules) => {
-      res.send({ schedules })
+      res.send( schedules )
     }) //{} syntax vs res.json(...map etc.)
       .catch(err => { res.status(500).send(err) });
   });

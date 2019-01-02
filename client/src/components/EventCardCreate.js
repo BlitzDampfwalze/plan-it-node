@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createEvent } from '../actions/event'
+import { createEvent } from '../actions/dashboard'
 
 class CreateEvent extends Component {
   state = {

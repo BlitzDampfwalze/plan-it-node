@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 
 import thunk from 'redux-thunk';
-import { reducers } from './reducers/rootReducer';
 
 import { combineReducers } from 'redux'
 
@@ -12,13 +11,15 @@ import navbar from './reducers/navbar'
 // import planit from './navbar'
 import auth from './reducers/auth'
 import protected_data from './reducers/protected-data'
+import event_room from './reducers/event-room-data'
 
 
 
 const store = createStore(combineReducers({
   navbar,
   protected_data,
-  auth
+  auth,
+  event_room
 }),
   applyMiddleware(thunk)
 )
