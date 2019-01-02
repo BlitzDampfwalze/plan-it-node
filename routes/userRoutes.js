@@ -3,10 +3,6 @@ const pick = require('lodash.pick');
 const { User } = require('../models/User');
 const { authenticate } = require('../middleware/authenticate');
 
-const config = require('../config/config');
-
-const jwt = require('jsonwebtoken');
-
 module.exports = app => {
   //User sign-up route
   app.post('/api/users', (req, res) => {
@@ -53,17 +49,13 @@ module.exports = app => {
       });
   });
 
-  const createAuthToken = function (user) {
-    return jwt.sign({ user }, config.JWT_SECRET, {
-      subject: user.username,
-      expiresIn: config.JWT_EXPIRY,
-      algorithm: 'HS256'
-    });
-  };
+
   // The user exchanges a valid JWT for a new one with a later expiration
   app.post('/api/users/refresh', authenticate, (req, res) => {
-    const authToken = createAuthToken(req.user);
-    res.json({ authToken });
+    req.user.generateAuthToken().then( token => {
+      res.json({ id: req.user._id, email: req.user.email, username: req.user.username, token })
+    })
+    
   });
 
 

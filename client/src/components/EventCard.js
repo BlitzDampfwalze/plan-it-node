@@ -20,14 +20,17 @@ export class EventCard extends Component {
     const room = this.props.events.find(event => {
       return event._id === event_id
     });
-    console.log(room, 'room')
-    const roomPassword = room.password;
+    console.log('room', room._id)
+    if (!room.password) {
+      this.props.joinEventRoom(room._id)
+      return this.props.history.push(`/event/${event_id}`)
+    }
     let password = prompt('Please enter the password here:');
     if (password === null || password === '') {
       return alert('must enter a value')
-    } else if (password === roomPassword) {
+    } else if (password === room.password) {
       this.props.joinEventRoom(room._id)
-      return <Redirect to="/event" />
+      return this.props.history.push(`/event/${event_id}`)
     } else {
       return alert('Incorrect Password!')
     }

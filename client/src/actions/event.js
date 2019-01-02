@@ -11,10 +11,15 @@ export const fetchProtectedDataSuccess = data => ({
   data
 });
 
-export const updateEventsInState = data => ({
-  type: 'UPDATE_EVENTS',
+export const addEventToState = data => ({
+  type: 'ADD_EVENT',
   data
 });
+
+export const deleteEventInState = data => ({
+  type: 'DELETE_EVENT',
+  data
+})
 
 
 export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
@@ -52,8 +57,8 @@ export const createEvent = (event_id, token) => dispatch => {
       return res.json();
     })
     .then((data) => {
-      console.log('data:', data)
-      dispatch(updateEventsInState(data))
+      console.log('DATA DATA', data)
+      dispatch(addEventToState(data))
     })
 
     // .then((event) => {
@@ -98,7 +103,7 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
     })
     .then((data) => {
       console.log('data:', data)
-      dispatch(updateEventsInState(data))
+      dispatch(addEventToState(data))
     })
 
     // .then((event) => {
@@ -177,40 +182,48 @@ export const fetchEvents = () => (dispatch, getState) => {
     });
 };
 
-export const deleteEvent = (id, token) => dispatch => {
+export const deleteEvent = (id) => (dispatch, getState) => {
+  const token = getState().auth.authToken;
   dispatch(authRequest());
   return fetch(`${API_ORIGIN}/api/events/${id}`, {
     method: 'DELETE',
     headers: {
-      // Provide our auth token as credentials
+      // auth token as credentials
       'x-auth': token
     }
   })
-    // .then(res => normalizeResponseErrors(res))
-    // .then(res => res.json())
-    // .then((data) => dispatch(updateEventsInState(data)))
-    // .catch(err => {
-    //   dispatch(fetchProtectedDataError(err));
-    // });
-
+    .then(res => normalizeResponseErrors(res))
     .then(res => {
-      if (!res.ok) {
-        return Promise.reject(res.statusText);
-      }
-      // return test
-      return res.json();
+      console.log('delete res.json', res)
+      // res.json()
     })
-    .then((data) => {
-      console.log('data:', data)
-      dispatch(updateEventsInState(data))
+    .then(() => {
+      console.log('delete data', id)
+      dispatch(deleteEventInState(id))
     })
-
-    // .then((event) => {
-    //   console.log('user signin res', user)
-    //   storeAuthInfo(user, dispatch)
-    // })
     .catch(err => {
-      console.log(err)
-      // dispatch(fetchErr(err));
+      console.log('delete event err', err)
+      dispatch(fetchProtectedDataError(err));
     });
+
+  // .then(res => {
+  //   if (!res.ok) {
+  //     return Promise.reject(res.statusText);
+  //   }
+  //   // return test
+  //   return res.json();
+  // })
+  // .then((data) => {
+  //   console.log('data:', data)
+  //   dispatch(deleteEventInState(data))
+  // })
+
+  // // .then((event) => {
+  // //   console.log('user signin res', user)
+  // //   storeAuthInfo(user, dispatch)
+  // // })
+  // .catch(err => {
+  //   console.log(err)
+  //   // dispatch(fetchErr(err));
+  // });
 };

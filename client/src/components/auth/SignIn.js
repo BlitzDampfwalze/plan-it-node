@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { signin } from '../../actions'
 
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class SignIn extends Component {
   state = {
@@ -35,7 +35,7 @@ class SignIn extends Component {
     console.log('props.loggedIn', this.props.loggedIn)
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
-  }
+    }
 
     return (
       <div className="container">
@@ -56,9 +56,13 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  loggedIn: state.auth.username !== null
-});
+const mapStateToProps = state => {
+  console.log(state)
+
+  return {
+    loggedIn: state.auth.username !== null
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   signin: (user) => dispatch(signin(user))

@@ -16,7 +16,7 @@ module.exports = app => {
       description: req.body.description,
       password: req.body.password,
       imageUrl: req.body.imageUrl,
-      userCreator: req.body.user._id
+      // userCreator: req.body.user._id
     });
 
     event.save().then(event => {

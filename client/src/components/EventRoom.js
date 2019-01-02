@@ -17,7 +17,7 @@ export class EventRoom extends React.Component {
   // }
 
   render() {
-    // if (this.props.loggedIn) {
+    if (this.props.loggedIn) {
       console.log('props', this.props)
       const id = this.props.match.params.id;
       console.log('route param id', id)
@@ -29,8 +29,8 @@ export class EventRoom extends React.Component {
         </div>
       )
     }
-  //   return <Redirect to="/signin" />;
-  // }
+    return <Redirect to="/signin" />;
+  }
 
 }
 

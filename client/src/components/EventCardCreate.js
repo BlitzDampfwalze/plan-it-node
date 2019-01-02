@@ -19,7 +19,7 @@ class CreateEvent extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.props.token, 'eventcard props')
+    console.log('event create props', this.props.token )
     this.props.createEvent(this.state, this.props.token);
   }
 

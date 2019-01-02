@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import { API_ORIGIN } from '../config';
 import { normalizeResponseErrors } from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
+import { loadAuthToken } from '../local-storage';
 
 // const TOKEN = 'authToken'
 // const ID = 'id'
@@ -42,9 +43,9 @@ export const authError = error => ({
 
 const storeAuthInfo = (user, dispatch) => {
   const decodedToken = jwtDecode(user.token);
-  console.log('decodedToken', decodedToken)
-  console.log('username', user)
-  console.log('user id ', decodedToken._id)
+  // console.log('decodedToken', decodedToken)
+  console.log('store user', user)
+  // console.log('user id ', decodedToken._id)
   dispatch(setAuthToken(user.token));
   dispatch(authSuccess(user));
   // dispatch(logSession({ user: decodedToken.username }));
@@ -83,7 +84,7 @@ export const signin = user => dispatch => {
 
 export const refreshAuthToken = () => (dispatch, getState) => {
   dispatch(authRequest());
-  const token = getState().auth.authToken;
+  const token = loadAuthToken();
   return fetch(`${API_ORIGIN}/api/users/refresh`, {
     method: 'POST',
     headers: {
@@ -93,17 +94,17 @@ export const refreshAuthToken = () => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(({ token }) => {
-      console.log(token, 'refresh token')
-      storeAuthInfo(token, dispatch)
+    .then((user) => {
+      console.log('refresh token', user)
+      storeAuthInfo(user, dispatch)
     })
     .catch(err => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
       // them and sign us out
       dispatch(authError(err));
-      dispatch(clearAuth());
-      clearAuthToken(token);
+      // dispatch(clearAuth());
+      // clearAuthToken(token);
     });
 };
 

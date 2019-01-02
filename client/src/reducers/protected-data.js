@@ -7,8 +7,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case 'UPDATE_EVENTS':
-      console.log(action, 'action')
+    case 'ADD_EVENT':
       return {
         ...state, events: [...state.events, action.data]
       }
@@ -16,6 +15,12 @@ export default (state = initialState, action) => {
     // events: state.events.push(action.data),
     // error: null
     // });
+
+    case 'DELETE_EVENT':
+      // console.log('state ids', state.events)
+      const newState = state.events.filter((event) => event._id !== action.data)
+      // console.log('S T A T E', newState)
+      return { ...state, events: newState }
 
     case 'FETCH_PROTECTED_DATA_SUCCESS':
       return Object.assign({}, state, {
