@@ -10,7 +10,7 @@ class ScheduleCreate extends Component {
     location: ''
   }
 
-  handleChange = (e) => {
+  handleScheduleChange = (e) => {
 
     this.setState({
       [e.target.id]: e.target.value
@@ -18,7 +18,7 @@ class ScheduleCreate extends Component {
     console.log(this.state)
   }
 
-  handleSubmit = (e) => {
+  handleScheduleSubmit = (e) => {
     e.preventDefault();
     if (this.state.dateTime === '' || this.state.description === '') {
       return alert('Date, Time, and Description cannot be blank')
@@ -31,25 +31,25 @@ class ScheduleCreate extends Component {
     return (
       <div className="container">
         <form
-          onSubmit={this.handleSubmit}
+          onSubmit={this.handleScheduleSubmit}
         >
           <div>Create New *SCHEDULE*</div>
-          <div>
-            <label htmlFor="dateTime">Date &amp; Time:</label>
-            <input type="datetime-local" id="dateTime" onChange={this.handleChange} />
-          </div>
-          <div>
-            <label htmlFor="description">Description</label>
-            <input type="text" id="description"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="location">Location</label>
-            <input type="text" id="location"
-              onChange={this.handleChange}
-            />
-          </div>
+          <ul>
+            <li>
+              <label htmlFor="location">Location</label>
+              <input type="text" id="location"
+                onChange={this.handleScheduleChange} />
+            </li>
+            <li>
+              <label htmlFor="dateTime">Date &amp; Time:</label>
+              <input type="datetime-local" id="dateTime" onChange={this.handleScheduleChange} />
+            </li>
+            <li>
+              <label htmlFor="description">Description</label>
+              <input type="text" id="description"
+                onChange={this.handleScheduleChange} />
+            </li>
+          </ul>
           <button>Create</button>
         </form>
       </div>

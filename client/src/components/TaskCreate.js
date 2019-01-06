@@ -5,7 +5,7 @@ import { createTask } from '../actions/event-room'
 
 class TaskCreate extends Component {
   state = {
-    taskDescription: '',
+    taskDetails: '',
     user: ''
   }
 
@@ -29,7 +29,7 @@ class TaskCreate extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.taskDescription === '') {
+    if (this.state.taskDetails === '') {
       return alert('Description cannot be blank')
     }
     this.props.createTask(this.state);
@@ -58,8 +58,8 @@ class TaskCreate extends Component {
               {selection}
             </select >
             <div>
-              <label htmlFor="taskDescription">description</label>
-              <input type="text" id="taskDescription" onChange={this.handleChange} />
+              <label htmlFor="taskDetails">description</label>
+              <input type="text" id="taskDetails" onChange={this.handleChange} />
             </div>
             {/* <div>
               <label htmlFor="password">Password</label>

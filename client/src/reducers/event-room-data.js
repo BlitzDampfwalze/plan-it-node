@@ -47,6 +47,12 @@ export default (state = initialState, action) => {
         ...state, tasks: [...state.tasks, action.data]
       }
 
+    case 'UPDATE_TASKS':
+      return {
+        ...state, tasks: [...state.tasks, action.data]
+      }
+
+
     case 'FETCH_TASKS_SUCCESS':
       return Object.assign({}, state, {
         tasks: action.tasksByUser,

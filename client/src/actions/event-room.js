@@ -25,7 +25,12 @@ export const addItemToSchedule = data => ({
 export const addTaskToList = data => ({
   type: 'ADD_TO_TASKS',
   data
-});
+})
+
+export const updateTasks = data => ({
+  type: 'UPDATE_TASKS',
+  data
+})
 
 
 
@@ -166,7 +171,7 @@ export const createTask = (inputs) => (dispatch, getState) => {
       return res.json();
     })
     .then((data) => {
-      // console.log('DATA DATA', data)
+      console.log('Create Task DATA', data)
       dispatch(addTaskToList(data))
     })
 
@@ -181,3 +186,51 @@ export const createTask = (inputs) => (dispatch, getState) => {
 };
 
 
+export const updateTask = (task_id, completion, details) => (dispatch, getState) => {
+  const token = getState().auth.authToken;
+  const event_id = getState().event_room.eventID;
+  // console.log('inputs:', inputs, 'eventID:', event_id, 'token:', token)
+  fetch(`${API_ORIGIN}/api/events/${event_id}/tasks/${task_id}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      'x-auth': token
+    },
+    body: JSON.stringify({
+      "completed": completion,
+      "taskDetails": details
+    })
+
+  })
+
+    // .then(res => normalizeResponseErrors(res))
+    // .then(res => res.json())
+    // .then((data) => console.log(data))
+    // .then((data) => dispatch(addItemToSchedule(data)))
+    // .catch(err => {
+    //   dispatch(fetchDataError(err));
+    // });
+
+    // .then(res => console.log(res.json(), 'create res'))
+
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      // return test
+      return res.json();
+    })
+    .then((data) => {
+      console.log('TASK PUT DATA', data)
+      dispatch(updateTasks(data))
+    })
+
+    // .then((event) => {
+    //   console.log('user signin res', user)
+    //   storeAuthInfo(user, dispatch)
+    // })
+    .catch(err => {
+      console.log(err)
+      // dispatch(fetchErr(err));
+    });
+};

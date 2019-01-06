@@ -4,6 +4,7 @@ import { API_ORIGIN } from '../config';
 import { normalizeResponseErrors } from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
 import { loadAuthToken } from '../local-storage';
+import { SubmissionError } from 'redux-form';
 
 // const TOKEN = 'authToken'
 // const ID = 'id'
@@ -108,78 +109,25 @@ export const refreshAuthToken = () => (dispatch, getState) => {
     });
 };
 
-// Persist users who login
-// export const logSession = user => dispatch => {
-//   fetch(`${API_ORIGIN}/auth/userLoggedIn`, {
-//     method: "POST",
-//     mode: "cors",
-//     headers: {
-//       "content-type": "application/json"
-//     },
-//     body: JSON.stringify(user)
-//   })
-//     .then(res => {
-//       if (!res.ok) {
-//         return Promise.reject(res.statusText);
-//       }
-//       return res.json();
-//     })
-//     .then(res => {
-//       dispatch(chatUsers(res.loggedIn));
-//     });
-// };
-
-// export const signup = user => dispatch =>
-//   {
-//     //dispatch(request());
-//     const userError = 'username/email taken';
-//     fetch('/api/users', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json; charset=utf-8'
-//       },
-//       body: JSON.stringify(user)
-//     })
-//       .then(res => {
-//         if (res.ok) {
-//           return res.json();
-//         }
-//         return Promise.reject(userError);
-//       })
-//       .then(
-//         ({authToken}) => storeAuthInfo(authToken, dispatch)
-//         // ({authToken}) => storeAuthInfo(authToken.token, dispatch)
-//       ////  previous alternative method:
-//       //   user => {
-//       //   console.log(user);
-//       //   localStorage.setItem(TOKEN, user.token)
-//       //   localStorage.setItem(ID, user.id)
-//       //   window.location = '/dashboard'
-//       // }
-//       )
-//       .catch(err => {
-//         window.alert(err);
-//         // dispatch(fetchErr(err));
-//       });
-//   };
-
-
-
-
-
-// componentDidMount(){
-//   this.loadEventsFromApi();
-// }
-// loadEventsFromApi(){
-//   fetch('/api/events')
-//   .then(results => {
-//     console.log(results);
-//     return results.json();
-//   })
-//   .then(data => {
-//     this.setState({
-//       events: data.map((i) => i)
-//     })
-//     console.log(data);
-//   })
-// }
+export const signup = user => dispatch => {
+  return fetch(`${API_ORIGIN}/api/users`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .catch(err => {
+      const { reason, message, location } = err;
+      if (reason === 'ValidationError') {
+        // Convert ValidationErrors into SubmissionErrors for Redux Form
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          })
+        );
+      }
+    });
+};

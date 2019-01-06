@@ -9,15 +9,16 @@ mongoose.Promise = global.Promise;
 
 // const { localStrategy, jwtStrategy } = require('./middleware');
 
-// var http = require('http'); //for socket.io
-// var socket_io = require('socket.io'); //for socket.io
+var http = require('http'); //for socket.io
+var socket_io = require('socket.io'); //for socket.io
 
 const app = express();
 
-// var serverSocket = http.Server(app); //for socket.io
-// var io = socket_io(serverSocket); //for socket.io
-app.use(cors()); //
-app.options('*', cors()); //
+var serverSocket = http.Server(app); //for socket.io
+var io = socket_io(serverSocket); //for socket.io
+
+app.use(cors()); 
+app.options('*', cors()); 
 
 // app.use(express.json()); 
 
@@ -43,6 +44,7 @@ function runServer(databaseUrl, port = PORT) {
       if (err) {
         return reject(err);
       }
+      // server = serverSocket.listen(port, () => {
       server = app.listen(port, () => {
         console.log(`Your app is listening on port ${port}`);
         resolve();
@@ -80,7 +82,7 @@ if (require.main === module) {
   });
 }
 
-
+//SOCKET IO 
 // io.on('connection', (socket) => {
 
 //   socket.on('SEND_MESSAGE', function(data){

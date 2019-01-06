@@ -7,7 +7,7 @@ import { fetchSchedules, fetchTasks } from '../actions/event-room';
 import Tasks from './Tasks';
 import Schedule from './Schedule';
 import Chat from './Chat';
-import UserTasks from './UserTasks';
+// import UserTasks from './UserTasks';
 import ScheduleCreate from './ScheduleCreate';
 import TaskCreate from './TaskCreate';
 
@@ -29,21 +29,7 @@ export class EventRoom extends React.Component {
 
   render() {
     if (this.props.loggedIn) {
-      // console.log('props', this.props)
-      // const id = this.props.match.params.id;
-      // console.log('route param id', id)
 
-      /////////Working when returning only array of tasks from the fetch, but need to place divs around Users//////////
-      // const Users = [...new Set(this.props.tasks.map(task => task.user))]
-      // console.log('USERS', Users)
-      // const sortedTasks = Users.map(user => {
-      //   return this.props.tasks.filter(task => task.user === user)
-      // }).map(userTasks => {
-      //   return userTasks.map((task, index) => (
-      //     <Tasks index={index} key={index} {...task} />
-      //   ))
-      // })
-      /////////////////////////////////////////////
 
       // if (this.props.events !== undefined) {
       const schedules = this.props.schedules.map((schedule, index) => (
@@ -51,18 +37,17 @@ export class EventRoom extends React.Component {
       ))
 
       // console.log('this.props.tasks:', this.props.tasks)
-      const userTasks = this.props.tasks.map((items, index) => (
-        <UserTasks index={index} key={index} tasks={items} />
+      const allTasks = this.props.tasks.map((items, index) => (
+        <Tasks index={index} key={index} tasks={items} />
       ))
 
-      // console.log('USER Tasks Mapped:', userTasks)
 
       return (
         <div className="event-room-container">
-          <h1>{this.props.event.title}</h1>
+          <h1 className="event-title">{this.props.event.title}</h1>
 
           <div className="tasks-wrapper">
-            <div className="Tasks-wrapper">{userTasks}</div>
+            <div className="Tasks-wrapper">{allTasks}</div>
             {/* <div className="Tasks-wrapper">{sortedTasks}</div> */}
             {/* <div className="Tasks-wrapper">{tasksByUser}</div> */}
             <TaskCreate />
