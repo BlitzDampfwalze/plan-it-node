@@ -1,15 +1,27 @@
 import React from "react";
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom'
 
 import "../../style/navbar.css";
 
+
 const SignedOutLinks = () => {
+  // console.log('state', getState().loggedIn)
+  // if (this.props.loggedIn) {
+  //   return null;
+  // }
   return (
     <ul className="nav-right">
+      <li className="list-item"><NavLink to='/'>About</NavLink></li>
       <li className="list-item"><NavLink to='/signin'>Login</NavLink></li>
       <li className="list-item"><NavLink to='/signup'>Sign-up</NavLink></li>
     </ul>
   )
+
 }
 
-export default SignedOutLinks
+const mapStateToProps = state => ({
+  loggedIn: state.auth.username !== null
+});
+
+export default connect(mapStateToProps)(SignedOutLinks);

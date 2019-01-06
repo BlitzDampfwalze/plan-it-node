@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
         error: null
       });
 
-    case 'FETCH_PROTECTED_DATA_ERROR':
+    case 'FETCH_DATA_ERROR':
       return Object.assign({}, state, {
         error: action.error
       });

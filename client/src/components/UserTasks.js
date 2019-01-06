@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { Redirect, withRouter } from 'react-router-dom'
 
-import moment from 'moment'
+import Tasks from './Tasks';
 
-export class Schedule extends Component {
-
-
+class UserTasks extends Component {
   render() {
-
+    // const users = this.props.user
+    // console.log('TASKS comp props', this.props)
+    const tasks = this.props.tasks.map((task, index) => (
+      <Tasks index={index} key={index} {...task} />
+    ))
+    // console.log("User's Tasks:", this.props.tasks)
     return (
-      <ul>
-        <li>{this.props.location}</li>
-        <li>{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
-        <li>{this.props.details}</li>
-      </ul>
+      <div>
+        <div>USERNAME: {this.props.tasks[0].user.username}</div>
+        {tasks}
+      </div>
     )
   }
-
 }
 
 const mapStateToProps = (state) => ({
@@ -36,5 +36,4 @@ const mapStateToProps = (state) => ({
 //   // }
 // }
 
-export default connect(mapStateToProps)(Schedule);
-// export default Schedule;
+export default connect(mapStateToProps)(UserTasks);

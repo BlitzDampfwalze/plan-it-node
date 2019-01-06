@@ -6,6 +6,7 @@ const _ = {
 const { ObjectID } = require('mongodb');
 const { Task } = require('../models/Task');
 const { Event } = require('../models/Event');
+const { User } = require('../models/User');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
@@ -17,17 +18,61 @@ module.exports = app => {
       err.status = 400;
       return next(err);
     }
+    // const user = User.findbyId(req.params.user_id)
+    // console.log("USER", user)
+    // Task
+    //   .create({
+    //     user: req.params.user_id,
+    //     event: req.params.event_id,
+    //     taskDetails: req.body.taskDetails,
+    //     completed: req.body.completed,
+    //   })
+    //   .then(newTask => {
+    //     res.status(201).send(newTask);
+    //   })
+    const task = new Task({
+      user: req.params.user_id,
+      event: req.params.event_id,
+      taskDetails: req.body.taskDetails,
+      completed: req.body.completed,
+    });
+    task.save()
+      .then(task => {
+        console.log(task)
+        // res.send(task)
+        // })
+        // .then(
+        //   User.findbyId(req.params.user_id)
+        // )
+        // .then((user) => {
+        //   console.log('USER', user)
+        //   user.tasks.push(task._id)
+        //   user.save()
+        //   res.status(200).send(task)
+        // })
 
-    Task
-      .create({
-        user: req.params.user_id,
-        event: req.params.event_id,
-        taskDetails: req.body.taskDetails,
-        completed: req.body.completed,
+        User.findById(
+          // task.user
+          req.params.user_id
+        )
+          .then(user => {
+            console.log('USER', user)
+            user.tasks.push(task._id)
+            user.save()
+            res.status(200).send(task)
+          })
+          .catch(err => console.log(err))
       })
-      .then(newTask => {
-        res.status(201).send(newTask);
-      })
+      // .then(
+      //   User.findbyId(req.params.user_id)
+      // )
+      // .then((user) => {
+      //   user.tasks.push(task._id)
+      //   user.save()
+      //   res.status(200).send(user)
+      // }
+      // )
+
       .catch(err => { res.status(500).send(err) });
 
   });
@@ -60,8 +105,24 @@ module.exports = app => {
         event: req.params.event_id
       }
     ).then((tasks) => {
-      res.send({ tasks })
+      res.send(tasks)
     })
+      .catch(err => { res.status(500).send(err) });
+
+  });
+
+  app.get('/api/events/:event_id/tasks', authenticate, (req, res) => {
+
+    Task.find(
+      {
+        event: req.params.event_id
+      }
+    )
+      .populate('user')
+      .then((tasks) => {
+        // console.log('TASK FROM EVENT', tasks)
+        res.send(tasks)
+      })
       .catch(err => { res.status(500).send(err) });
 
   });

@@ -44,7 +44,7 @@ export const authError = error => ({
 const storeAuthInfo = (user, dispatch) => {
   const decodedToken = jwtDecode(user.token);
   // console.log('decodedToken', decodedToken)
-  console.log('store user', user)
+  // console.log('store user', user)
   // console.log('user id ', decodedToken._id)
   dispatch(setAuthToken(user.token));
   dispatch(authSuccess(user));

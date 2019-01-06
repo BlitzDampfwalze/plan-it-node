@@ -33,7 +33,8 @@ module.exports = app => {
     const schedule = new Schedule({
       event: req.params.event_id,
       date: req.body.date,
-      details: req.body.details
+      details: req.body.details,
+      location: req.body.location
     });
 
     schedule.save().then(schedule => {

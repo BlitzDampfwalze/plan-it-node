@@ -14,7 +14,6 @@ export class SignedInLinks extends React.Component {
   }
 
   render() {
-
     let logOutLink;
     if (this.props.loggedIn) {
       logOutLink = (
@@ -24,8 +23,8 @@ export class SignedInLinks extends React.Component {
 
     return (
       <ul className="nav-right" >
-        <li className="list-item"><NavLink to='/'>something</NavLink></li>
-        <li className="list-item"><NavLink to='/'>something else</NavLink></li>
+        <li className="list-item"><NavLink to='/'>About</NavLink></li>
+        <li className="list-item"><NavLink to='/dashboard'>Dashboard</NavLink></li>
         <li className="list-item">{logOutLink}</li>
       </ul>
     )

@@ -52,10 +52,10 @@ module.exports = app => {
 
   // The user exchanges a valid JWT for a new one with a later expiration
   app.post('/api/users/refresh', authenticate, (req, res) => {
-    req.user.generateAuthToken().then( token => {
+    req.user.generateAuthToken().then(token => {
       res.json({ id: req.user._id, email: req.user.email, username: req.user.username, token })
     })
-    
+
   });
 
 
@@ -69,4 +69,26 @@ module.exports = app => {
       },
     );
   });
+
+  // app.get('/api/users/:user_id', authenticate, (req, res) => {
+
+  // })
+
+  // app.get('/api/users/:user_id/events/:event_id/tasks', authenticate, (req, res) => {
+  //   User.find(
+  //     {
+  //       user: req.params.user_id
+  //     }
+  //   )
+  //     .then(({ tasks }) => {
+  //       console.log('TASKS', tasks)
+  //       res.send(tasks)
+  //     })
+  //     .catch(err => { res.status(500).send(err) })
+  // })
+
+
+
+
 };
+

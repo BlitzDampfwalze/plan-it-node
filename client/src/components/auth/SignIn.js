@@ -57,7 +57,7 @@ class SignIn extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
 
   return {
     loggedIn: state.auth.username !== null

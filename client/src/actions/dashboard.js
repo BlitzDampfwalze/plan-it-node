@@ -5,6 +5,10 @@ export const authRequest = () => ({
   type: 'AUTH_REQUEST'
 });
 
+export const request = () => ({
+  type: 'REQUEST'
+});
+
 export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
 export const fetchProtectedDataSuccess = data => ({
   type: FETCH_PROTECTED_DATA_SUCCESS,
@@ -21,14 +25,20 @@ export const deleteEventInState = data => ({
   data
 })
 
-export const storeEventInfo = data => ({
-  type: 'SET_EVENT_INFO',
-  data
+export const storeEventRoomInfo = (data, eventID) => ({
+  type: 'SET_EVENT',
+  data,
+  eventID
 });
 
-export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
-export const fetchProtectedDataError = error => ({
-  type: FETCH_PROTECTED_DATA_ERROR,
+// export const storeUserOnJoin = (user) => ({
+//   type: 'STORE_USER_TO_EVENT',
+//   user
+// })
+
+export const FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
+export const fetchDataError = error => ({
+  type: FETCH_DATA_ERROR,
   error
 });
 
@@ -48,7 +58,7 @@ export const createEvent = (event_id, token) => dispatch => {
     // .then((data) => console.log(data))
     // .then(( data ) => dispatch(updateEventsInState(data)))
     // .catch(err => {
-    //   dispatch(fetchProtectedDataError(err));
+    //   dispatch(fetchDataError(err));
     // });
 
     // .then(res => console.log(res.json(), 'create res'))
@@ -76,12 +86,12 @@ export const createEvent = (event_id, token) => dispatch => {
 };
 
 export const joinEventRoom = (event_id) => (dispatch, getState) => {
-
+  dispatch(request());
   const token = getState().auth.authToken;
   const user_id = getState().auth.userID;
-  const eventRoomInfo = getState().protected_data.events.filter(event => event._id === event_id).pop()
+  const event = getState().protected_data.events.filter(event => event._id === event_id).pop()
+  // console.log('EVENT ID in joinRoom function', eventID)
 
-  dispatch(authRequest());
   fetch(`${API_ORIGIN}/api/events/${event_id}/join/${user_id}`, {
     method: 'POST',
     headers: {
@@ -96,7 +106,7 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
     // .then((data) => console.log(data))
     // .then(( data ) => dispatch(updateEventsInState(data)))
     // .catch(err => {
-    //   dispatch(fetchProtectedDataError(err));
+    //   dispatch(fetchDataError(err));
     // });
 
     // .then(res => console.log(res.json(), 'create res'))
@@ -109,9 +119,10 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
       return res.json();
     })
     .then((data) => {
-      console.log('data:', data)
-      dispatch(storeEventInfo(eventRoomInfo))
-      dispatch(addEventToState(data))
+      // console.log('join room data post:', data)
+      dispatch(storeEventRoomInfo(event, event_id))
+      // dispatch(storeEventRoomInfo(data))
+
     })
 
     // .then((event) => {
@@ -138,7 +149,7 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
 //     .then(res => res.json())
 //     .then((data) => dispatch(fetchProtectedDataSuccess(data)))
 //     .catch(err => {
-//       dispatch(fetchProtectedDataError(err));
+//       dispatch(fetchDataError(err));
 //     });
 // };
 
@@ -186,7 +197,7 @@ export const fetchEvents = () => (dispatch, getState) => {
     .then(res => res.json())
     .then((data) => dispatch(fetchProtectedDataSuccess(data)))
     .catch(err => {
-      dispatch(fetchProtectedDataError(err));
+      dispatch(fetchDataError(err));
     });
 };
 
@@ -211,7 +222,7 @@ export const deleteEvent = (id) => (dispatch, getState) => {
     })
     .catch(err => {
       console.log('delete event err', err)
-      dispatch(fetchProtectedDataError(err));
+      dispatch(fetchDataError(err));
     });
 
   // .then(res => {

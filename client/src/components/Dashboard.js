@@ -42,7 +42,7 @@ export class Dashboard extends React.Component {
           <EventCard index={index} key={index} {...event} />
         ))
 
-        console.log('event', events)
+        // console.log('event', events)
 
         return (
           <div className="event-card-wrapper">

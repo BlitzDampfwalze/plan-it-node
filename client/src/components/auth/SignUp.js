@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { signup } from '../../actions/signup'
- 
+
 class SignUp extends Component {
   // constructor(props) {
   //   super(props);
-    state = {
-      email: '',
-      password: '',
-      username: ''
-    }
+  state = {
+    email: '',
+    password: '',
+    username: ''
+  }
   // }
 
 
@@ -32,6 +33,7 @@ class SignUp extends Component {
     this.props.signup(this.state);
     // signup(user)
     this.setState({ email: '', password: '', username: '' });
+    return <Redirect to='/signin' />;
 
   }
 
@@ -66,7 +68,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch)=> {
+const mapDispatchToProps = (dispatch) => {
   return {
     signup: (user) => dispatch(signup(user))
   }

@@ -59,12 +59,10 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path='/' component={Landing} />
-              <Route exact path='/dashboard' component={Dashboard} />
-              {/* <Route exact path='/login' component={Login} /> */}
-              {/* <Route exact path='/event/:id' component={EventRoom} /> */}
+              <Route path='/dashboard' component={Dashboard} />
+              <Route exact path='/events/:id' component={EventRoom} />
               <Route path='/signin' component={SignIn} />
               <Route path='/signup' component={SignUp} />
-              <Route path='/events' component={EventRoom} />
             </Switch>
           </main>
           <footer>

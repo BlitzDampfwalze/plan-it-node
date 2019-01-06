@@ -1,6 +1,5 @@
 const initialState = {
   authToken: null,
-  loading: false,
   userObject: null,
   username: null,
   userID: '',

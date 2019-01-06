@@ -20,7 +20,7 @@ module.exports = app => {
     });
 
     event.save().then(event => {
-      res.send(event);
+      res.status(201).send(event);
     })
       .catch(err => { res.status(500).send(err) });
   });
@@ -29,6 +29,7 @@ module.exports = app => {
   app.post('/api/events/:event_id/join/:user_id', authenticate, (req, res) => {
 
     Event.findById(req.params.event_id)
+      // .populate('user')
       .then((event) => {
 
         if (event.users.length > 100) res.status(400).send;
@@ -36,10 +37,10 @@ module.exports = app => {
           event.users = [];
         };
         if (event.users.indexOf(req.params.user_id) === -1) {
-          event.users.push(req.params.user_id);
+          event.users.push(req.params.user_id)
           event.save();
         };
-
+        console.log('EVENT object', event)
         res.status(200).send(event);
 
       })
