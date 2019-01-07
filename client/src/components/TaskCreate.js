@@ -18,7 +18,7 @@ class TaskCreate extends Component {
   handleChange = (e) => {
     if (this.state.user === '') {
       this.setState({
-        user: this.props.users[0]
+        user: this.props.users[0]._id
       })
     }
     this.setState({
@@ -37,7 +37,7 @@ class TaskCreate extends Component {
 
   render() {
     if (this.props.users !== undefined) {
-      console.log('USERS in room:', this.props.users)
+      // console.log('USERS in room:', this.props.users)
       const selection = this.props.users.map((user, index) => {
         return (
           <option key={index} id={user.id}>{user.username}</option>
@@ -74,8 +74,8 @@ class TaskCreate extends Component {
 
 const mapStateToProps = (state) => {
   return {
-  users: state.event_room.event.users,
-  token: state.auth.authToken
+    users: state.event_room.event.users,
+    token: state.auth.authToken
   }
 }
 

@@ -12,9 +12,10 @@ export const fetchSchedulesSuccess = data => ({
   data
 });
 
-export const fetchTasksSuccess = tasksByUser => ({
+export const fetchTasksSuccess = data => ({
   type: 'FETCH_TASKS_SUCCESS',
-  tasksByUser
+  data
+  // tasksByUser
 });
 
 export const addItemToSchedule = data => ({
@@ -77,15 +78,16 @@ export const fetchTasks = (event_id) => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then((data) => {
+      console.log('TASKS DATA DATA TASKS', data)
       // console.log('DATA from Tasks fetch', data)
-      const Users = [...new Set(data.map(task => task.user.username))]
+      // const Users = [...new Set(data.map(task => task.user.username))]
       // console.log('USERS:::', Users)
-      const tasksByUser = Users.map(user => {
-        return data.filter(task => task.user.username === user)
-      })
-      console.log('DATA from Tasks fetch', tasksByUser)
-      dispatch(fetchTasksSuccess(tasksByUser))
-      // dispatch(fetchTasksSuccess(data))
+      // const tasksByUser = Users.map(user => {
+      //   return data.filter(task => task.user.username === user)
+      // })
+      // console.log('DATA from Tasks fetch', tasksByUser)
+      // dispatch(fetchTasksSuccess(tasksByUser))
+      dispatch(fetchTasksSuccess(data))
     })
     .catch(err => {
       dispatch(fetchDataError(err));
@@ -124,7 +126,7 @@ export const createSchedule = (inputs) => (dispatch, getState) => {
       return res.json();
     })
     .then((data) => {
-      // console.log('DATA DATA', data)
+      // console.log('DATA DATA TASKS', data)
       dispatch(addItemToSchedule(data))
     })
 

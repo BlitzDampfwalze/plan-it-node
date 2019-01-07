@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import UserTasks from './UserTasks';
 
 class Tasks extends Component {
+
+  // onDelete(event_id) {
+  //   console.log(event_id)
+  //   this.props.deleteEvent(event_id, this.props.token)
+  // }
+
   render() {
     // const users = this.props.user
     // console.log('TASKS props', this.props)
@@ -15,15 +21,20 @@ class Tasks extends Component {
     // })
 
 
+    //////////
     const tasks = this.props.tasks.map((task, index) => (
       <UserTasks index={index} key={index} {...task} />
     ))
-
+    //////////
     // console.log("User's Tasks:", this.props.tasks)
     return (
       <div>
         <div>USERNAME: {this.props.tasks[0].user.username}</div>
         {tasks}
+        {/* <button className="card-item" data-event-id={this.props._id} onClick={e => {
+          console.log(e.currentTarget.getAttribute('data-event-id'))
+          this.onDelete(e.currentTarget.getAttribute('data-event-id'))
+        }}>Delete Completed</button> */}
       </div>
     )
   }

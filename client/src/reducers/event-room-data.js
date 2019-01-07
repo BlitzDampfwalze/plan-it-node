@@ -44,6 +44,7 @@ export default (state = initialState, action) => {
       }
 
     case 'ADD_TO_TASKS':
+      console.log('STATE of Tasks', state.tasks)
       return {
         ...state, tasks: [...state.tasks, action.data]
       }
@@ -58,7 +59,7 @@ export default (state = initialState, action) => {
 
     case 'FETCH_TASKS_SUCCESS':
       return Object.assign({}, state, {
-        tasks: action.tasksByUser,
+        tasks: action.data,
         error: null
       });
 

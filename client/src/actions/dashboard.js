@@ -119,7 +119,7 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
       return res.json();
     })
     .then((data) => {
-      console.log('join room data post:', data)
+      // console.log('join room data post:', data)
       dispatch(getPopulatedEvent(event_id, token))
       // dispatch(storeEventRoomInfo(event, event_id))
 

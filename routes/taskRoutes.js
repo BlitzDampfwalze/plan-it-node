@@ -36,7 +36,9 @@ module.exports = app => {
       taskDetails: req.body.taskDetails,
       completed: req.body.completed,
     });
-    task.save()
+    task
+      .populate('user')
+      .save()
       .then(task => {
         console.log(task)
         // res.send(task)
@@ -56,7 +58,7 @@ module.exports = app => {
           req.params.user_id
         )
           .then(user => {
-            console.log('USER', user)
+            // console.log('USER', user)
             user.tasks.push(task._id)
             user.save()
             res.status(200).send(task)

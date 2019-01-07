@@ -28,19 +28,20 @@ export class EventRoom extends React.Component {
   }
 
   render() {
-    if (this.props.loggedIn) {
+    if (this.props.loggedIn && this.props.tasks !== undefined) {
 
-
-      // if (this.props.events !== undefined) {
       const schedules = this.props.schedules.map((schedule, index) => (
         <Schedule index={index} key={index} {...schedule} />
       ))
 
-      // console.log('this.props.tasks:', this.props.tasks)
-      const allTasks = this.props.tasks.map((items, index) => (
+      const Users = [...new Set(this.props.tasks.map(task => task.user.username))]
+      const tasksByUser = Users.map(user => {
+        return this.props.tasks.filter(task => task.user.username === user)
+      })
+
+      const allTasks = tasksByUser.map((items, index) => (
         <Tasks index={index} key={index} tasks={items} />
       ))
-
 
       return (
         <div className="event-room-container">
