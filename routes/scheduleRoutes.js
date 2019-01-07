@@ -29,18 +29,21 @@ module.exports = app => {
   // });
 
   app.post('/api/events/:event_id/schedule', authenticate, (req, res) => {
-
+    console.log('req.body', req.body, 'req.params', req.params)
     const schedule = new Schedule({
       event: req.params.event_id,
       date: req.body.date,
       details: req.body.details,
       location: req.body.location
     });
-
+    console.log('schedule', schedule)
     schedule.save().then(schedule => {
       res.send(schedule);
     })
-      .catch(err => { res.status(500).send(err) });
+      .catch(err => {
+        console.log('err', err)
+        res.status(500).send(err)
+      });
   });
 
   app.put('/api/events/:event_id/schedule/:schedule_id', authenticate, (req, res) => {
@@ -65,7 +68,7 @@ module.exports = app => {
     Schedule.find(
       { event: req.params.event_id }
     ).then((schedules) => {
-      res.send( schedules )
+      res.send(schedules)
     }) //{} syntax vs res.json(...map etc.)
       .catch(err => { res.status(500).send(err) });
   });

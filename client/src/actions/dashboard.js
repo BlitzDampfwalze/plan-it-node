@@ -25,10 +25,9 @@ export const deleteEventInState = data => ({
   data
 })
 
-export const storeEventRoomInfo = (data, eventID) => ({
+export const storeEventRoomInfo = (data) => ({
   type: 'SET_EVENT',
-  data,
-  eventID
+  data
 });
 
 // export const storeUserOnJoin = (user) => ({
@@ -86,11 +85,12 @@ export const createEvent = (event_id, token) => dispatch => {
 };
 
 export const joinEventRoom = (event_id) => (dispatch, getState) => {
-  dispatch(request());
+  // dispatch(request());
   const token = getState().auth.authToken;
   const user_id = getState().auth.userID;
-  const event = getState().protected_data.events.filter(event => event._id === event_id).pop()
-  // console.log('EVENT ID in joinRoom function', eventID)
+  // const event = getState().protected_data.events.filter(event => event._id === event_id).pop()
+
+  // console.log('EVENT om joinRoom function', event)
 
   fetch(`${API_ORIGIN}/api/events/${event_id}/join/${user_id}`, {
     method: 'POST',
@@ -119,9 +119,9 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
       return res.json();
     })
     .then((data) => {
-      // console.log('join room data post:', data)
-      dispatch(storeEventRoomInfo(event, event_id))
-      // dispatch(storeEventRoomInfo(data))
+      console.log('join room data post:', data)
+      dispatch(getPopulatedEvent(event_id, token))
+      // dispatch(storeEventRoomInfo(event, event_id))
 
     })
 
@@ -134,6 +134,53 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
       // dispatch(fetchErr(err));
     });
 };
+
+export const getPopulatedEvent = (event_id, token) => (dispatch) => {
+
+  fetch(`${API_ORIGIN}/api/events/${event_id}`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      'x-auth': token
+    },
+    // body: JSON.stringify(event)
+  })
+
+    // .then(res => normalizeResponseErrors(res))
+    // .then(res => res.json())
+    // .then((data) => console.log(data))
+    // .then(( data ) => dispatch(updateEventsInState(data)))
+    // .catch(err => {
+    //   dispatch(fetchDataError(err));
+    // });
+
+    // .then(res => console.log(res.json(), 'create res'))
+
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      // return test
+      return res.json();
+    })
+    .then((data) => {
+      console.log('GET populate eventroom***:', data)
+      dispatch(storeEventRoomInfo(data))
+      // dispatch(storeEventRoomInfo(data))
+
+    })
+
+    // .then((event) => {
+    //   console.log('user signin res', user)
+    //   storeAuthInfo(user, dispatch)
+    // })
+    .catch(err => {
+      console.log(err)
+      // dispatch(fetchErr(err));
+    });
+
+}
+
 
 // export const createEvent = (event, token) => dispatch => {
 //   dispatch(authRequest());

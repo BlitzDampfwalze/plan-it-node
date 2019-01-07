@@ -5,8 +5,8 @@ import { createSchedule } from '../actions/event-room'
 
 class ScheduleCreate extends Component {
   state = {
-    dateTime: '',
-    description: '',
+    date: '',
+    details: '',
     location: ''
   }
 
@@ -41,12 +41,12 @@ class ScheduleCreate extends Component {
                 onChange={this.handleScheduleChange} />
             </li>
             <li>
-              <label htmlFor="dateTime">Date &amp; Time:</label>
-              <input type="datetime-local" id="dateTime" onChange={this.handleScheduleChange} />
+              <label htmlFor="date">Date &amp; Time:</label>
+              <input type="datetime-local" id="date" onChange={this.handleScheduleChange} />
             </li>
             <li>
-              <label htmlFor="description">Description</label>
-              <input type="text" id="description"
+              <label htmlFor="details">Description</label>
+              <input type="text" id="details"
                 onChange={this.handleScheduleChange} />
             </li>
           </ul>

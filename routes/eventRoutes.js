@@ -19,6 +19,7 @@ module.exports = app => {
       // userCreator: req.body.user._id
     });
 
+
     event.save().then(event => {
       res.status(201).send(event);
     })
@@ -29,7 +30,6 @@ module.exports = app => {
   app.post('/api/events/:event_id/join/:user_id', authenticate, (req, res) => {
 
     Event.findById(req.params.event_id)
-      // .populate('user')
       .then((event) => {
 
         if (event.users.length > 100) res.status(400).send;
@@ -38,8 +38,9 @@ module.exports = app => {
         };
         if (event.users.indexOf(req.params.user_id) === -1) {
           event.users.push(req.params.user_id)
-          event.save();
+          event.save()
         };
+        event.populate('users')
         console.log('EVENT object', event)
         res.status(200).send(event);
 
@@ -82,11 +83,12 @@ module.exports = app => {
       return res.sendStatus(404);
     }
 
-    Event.findById(req.params.id).then(event => {
+    Event.findById(req.params.id).populate('users')
+    .then(event => {
       if (!event) {
         return res.sendStatus(404);
       }
-      res.send({ event });
+      res.send( event );
     })
       .catch(err => {
         console.error(err);

@@ -6,10 +6,19 @@ import UserTasks from './UserTasks';
 class Tasks extends Component {
   render() {
     // const users = this.props.user
-    // console.log('TASKS comp props', this.props)
+    // console.log('TASKS props', this.props)
+
+    // const Users = [...new Set(data.map(task => task.user.username))]
+    // // console.log('USERS:::', Users)
+    // const tasksByUser = Users.map(user => {
+    //   return data.filter(task => task.user.username === user)
+    // })
+
+
     const tasks = this.props.tasks.map((task, index) => (
       <UserTasks index={index} key={index} {...task} />
     ))
+
     // console.log("User's Tasks:", this.props.tasks)
     return (
       <div>

@@ -20,9 +20,10 @@ export default (state = initialState, action) => {
       });
 
     case 'SET_EVENT':
+      console.log('Set Event DATA', action.data)
       return Object.assign({}, state, {
         event: action.data,
-        eventID: action.eventID,
+        eventID: action.data._id,
         loading: false,
       });
 
@@ -48,6 +49,8 @@ export default (state = initialState, action) => {
       }
 
     case 'UPDATE_TASKS':
+      console.log('state & actionData', state, action.data)
+      console.log('state & actionData2', { ...state, tasks: [...state.tasks, action.data] })
       return {
         ...state, tasks: [...state.tasks, action.data]
       }

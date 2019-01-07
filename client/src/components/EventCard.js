@@ -45,11 +45,16 @@ export class EventCard extends Component {
   }
 
   render() {
-
+    // if(!this.props.imageUrl) {
+    //     return <div></div>
+    // }
+    // else {
+    //   return <img className="event-card-image card-item" src={this.props.imageUrl} height="175" width="275" />
+    // }
 
     return (
       <div className="event-card-container card-item">
-        <div className="event-card-image card-item">IMAGE HERE</div>
+        <img className="event-card-image card-item" src={this.props.imageUrl} height="175" width="275" />
         <div className="event-card-title card-item">{this.props.title}</div>
         <div className="event-card-description card-item">{this.props.description}</div>
         <button className="card-item" data-event-id={this.props._id} onClick={e => {
