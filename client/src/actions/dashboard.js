@@ -164,7 +164,7 @@ export const getPopulatedEvent = (event_id, token) => (dispatch) => {
       return res.json();
     })
     .then((data) => {
-      console.log('GET populate eventroom***:', data)
+      // console.log('GET populate eventroom***:', data)
       dispatch(storeEventRoomInfo(data))
       // dispatch(storeEventRoomInfo(data))
 

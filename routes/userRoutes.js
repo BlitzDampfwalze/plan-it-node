@@ -39,7 +39,7 @@ module.exports = app => {
     const body = pick(req.body, ['email', 'password']);
     User.findByCredentials(body.email, body.password)
       .then(user => {
-        console.log('user login', user)
+        // console.log('user login', user)
         return user.generateAuthToken().then(token => {
           res.send({ id: user._id, email: user.email, username: user.username, token })
         });

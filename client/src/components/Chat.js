@@ -8,18 +8,18 @@ export class Chat extends Component {
   render() {
 
 
-      return (
-        <div>
-          chat div
-      </div>
-      )
+    return (
+      <div className="chat-text">
+        chat div
+        </div>
+    )
   }
 
 }
 
 const mapStateToProps = (state) => ({
   // return {
-  
+
   // token: state.auth.authToken,
   // events: state.protected_data.events,
   // userID: state.auth.userID

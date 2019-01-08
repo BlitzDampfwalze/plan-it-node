@@ -56,13 +56,9 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  // console.log(state)
-
-  return {
-    loggedIn: state.auth.username !== null
-  }
-};
+const mapStateToProps = state => ({
+  loggedIn: state.auth.username !== null
+});
 
 const mapDispatchToProps = (dispatch) => ({
   signin: (user) => dispatch(signin(user))

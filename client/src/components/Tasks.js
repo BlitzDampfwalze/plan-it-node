@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import UserTasks from './UserTasks';
 
+import "../style/eventroom.css";
+
 class Tasks extends Component {
 
   // onDelete(event_id) {
@@ -26,15 +28,16 @@ class Tasks extends Component {
       <UserTasks index={index} key={index} {...task} />
     ))
     //////////
-    // console.log("User's Tasks:", this.props.tasks)
+    console.log("User's Tasks props:", this.props.tasks)
     return (
       <div>
-        <div>USERNAME: {this.props.tasks[0].user.username}</div>
+        <div className="tasks-username">{this.props.tasks[0].user.username}</div>
         {tasks}
         {/* <button className="card-item" data-event-id={this.props._id} onClick={e => {
           console.log(e.currentTarget.getAttribute('data-event-id'))
           this.onDelete(e.currentTarget.getAttribute('data-event-id'))
         }}>Delete Completed</button> */}
+        <button>Clear completed</button>
       </div>
     )
   }

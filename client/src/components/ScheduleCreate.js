@@ -27,6 +27,9 @@ class ScheduleCreate extends Component {
   }
 
   render() {
+    const currentDate = new Date().toISOString().split('.')[0];
+    //.split('.')[0]
+    // console.log('this is current date', currentDate)
 
     return (
       <div className="container">
@@ -36,16 +39,16 @@ class ScheduleCreate extends Component {
           <div>Create New *SCHEDULE*</div>
           <ul>
             <li>
-              <label htmlFor="location">Location</label>
+              <label htmlFor="location"></label>
               <input type="text" id="location"
                 onChange={this.handleScheduleChange} />
             </li>
             <li>
-              <label htmlFor="date">Date &amp; Time:</label>
-              <input type="datetime-local" id="date" onChange={this.handleScheduleChange} />
+              <label htmlFor="date"></label>
+              <input type="datetime-local" id="date" defaultValue={currentDate} onChange={this.handleScheduleChange} />
             </li>
             <li>
-              <label htmlFor="details">Description</label>
+              <label htmlFor="details"></label>
               <input type="text" id="details"
                 onChange={this.handleScheduleChange} />
             </li>

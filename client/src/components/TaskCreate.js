@@ -10,9 +10,9 @@ class TaskCreate extends Component {
   }
 
   componentDidMount() {
-    if (this.props.users !== undefined) {
-      this.setState({ user: this.props.users[0] })
-    }
+    // if (this.props.users !== undefined) {
+    //   this.setState({ user: this.props.users[0]._id })
+    // }
   }
 
   handleChange = (e) => {
@@ -40,7 +40,7 @@ class TaskCreate extends Component {
       // console.log('USERS in room:', this.props.users)
       const selection = this.props.users.map((user, index) => {
         return (
-          <option key={index} id={user.id}>{user.username}</option>
+          <option key={index} id={user} value={user._id}>{user.username}</option>
         )
 
       })

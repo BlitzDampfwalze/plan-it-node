@@ -41,7 +41,7 @@ module.exports = app => {
           event.save()
         };
         event.populate('users')
-        console.log('EVENT object', event)
+        // console.log('EVENT object', event)
         res.status(200).send(event);
 
       })

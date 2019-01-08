@@ -47,25 +47,29 @@ export class EventRoom extends React.Component {
         <div className="event-room-container">
           <h1 className="event-title">{this.props.event.title}</h1>
 
-          <div className="tasks-wrapper">
-            <div className="Tasks-wrapper">{allTasks}</div>
-            {/* <div className="Tasks-wrapper">{sortedTasks}</div> */}
-            {/* <div className="Tasks-wrapper">{tasksByUser}</div> */}
-            <TaskCreate />
+          <div className="event-room-wrapper">
+
+            <div className="tasks-wrapper">
+              <div className="Tasks-wrapper">{allTasks}</div>
+              {/* <div className="Tasks-wrapper">{sortedTasks}</div> */}
+              {/* <div className="Tasks-wrapper">{tasksByUser}</div> */}
+              <TaskCreate />
+            </div>
+
+            <div className="schedule-wrapper">
+              <ul className="schedule-headings">
+                <li >Location:</li>
+                <li>Date:</li>
+                <li>Details:</li>
+              </ul>
+              {schedules}
+              <ScheduleCreate />
+            </div>
+
+            <div className="chat-wrapper"><Chat /></div>
+
           </div>
-
-          <div className="schedule-wrapper">
-            <ul>
-              <li>Location:</li>
-              <li>Date:</li>
-              <li>Details:</li>
-            </ul>
-            {schedules}
-            <ScheduleCreate />
-          </div>
-
-          <div className="chat-wrapper"><Chat /></div>
-
+          
         </div>
       )
     }

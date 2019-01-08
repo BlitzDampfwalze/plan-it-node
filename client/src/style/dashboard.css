@@ -1,0 +1,8 @@
+.event-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.event-create-container {
+  margin: 25px;  
+}

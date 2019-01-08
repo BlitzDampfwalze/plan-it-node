@@ -78,7 +78,7 @@ export const fetchTasks = (event_id) => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then((data) => {
-      console.log('TASKS DATA DATA TASKS', data)
+      // console.log('TASKS DATA DATA TASKS', data)
       // console.log('DATA from Tasks fetch', data)
       // const Users = [...new Set(data.map(task => task.user.username))]
       // console.log('USERS:::', Users)
@@ -173,7 +173,7 @@ export const createTask = (inputs) => (dispatch, getState) => {
       return res.json();
     })
     .then((data) => {
-      console.log('Create Task DATA', data)
+      console.log('Task DATA dispatching to store:', data)
       dispatch(addTaskToList(data))
     })
 

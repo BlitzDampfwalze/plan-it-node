@@ -20,63 +20,41 @@ module.exports = app => {
     }
     // const user = User.findbyId(req.params.user_id)
     // console.log("USER", user)
-    // Task
-    //   .create({
-    //     user: req.params.user_id,
-    //     event: req.params.event_id,
-    //     taskDetails: req.body.taskDetails,
-    //     completed: req.body.completed,
-    //   })
-    //   .then(newTask => {
-    //     res.status(201).send(newTask);
-    //   })
-    const task = new Task({
-      user: req.params.user_id,
-      event: req.params.event_id,
-      taskDetails: req.body.taskDetails,
-      completed: req.body.completed,
-    });
-    task
-      .populate('user')
-      .save()
+    Task
+      .create({
+        user: req.params.user_id,
+        event: req.params.event_id,
+        taskDetails: req.body.taskDetails,
+        completed: req.body.completed,
+      })
+      //   .then(newTask => {
+      //     res.status(201).send(newTask);
+      //   })
+      // const task = new Task({
+      //   user: req.params.user_id,
+      //   event: req.params.event_id,
+      //   taskDetails: req.body.taskDetails,
+      //   completed: req.body.completed,
+      // });
+      // task
+      // .populate('user')
+      // .save()
       .then(task => {
-        console.log(task)
-        // res.send(task)
-        // })
-        // .then(
-        //   User.findbyId(req.params.user_id)
-        // )
-        // .then((user) => {
-        //   console.log('USER', user)
-        //   user.tasks.push(task._id)
-        //   user.save()
-        //   res.status(200).send(task)
-        // })
+        // console.log(task)
 
         User.findById(
-          // task.user
           req.params.user_id
         )
           .then(user => {
             // console.log('USER', user)
             user.tasks.push(task._id)
             user.save()
+            task.user = user;
             res.status(200).send(task)
           })
           .catch(err => console.log(err))
       })
-      // .then(
-      //   User.findbyId(req.params.user_id)
-      // )
-      // .then((user) => {
-      //   user.tasks.push(task._id)
-      //   user.save()
-      //   res.status(200).send(user)
-      // }
-      // )
-
       .catch(err => { res.status(500).send(err) });
-
   });
 
 
@@ -92,9 +70,13 @@ module.exports = app => {
         taskDetails: req.body.taskDetails,
         completed: req.body.completed
       }
-    ).then(task => {
-      res.send(task);
-    })
+    )
+      // .populate({ path: 'user', select: 'username email _id' }) 
+      .populate('user', 'username email')
+      .then(task => {
+        console.log('Populated TASK:', task)
+        res.status(200).send(task);
+      })
       .catch(err => { res.status(500).send(err) });
 
   });

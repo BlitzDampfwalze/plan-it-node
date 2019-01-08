@@ -26,7 +26,7 @@ class CreateEvent extends Component {
   render() {
 
     return (
-      <div className="container">
+      <div className="event-create-container">
         <form onSubmit={this.handleSubmit}>
           <div>Create New Event</div>
           <div>
