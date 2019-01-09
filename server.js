@@ -1,7 +1,4 @@
 'use strict';
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
 const { PORT, DATABASE_URL } = require('./config/config');
 const express = require('express');
 const cors = require('cors');
@@ -17,6 +14,10 @@ var http = require('http'); //for socket.io
 var socket_io = require('socket.io'); //for socket.io
 
 const app = express();
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 var serverSocket = http.Server(app); //for socket.io
 var io = socket_io(serverSocket); //for socket.io
