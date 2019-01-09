@@ -1,8 +1,16 @@
-.event-card-wrapper {
+.dashboard-wrapper {
   display: flex;
   flex-wrap: wrap;
 }
 
-.event-create-container {
+/* .event-create-container {
   margin: 25px;  
+} */
+
+.dashboard-wrapper {
+  background: url(./assets/blurred-map.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  /* z-index: -1; */
 }

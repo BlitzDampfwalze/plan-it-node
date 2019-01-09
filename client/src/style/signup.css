@@ -1,0 +1,21 @@
+.signup-container {
+  background: url(./assets/landing-image.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  /* z-index: -1; */
+  
+}
+
+.signup-form {
+  /* display: flex; */
+  border: 3px black solid;
+  max-width: 350px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.signup-item {
+  display: flex;
+  flex-direction: column;
+}

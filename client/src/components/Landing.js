@@ -5,12 +5,13 @@ import React from "react";
 
 import "../style/landing.css";
 
-const Landing = ()  => (
-  <div className="card-container item">
-      ~This is the landing page before logging in~
-      </div>
+const Landing = () => (
+  <div className="landing-container">
+    <h1 className="landing-h1">Plan-it</h1>
+    ~This is the landing page before logging in~
+  </div>
 )
-      
+
 
 
 // import "../style/eventcard.css";
@@ -26,7 +27,7 @@ const Landing = ()  => (
 //       </div>
 //     )
 //   }
-  
+
 // }
 
 // const mapStateToProps = (state) => ({

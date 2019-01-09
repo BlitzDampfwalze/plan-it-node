@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "immutability-helper": "^2.9.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.23.0",
     "react": "^16.6.3",

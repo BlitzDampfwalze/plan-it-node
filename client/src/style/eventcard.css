@@ -1,6 +1,7 @@
-.card-container {
-  margin: 25px;
-  
+.event-card-container {
+  background-color:rgb(145, 147, 165);
+  opacity: 0.8;
+  margin: 10px;
 }
 
 .card-item {

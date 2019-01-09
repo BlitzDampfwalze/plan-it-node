@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 
 import { signup } from '../../actions'
 
+import "../../style/signup.css";
+
 class SignUp extends Component {
   // constructor(props) {
   //   super(props);
@@ -40,18 +42,18 @@ class SignUp extends Component {
   render() {
 
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
+      <div className="signup-container">
+        <form className="signup-form" onSubmit={this.handleSubmit}>
           <div>Sign In heading</div>
-          <div>
+          <div className="signup-item">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handleChange} />
           </div>
-          <div>
+          <div className="signup-item">
             <label htmlFor="username">Username</label>
             <input type="username" id="username" onChange={this.handleChange} />
           </div>
-          <div>
+          <div className="signup-item">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
           </div>

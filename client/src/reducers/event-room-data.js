@@ -1,5 +1,4 @@
 import { updateLocale } from "moment";
-import update from 'immutability-helper';
 
 // import { fetchSchedules, fetchTasks } from "../actions/event-room";
 

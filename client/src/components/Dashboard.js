@@ -45,7 +45,7 @@ export class Dashboard extends React.Component {
         // console.log('event', events)
 
         return (
-          <div className="event-card-wrapper">
+          <div className="dashboard-wrapper">
             {events}
             <EventCardCreate />
           </div>

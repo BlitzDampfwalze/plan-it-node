@@ -191,7 +191,7 @@ export const createTask = (inputs) => (dispatch, getState) => {
 export const updateTask = (task_id, completion, details) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
-  // console.log('inputs:', inputs, 'eventID:', event_id, 'token:', token)
+  console.log('inputs:', completion, 'taskID:', task_id, event_id)
   fetch(`${API_ORIGIN}/api/events/${event_id}/tasks/${task_id}`, {
     method: 'PUT',
     headers: {

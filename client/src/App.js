@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Navbar from './components/layout/Navbar';
-import Footer from './components/Footer';
+import Footer from './components/layout/Footer';
 import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
 // import Login from './components/auth/Login';
