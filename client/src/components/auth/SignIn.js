@@ -5,6 +5,8 @@ import { signin } from '../../actions'
 
 import { Redirect } from 'react-router-dom';
 
+import "../../style/auth.css";
+
 class SignIn extends Component {
   state = {
     email: '',
@@ -38,18 +40,18 @@ class SignIn extends Component {
     }
 
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div>Sign In</div>
-          <div>
+      <div className="auth-container">
+        <form className="auth-form" onSubmit={this.handleSubmit}>
+          <div>Login In heading</div>
+          <div className="auth-item">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handleChange} />
           </div>
-          <div>
+          <div className="auth-item">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
           </div>
-          <button>Login</button>
+          <button className="auth-item">Login</button>
         </form>
       </div>
     )
