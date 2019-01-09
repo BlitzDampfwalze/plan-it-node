@@ -1,4 +1,7 @@
 'use strict';
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 const { PORT, DATABASE_URL } = require('./config/config');
 const express = require('express');
 const cors = require('cors');
@@ -7,9 +10,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
+
 // const { localStrategy, jwtStrategy } = require('./middleware');
 
 var http = require('http'); //for socket.io
@@ -20,8 +21,8 @@ const app = express();
 var serverSocket = http.Server(app); //for socket.io
 var io = socket_io(serverSocket); //for socket.io
 
-app.use(cors()); 
-app.options('*', cors()); 
+app.use(cors());
+app.options('*', cors());
 
 // app.use(express.json()); 
 
