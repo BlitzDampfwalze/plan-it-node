@@ -69,6 +69,9 @@ module.exports = app => {
       {
         taskDetails: req.body.taskDetails,
         completed: req.body.completed
+      },
+      {
+        new: true
       }
     )
       // .populate({ path: 'user', select: 'username email _id' }) 

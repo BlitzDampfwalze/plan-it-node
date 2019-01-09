@@ -28,7 +28,7 @@ class Tasks extends Component {
       <UserTasks index={index} key={index} {...task} />
     ))
     //////////
-    console.log("User's Tasks props:", this.props.tasks)
+    // console.log("User's Tasks props:", this.props.tasks)
     return (
       <div>
         <div className="tasks-username">{this.props.tasks[0].user.username}</div>

@@ -4,31 +4,23 @@ import { connect } from "react-redux";
 import { updateTask } from '../actions/event-room'
 
 class UserTasks extends Component {
-  state = {
-    checkBox: null
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      checkBox: props.completed
+    }
+
   }
 
+
   handleCheckBox = (e) => {
-    this.setState({
-      [e.target.id]: !this.props.completed
+    this.setState({ [e.target.id]: !this.props.completed }, () => {
+      this.props.updateTask(this.props._id, this.state.checkBox, this.props.taskDetails);
     })
-    // if(e.target.c)
-    // if (e.target.checked === true) {
-    //   this.setState({
-    //     [e.target.id]: false
-    //   })
-    // } else {
-    //   this.setState({
-    //     [e.target.id]: true
-    //   })
-    // }
-    // const completion = e.target.checked ? false : true;
-    console.log('value of states checkbox', this.state.checkBox, this.props._id, this.props.taskDetails)
-    // let completion = this.props.completed ? false : true;
-    this.props.dispatch(updateTask(this.props._id,
-      this.state.checkBox
-      // completion
-      , this.props.taskDetails));
+
+    // setTimeout(() => console.log(this.state), 2000)
+    // this.props.updateTask(this.props._id, this.state.checkBox, this.props.taskDetails);
   }
 
   render() {
@@ -49,7 +41,7 @@ class UserTasks extends Component {
     // }
 
 
-    const taskCheckBox = this.props.completed ? <input type="checkbox" id="checkBox" checked onChange={this.handleCheckBox}></input> : <input type="checkbox" id="checkBox" onChange={this.handleCheckBox}></input>
+    const taskCheckBox = <input type="checkbox" id="checkBox" checked={this.state.checkBox} onChange={this.handleCheckBox}></input>
     // console.log('checkbox', checkbox.checked)
     // if (taskCheckBox !== undefined) {
     return (
@@ -68,21 +60,13 @@ class UserTasks extends Component {
   // }
 }
 
-const mapStateToProps = (state) => ({
-  // return {
+const mapStateToProps = (state) => ({})
 
-  // token: state.auth.authToken,
-  // events: state.protected_data.events,
-  // userID: state.auth.userID
-  // protectedData: state.protected_data.data
-  // }
-})
-// const mapDispatchToProps = (dispatch) => {
-//   // return {
-//   //   deleteEvent: (id, token) => dispatch(deleteEvent(id, token)),
-//   //   joinEventRoom: (event_id) => dispatch(joinEventRoom(event_id))
-//   // }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateTask: (id, checked, details) => dispatch(updateTask(id, checked, details))
+  }
+}
 
 // export default UserTasks;
-export default connect(mapStateToProps)(UserTasks);
+export default connect(mapStateToProps, mapDispatchToProps)(UserTasks);

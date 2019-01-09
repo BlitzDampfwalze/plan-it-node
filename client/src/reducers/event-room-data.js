@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
       // console.log('filteredTasks', filteredTasks)
       // const allTasks = filteredTasks.push('action.data')
       // console.log("all tasks", allTasks)
-      console.log("action datas", action.data)
+      // console.log("action datas", action.data)
       return {
         ...state,
         tasks: [...state.tasks.filter(task => task._id !== action.data._id)].concat(action.data)
