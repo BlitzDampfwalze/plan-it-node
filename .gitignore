@@ -5,3 +5,4 @@ api-calls.js
 .env
 ignored-server.js
 tests/test.js
+client/node_modules

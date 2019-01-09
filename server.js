@@ -7,6 +7,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 // const { localStrategy, jwtStrategy } = require('./middleware');
 
 var http = require('http'); //for socket.io
