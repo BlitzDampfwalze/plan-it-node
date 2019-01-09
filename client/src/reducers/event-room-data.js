@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
       }
 
     case 'ADD_TO_TASKS':
-      console.log('STATE of Tasks', state.tasks)
+      // console.log('STATE of Tasks', state.tasks)
       return {
         ...state, tasks: [...state.tasks, action.data]
       }

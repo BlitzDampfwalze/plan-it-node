@@ -1,9 +1,13 @@
 .event-card-container {
-  background-color:rgb(145, 147, 165);
-  opacity: 0.8;
+  background-color:rgba(145, 147, 165, 0.8);
   margin: 10px;
 }
 
 .card-item {
   margin: 10px;
+}
+
+.create-card-item {
+  display: flex;
+  flex-direction: column;
 }

@@ -31,15 +31,15 @@ class CreateEvent extends Component {
       <div className="event-create-container event-card-container">
         <form onSubmit={this.handleSubmit}>
           <div className="card-item">Create New Event</div>
-          <div className="card-item">
+          <div className="card-item create-card-item">
             <label htmlFor="title">title</label>
             <input type="title" id="title" onChange={this.handleChange} />
           </div>
-          <div className="card-item">
+          <div className="card-item create-card-item">
             <label htmlFor="description">description</label>
             <input type="description" id="description" onChange={this.handleChange} />
           </div>
-          <div className="card-item">
+          <div className="card-item create-card-item">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" onChange={this.handleChange} />
           </div>
