@@ -53,6 +53,7 @@ module.exports = app => {
   // The user exchanges a valid JWT for a new one with a later expiration
   app.post('/api/users/refresh', authenticate, (req, res) => {
     req.user.generateAuthToken().then(token => {
+      // res.json({ id: req.user._id, email: req.user.email, username: req.user.username, token:token[0] })
       res.json({ id: req.user._id, email: req.user.email, username: req.user.username, token })
     })
 

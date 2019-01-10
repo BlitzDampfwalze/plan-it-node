@@ -59,9 +59,50 @@ export default (state = initialState, action) => {
       // const allTasks = filteredTasks.push('action.data')
       // console.log("all tasks", allTasks)
       // console.log("action datas", action.data)
+
+      // loop thru find index, forEach
+
+      // let indices = [];
+      // state.tasks.forEach(task => {
+      //   indices.push(task._id)
+      // })
+      // console.log("indices", indices)
+      // let index = indices.indexOf(action.data._id)
+      // console.log('index', index)
+      // state.tasks[index] = action.data
+      // console.log("STATE TASKS", state.tasks)
+
+      // let items = [
+      //   { id: "1234", completed: false },
+      //   { id: "2345", completed: false },
+      //   { id: "3456", completed: false }
+      // ];
+
+      // let id = "1234";
+
+      // items = items.map((item) => {
+      //   if (item.id == id) {
+      //     item.completed = true;
+      //   }
+      //   return item;
+
+      // });
+
+      let id = action.data._id
+      const updatedTasks = state.tasks.map((item) => {
+        if (item._id === id) {
+          item.completed = !item.completed;
+        }
+        // if (item._id === id && item.completed === true) {
+        //   item.completed = false;
+        // }
+        return item;
+      });
+      console.log("STATE TASKS", updatedTasks)
       return {
         ...state,
-        tasks: [...state.tasks.filter(task => task._id !== action.data._id)].concat(action.data)
+        tasks: updatedTasks
+        // tasks: [...state.tasks.filter(task => task._id !== action.data._id)].concat(action.data)
       }
       //   ...state, tasks: [
       //     filteredTasks, 

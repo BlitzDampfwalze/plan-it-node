@@ -15,6 +15,7 @@ class UserTasks extends Component {
 
 
   handleCheckBox = (e) => {
+    console.log('checkbox', this.state.checkBox)
     this.setState({ [e.target.id]: !this.props.completed }, () => {
       this.props.updateTask(this.props._id, this.state.checkBox, this.props.taskDetails);
     })
