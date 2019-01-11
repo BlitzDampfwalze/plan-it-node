@@ -42,7 +42,6 @@ export class Dashboard extends React.Component {
           <EventCard index={index} key={index} {...event} />
         ))
 
-        // console.log('event', events)
 
         return (
           <div className="dashboard-wrapper">
@@ -77,24 +76,12 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  // return {
+
   events: state.protected_data.events,
   protectedData: state.protected_data.data,
   loggedIn: state.auth.username !== null
-  // }
-})
 
-// const mapDispatchToProps = ({
-//     // setHeaderText: setHeaderText
-// })
+});
+
 
 export default connect(mapStateToProps)(withRouter(Dashboard));
-
-// Dashboard.defaultProps = {
-//     // title: 'Board'
-// };
-
-// const mapStateToProps = state => ({
-//     // lists: state.lists
-// });
-

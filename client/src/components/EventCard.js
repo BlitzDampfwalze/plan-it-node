@@ -16,7 +16,7 @@ export class EventCard extends Component {
     const room = this.props.events.find(event => {
       return event._id === event_id
     });
-    // console.log('room', room._id)
+
     if (!room.password) {
       this.props.joinEventRoom(room._id)
       // this.props.storeUserOnJoin(this.props.userObject)
@@ -60,11 +60,9 @@ export class EventCard extends Component {
         <div className="event-card-title card-item">{this.props.title}</div>
         <div className="event-card-description card-item">{this.props.description}</div>
         <button className="card-item" data-event-id={this.props._id} onClick={e => {
-          // console.log(e.currentTarget.getAttribute('data-event-id'))
           this.onJoin(e.currentTarget.getAttribute('data-event-id'))
         }}>JOIN</button>
         <button className="card-item" data-event-id={this.props._id} onClick={e => {
-          console.log(e.currentTarget.getAttribute('data-event-id'))
           this.onDelete(e.currentTarget.getAttribute('data-event-id'))
         }}>DELETE</button>
       </div>
@@ -79,8 +77,6 @@ const mapStateToProps = (state) => {
   return {
     token: state.auth.authToken,
     events: state.protected_data.events,
-    // userObject: state.auth.userObject
-    // protectedData: state.protected_data.data
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -93,7 +89,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-// export default (EventCard);
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EventCard));
 
 {/* <Link to="/dashboard/user">{this.props.navbar.text}</Link> */ }

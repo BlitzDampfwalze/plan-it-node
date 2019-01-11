@@ -21,20 +21,17 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state)
+
     const user = {
       email: this.state.email,
       password: this.state.password
     };
-    // this.props.dispatch(signin(user));
+
     this.props.signin(this.state);
-    // signin(user)
     this.setState({ email: '', password: '' });
   }
 
   render() {
-    // console.log('props:', this.props)
-    console.log('props.loggedIn', this.props.loggedIn)
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
     }
@@ -64,6 +61,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   signin: (user) => dispatch(signin(user))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

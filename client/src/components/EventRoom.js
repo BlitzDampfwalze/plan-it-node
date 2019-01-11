@@ -7,7 +7,6 @@ import { fetchSchedules, fetchTasks } from '../actions/event-room';
 import Tasks from './Tasks';
 import Schedule from './Schedule';
 import Chat from './Chat';
-// import UserTasks from './UserTasks';
 import ScheduleCreate from './ScheduleCreate';
 import TaskCreate from './TaskCreate';
 
@@ -16,10 +15,6 @@ import TaskCreate from './TaskCreate';
 import "../style/eventroom.css";
 
 export class EventRoom extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   // this.onSubmit = this.onSubmit.bind(this);
-  // }
 
   componentDidMount() {
     const { id } = this.props.match.params
@@ -29,12 +24,14 @@ export class EventRoom extends React.Component {
 
   render() {
     if (this.props.loggedIn && this.props.tasks !== undefined) {
-
+      
       const schedules = this.props.schedules.map((schedule, index) => (
         <Schedule index={index} key={index} {...schedule} />
       ))
 
+      //Create an array of unique users
       const Users = [...new Set(this.props.tasks.map(task => task.user.username))]
+      //Return an array of tasks for each unique user
       const tasksByUser = Users.map(user => {
         return this.props.tasks.filter(task => task.user.username === user)
       })
@@ -51,8 +48,6 @@ export class EventRoom extends React.Component {
 
             <div className="tasks-wrapper">
               <div className="Tasks-wrapper">{allTasks}</div>
-              {/* <div className="Tasks-wrapper">{sortedTasks}</div> */}
-              {/* <div className="Tasks-wrapper">{tasksByUser}</div> */}
               <TaskCreate />
             </div>
 
@@ -93,10 +88,4 @@ const mapStateToProps = (state) => ({
   // }
 })
 
-// const mapDispatchToProps = ({
-//   // setHeaderText: setHeaderText
-// })
-
 export default connect(mapStateToProps)(withRouter(EventRoom));
-
-{/* <Link to="/dashboard/user">{this.props.navbar.text}</Link> */ }

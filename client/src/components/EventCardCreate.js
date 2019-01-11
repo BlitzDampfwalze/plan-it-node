@@ -54,12 +54,12 @@ const mapStateToProps = (state) => {
   return {
     token: state.auth.authToken
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createEvent: (inputs, token) => dispatch(createEvent(inputs, token))
   }
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);

@@ -28,14 +28,11 @@ class ScheduleCreate extends Component {
 
   render() {
     const currentDate = new Date().toISOString().split('.')[0];
-    //.split('.')[0]
     // console.log('this is current date', currentDate)
 
     return (
       <div className="container">
-        <form
-          onSubmit={this.handleScheduleSubmit}
-        >
+        <form onSubmit={this.handleScheduleSubmit}>
           <div>Create New *SCHEDULE*</div>
           <ul>
             <li>
@@ -64,12 +61,12 @@ const mapStateToProps = (state) => {
   return {
     // eventID: state.event_room.eventID
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createSchedule: (inputs, token) => dispatch(createSchedule(inputs, token))
   }
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScheduleCreate)
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleCreate);
