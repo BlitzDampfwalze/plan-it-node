@@ -22,15 +22,12 @@ export class Navbar extends React.Component {
 
     return (
       <nav className="nav-wrapper">
-        <div className="nav-left" onClick={this.handleLogoClick}>Plan-it</div>
+        <div className="nav-left nav-item" onClick={this.handleLogoClick}>Plan-it</div>
         <div className="nav-right">
-          <ul>
-            {links}
-            {/* <li className="list-item" onClick={this.handleAboutClick}>About</li>
+          {links}
+          {/* <li className="list-item" onClick={this.handleAboutClick}>About</li>
             <li className="list-item" onClick={this.handleLoginClick}>Login</li>
             <li className="list-item" onClick={this.handleSignupClick}>Sign-up</li> */}
-          </ul>
-
         </div>
       </nav>
     )

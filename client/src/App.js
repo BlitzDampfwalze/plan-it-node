@@ -6,7 +6,6 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
-// import Login from './components/auth/Login';
 import EventRoom from './components/EventRoom';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
@@ -14,7 +13,8 @@ import SignUp from './components/auth/SignUp';
 import { refreshAuthToken } from './actions';
 
 
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 
 import './App.css';
 

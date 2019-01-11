@@ -2,17 +2,34 @@
   background: url(./assets/landing-image.jpg) no-repeat;
   background-size: cover;
   height: 100vh;
-  width: 100vw;
-  /* z-index: -1; */
+  /* width: 100vw; */
+  /* height: 100%; */
+  width: 100%;
 }
 
+.landing-overlay {
+  background-color: rgba(145, 147, 165, 0.8);
+}
 .landing-h1 {
-  font-size: 60px;
+  top: 35px;
+  position: sticky;
+  font-size: 3.75rem;
   font-weight: bold;
   color: black;
   text-align: center;
-  padding: 5%;
-  /* margin-top: 20px; */
+  padding: 4%;
+  margin-bottom: 1.5%
+}
+
+.landing-overlay:hover {
+  /* box-shadow: 2.5px 2.5px white; */
+  text-shadow: 1.2px 1.2px rgba(255, 255, 255, 0.589);
+  transition: 1s ease-out;
+}
+
+.landing-subhead {
+  position: sticky;
+  padding: 4%;
 }
 
 .landing-h2 {
@@ -21,6 +38,7 @@
   font-weight: bold;
   color: black;
   text-align: center;
+  padding-bottom: 15px;
 }
 
 .landing-more-wrapper {
@@ -28,11 +46,11 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 1.7em;
   text-align: center;
-  background-color: grey;
+  
 
 }
 
@@ -49,8 +67,8 @@
   border-radius: 8px;
   background-color: rgba(88, 58, 0, 0.699);
   border: 0.5px solid orange;
-  box-shadow: 2.5px 2.5px black;
-  text-shadow: 2px 2px black;
+  /* box-shadow: 2.5px 2.5px rgba(255, 255, 255, 0.589); */
+  text-shadow: 2px 2px rgba(255, 255, 255, 0.589);
 }
 
 .panel {

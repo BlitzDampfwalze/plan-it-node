@@ -7,8 +7,8 @@ import "../../style/footer.css";
 
 const Footer = () => (
   <div className="footer-container">
-    ~clickable links down here~
-      </div>
+    <div className="signature">Designed and Developed<br/>by Paul Lime</div>
+  </div>
 )
 
 

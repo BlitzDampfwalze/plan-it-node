@@ -1,9 +1,11 @@
 .nav-wrapper {
-  /* position: fixed; */
-  width: 100vw;
+  width: 100%;
 	display: flex;
   justify-content: space-between;
-  /* background-color: #282c34; */
+  background-color: #272b33;
+  /* padding: 25px; */
+  font-size: 1.3rem;
+  color: white;
 }
 
 ul {
@@ -11,12 +13,31 @@ ul {
 }
 
 ul li {
-  margin: 0 0 0 25px;
+  /* margin: 0 22px 0 22px; */
   text-decoration: none;
+  padding: 22px;
   
 }
 
 ul a {
   text-decoration: none;
   color: white;
+  }
+
+.nav-left {
+  font-weight: bold;
+  padding: 22px;
+  cursor: pointer;
+}
+
+.nav-right {
+  height: 100%
+}
+
+.nav-item:hover {
+  /* border-radius: 3px; */
+  /* box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2); */
+  text-shadow: 1.75px 1.75px rgba(0, 0, 0, 0.589);
+  background-color:rgb(161, 162, 175);
+  transition: all 1500ms ease-out;
 }

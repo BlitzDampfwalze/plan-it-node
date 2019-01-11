@@ -11,3 +11,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.event-create-container { 
+  /* margin: 25px;   */
+  position: sticky;
+
+}
+
