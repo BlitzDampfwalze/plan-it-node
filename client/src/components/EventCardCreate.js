@@ -22,7 +22,13 @@ class CreateEvent extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('event create props', this.props.token)
-    this.props.createEvent(this.state, this.props.token);
+    this.props.createEvent(this.state, this.props.token)
+    this.setState({
+      imageUrl: '',
+      title: '',
+      description: '',
+      password: ''
+    })
   }
 
   render() {
@@ -44,7 +50,7 @@ class CreateEvent extends Component {
           </div>
           <div className="card-item create-card-item">
             <label htmlFor="image">Image URL:</label>
-            <input type="description" id="image" onChange={this.handleChange} />
+            <input type="description" id="imageUrl" onChange={this.handleChange} />
           </div>
           <div className="card-item create-card-item">
             <label htmlFor="password">Password:</label>

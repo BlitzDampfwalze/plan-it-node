@@ -10,8 +10,10 @@
   margin: 15px;
 }
 
-.tasks-wrapper, .schedule-wrapper, .chat-wrapper {
+.tasks-wrapper, .schedule-container, .chat-wrapper {
   margin: 8px;
+  padding: 8px;
+  background-color: rgba(39, 43, 51, 0.5);
 }
 
 

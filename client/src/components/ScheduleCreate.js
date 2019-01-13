@@ -20,7 +20,7 @@ class ScheduleCreate extends Component {
 
   handleScheduleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.dateTime === '' || this.state.description === '') {
+    if (this.state.date === '' || this.state.description === '') {
       return alert('Date, Time, and Description cannot be blank')
     }
     this.props.createSchedule(this.state);
@@ -42,7 +42,9 @@ class ScheduleCreate extends Component {
             </li>
             <li>
               <label htmlFor="date"></label>
-              <input type="datetime-local" id="date" defaultValue={currentDate} onChange={this.handleScheduleChange} />
+              <input type="datetime-local" id="date"
+                // defaultValue={currentDate} 
+                onChange={this.handleScheduleChange} />
             </li>
             <li>
               <label htmlFor="details"></label>

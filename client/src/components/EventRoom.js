@@ -13,6 +13,7 @@ import TaskCreate from './TaskCreate';
 
 
 import "../style/eventroom.css";
+import "../style/schedule.css";
 
 export class EventRoom extends React.Component {
 
@@ -52,11 +53,11 @@ export class EventRoom extends React.Component {
             </div>
 
             <div className="schedule-wrapper">
-              <ul className="schedule-headings">
-                <li >Location:</li>
-                <li>Date:</li>
-                <li>Details:</li>
-              </ul>
+              {/* <ul className="schedule-headings"> */}
+                {/* <li className="schedule-location">Location:</li> */}
+                {/* <li className="schedule-date">Date:</li> */}
+                {/* <li className="schedule-details">Details:</li> */}
+              {/* </ul> */}
               {schedules}
               <ScheduleCreate />
             </div>

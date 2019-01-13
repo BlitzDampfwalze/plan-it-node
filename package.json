@@ -9,7 +9,7 @@
     "server": "node server.js",
     "client": "node start-client.js",
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js --ignore client"
   },
   "engines": {
     "node": "8.10.0",
