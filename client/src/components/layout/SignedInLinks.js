@@ -22,7 +22,7 @@ export class SignedInLinks extends React.Component {
     }
 
     return (
-      <ul className="nav-right" >
+      <ul>
         <li className="nav-item"><NavLink to='/'>About</NavLink></li>
         <li className="nav-item"><NavLink to='/dashboard'>Dashboard</NavLink></li>
         <li className="nav-item">{logOutLink}</li>

@@ -30,20 +30,27 @@ class CreateEvent extends Component {
     return (
       <div className="event-create-container event-card-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="card-item">Create New Event</div>
+          <div className="card-item create-card-heading">Create New Event</div>
+          <img className="event-card-image card-item"
+            // alt={`no image set by creator for ${this.props.title}`}
+            src={this.props.imageUrl} height="175" width="275" />
           <div className="card-item create-card-item">
-            <label htmlFor="title">title</label>
+            <label htmlFor="title">Title:</label>
             <input type="title" id="title" onChange={this.handleChange} />
           </div>
           <div className="card-item create-card-item">
-            <label htmlFor="description">description</label>
+            <label htmlFor="description">Description:</label>
             <input type="description" id="description" onChange={this.handleChange} />
           </div>
           <div className="card-item create-card-item">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="image">Image URL:</label>
+            <input type="description" id="image" onChange={this.handleChange} />
+          </div>
+          <div className="card-item create-card-item">
+            <label htmlFor="password">Password:</label>
             <input type="password" id="password" onChange={this.handleChange} />
           </div>
-          <button className="card-item">Create</button>
+          <button className="card-item create-card-item">Create</button>
         </form>
       </div>
     )

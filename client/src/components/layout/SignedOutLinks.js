@@ -11,10 +11,10 @@ const SignedOutLinks = () => {
   //   return null;
   // }
   return (
-    <ul className="nav-right">
-      <li className="list-item"><NavLink to='/'>About</NavLink></li>
-      <li className="list-item"><NavLink to='/signin'>Login</NavLink></li>
-      <li className="list-item"><NavLink to='/signup'>Sign-up</NavLink></li>
+    <ul>
+      <li className="nav-item"><NavLink to='/'>About</NavLink></li>
+      <li className="nav-item"><NavLink to='/signin'>Login</NavLink></li>
+      <li className="nav-item"><NavLink to='/signup'>Sign-up</NavLink></li>
     </ul>
   )
 
