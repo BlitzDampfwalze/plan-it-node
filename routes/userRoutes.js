@@ -59,7 +59,7 @@ module.exports = app => {
 
   });
 
-
+  //Logout route
   app.delete('/api/users/me/token', authenticate, (req, res) => {
     req.user.removeToken(req.token).then(
       () => {
