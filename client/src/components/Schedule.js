@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
+import { reduxForm, Field, SubmissionError, focus } from 'redux-form';
+import ScheduleInput from './Schedule-Input';
+import { required, nonEmpty, email } from '../validators';
 import { Redirect, withRouter } from 'react-router-dom'
+
+import { scheduleUpdate } from '../actions/schedule';
 
 import moment from 'moment'
 
 import "../style/schedule.css";
+import { set } from 'mongoose';
 
 export class Schedule extends Component {
   constructor(props) {
@@ -19,41 +25,122 @@ export class Schedule extends Component {
 
   }
 
-  handleScheduleChange = (e) => {
-
-    // this.setState({
-    //   [e.target.id]: e.target.value
-    // })
-    // console.log(this.state)
-  }
-
-  handleScheduleSubmit = (e) => {
-    e.preventDefault();
-    // if (this.state.date === '' || this.state.description === '') {
-    //   return alert('Date, Time, and Description cannot be blank')
-    // }
-    // this.props.createSchedule({
-    //   this.state.date,
-    //   this.state.details,
-    //   this.state.location
-    // });
+  onSubmit(values) {
+    return fetch('/api/messages', {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          if (
+            res.headers.has('content-type') &&
+            res.headers
+              .get('content-type')
+              .startsWith('application/json')
+          ) {
+            // It's a nice JSON error returned by us, so decode it
+            return res.json().then(err => Promise.reject(err));
+          }
+          // It's a less informative error returned by express
+          return Promise.reject({
+            code: res.status,
+            message: res.statusText
+          });
+        }
+        return;
+      })
+      .then(() => console.log('Submitted with values', values))
+      .catch(err => {
+        const { reason, message, location } = err;
+        if (reason === 'ValidationError') {
+          // Convert ValidationErrors into SubmissionErrors for Redux Form
+          return Promise.reject(
+            new SubmissionError({
+              [location]: message
+            })
+          );
+        }
+        return Promise.reject(
+          new SubmissionError({
+            _error: 'Error submitting message'
+          })
+        );
+      });
   }
 
   handleScheduleEdit = (e) => {
-
+    this.setState({ edit: !this.state.edit })
   }
 
+  handleScheduleUpdate = (values) => {
+    this.props.dispatch(scheduleUpdate(values, this.props._id))
+  }
 
   render() {
-    console.log('schedule state', this.state)
+
+    let successMessage;
+    if (this.props.submitSucceeded) {
+      successMessage = (
+        <div className="message message-success">
+          Message submitted successfully
+              </div>
+      );
+    }
+
+    let errorMessage;
+    if (this.props.error) {
+      errorMessage = (
+        <div className="message message-error">{this.props.error}</div>
+      );
+    }
+
+    // console.log('schedule state', this.state)
+    let editButton = this.state.edit ? "Cancel" : "Edit"
+
     let editSchedule = this.state.edit ?
-      <ul>
-        <ul className="schedule-parent-date">
-          <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
-          <li className="schedule-item schedule-location">{this.props.location}</li>
-        </ul>
-        <li className="schedule-item schedule-details">{this.props.details}</li>
-      </ul>
+      // <ul>
+      //   <ul className="schedule-parent-date">
+      //     <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
+      //     <li className="schedule-item schedule-location">{this.props.location}</li>
+      //   </ul>
+      //   <li className="schedule-item schedule-details">{this.props.details}</li>
+      // </ul>
+      <form
+        onSubmit={this.props.handleSubmit(values =>
+          this.handleScheduleUpdate(values)
+        )}>
+        {successMessage}
+        {errorMessage}
+        <Field
+          name="Date"
+          type="datetime-local"
+          component={ScheduleInput}
+          label="Date"
+          validate={[required, nonEmpty]}
+        />
+        <Field
+          name="Location"
+          type="text"
+          component={ScheduleInput}
+          label="Location"
+          validate={[required, nonEmpty]}
+        />
+        <Field
+          name="Details"
+          type="text"
+          component={ScheduleInput}
+          label="Details"
+          validate={[required, nonEmpty]}
+        />
+        <button
+          type="submit"
+          disabled={this.props.pristine || this.props.submitting}>
+          Save
+            </button>
+      </form>
       :
       null;
 
@@ -65,10 +152,11 @@ export class Schedule extends Component {
             <li className="schedule-item schedule-location">{this.props.location}</li>
           </ul>
           <li className="schedule-item schedule-details">{this.props.details}</li>
-          <button onClick={this.handleScheduleEdit}>edit</button>
+          <button onClick={this.handleScheduleEdit}>{editButton}</button>
         </ul>
-        <div className="edit-schedule">edit here:{editSchedule}</div>
+        <div className="edit-schedule">{editSchedule}</div>
       </div>
+
 
     )
   }
@@ -91,5 +179,9 @@ const mapStateToProps = (state) => ({
 //   // }
 // }
 
-export default connect(mapStateToProps)(Schedule);
-// export default Schedule;
+Schedule = connect(mapStateToProps)(Schedule);
+
+export default reduxForm({
+  form: 'schedule'
+})(Schedule);
+

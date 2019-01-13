@@ -52,89 +52,31 @@ export default (state = initialState, action) => {
       }
 
     case 'UPDATE_TASKS':
-      // const indexOftask = state.tasks.findIndex(i => i._id === action.data._id);
-      // console.log('index of TASK store', indexOftask)
-      // const filteredTasks = []
-      // console.log('filteredTasks', filteredTasks)
-      // const allTasks = filteredTasks.push('action.data')
-      // console.log("all tasks", allTasks)
-      // console.log("action datas", action.data)
-
-      // loop thru find index, forEach
-
-      // let indices = [];
-      // state.tasks.forEach(task => {
-      //   indices.push(task._id)
-      // })
-      // console.log("indices", indices)
-      // let index = indices.indexOf(action.data._id)
-      // console.log('index', index)
-      // state.tasks[index] = action.data
-      // console.log("STATE TASKS", state.tasks)
-
-      // let items = [
-      //   { id: "1234", completed: false },
-      //   { id: "2345", completed: false },
-      //   { id: "3456", completed: false }
-      // ];
-
-      // let id = "1234";
-
-      // items = items.map((item) => {
-      //   if (item.id == id) {
-      //     item.completed = true;
-      //   }
-      //   return item;
-
-      // });
-
       let id = action.data._id
       const updatedTasks = state.tasks.map((item) => {
         if (item._id === id) {
           item.completed = !item.completed;
         }
-        // if (item._id === id && item.completed === true) {
-        //   item.completed = false;
-        // }
         return item;
       });
-      console.log("STATE TASKS", updatedTasks)
+
       return {
         ...state,
         tasks: updatedTasks
-        // tasks: [...state.tasks.filter(task => task._id !== action.data._id)].concat(action.data)
       }
-      //   ...state, tasks: [
-      //     filteredTasks, 
-      //     action.data
-      //   ]
-      // }
 
-      // function updateObjectInArray(array, action) {
-      //   return array.map((item, index) => {
-      //     if (index !== action.index) {
-      //       // This isn't the item we care about - keep it as-is
-      //       return item
-      //     }
+    case 'UPDATE_SCHEDULE':
+      const updatedSchedule = state.schedules.map((item) => {
+        if (item._id === action.data._id) {
+          item = action.data
+        }
+        return item;
+      });
 
-      //     // Otherwise, this is the one we want - return an updated value
-      //     return {
-      //       ...item,
-      //       ...action.item
-      //     }
-      //   })
-      // }
-
-      console.log('state & actionData', state, action.data)
-      console.log('state & actionData2', { ...state, tasks: [...state.tasks, action.data] })
-    // return {
-    //   ...state, tasks: [...state.tasks, action.data]
-    // }
-    // return Object.assign({}, state.tasks, {
-    //   tasks: [...state.tasks, action.data],
-    //   error: null
-    // });
-
+      return {
+        ...state,
+        schedules: updatedSchedule
+      }
 
     case 'FETCH_TASKS_SUCCESS':
       return Object.assign({}, state, {

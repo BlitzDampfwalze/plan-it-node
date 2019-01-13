@@ -25,7 +25,7 @@ export class EventRoom extends React.Component {
 
   render() {
     if (this.props.loggedIn && this.props.tasks !== undefined) {
-      
+
       const schedules = this.props.schedules.map((schedule, index) => (
         <Schedule index={index} key={index} {...schedule} />
       ))
@@ -52,11 +52,11 @@ export class EventRoom extends React.Component {
               <TaskCreate />
             </div>
 
-            <div className="schedule-wrapper">
+            <div className="schedule-container">
               {/* <ul className="schedule-headings"> */}
-                {/* <li className="schedule-location">Location:</li> */}
-                {/* <li className="schedule-date">Date:</li> */}
-                {/* <li className="schedule-details">Details:</li> */}
+              {/* <li className="schedule-location">Location:</li> */}
+              {/* <li className="schedule-date">Date:</li> */}
+              {/* <li className="schedule-details">Details:</li> */}
               {/* </ul> */}
               {schedules}
               <ScheduleCreate />
@@ -65,7 +65,7 @@ export class EventRoom extends React.Component {
             <div className="chat-wrapper"><Chat /></div>
 
           </div>
-          
+
         </div>
       )
     }
