@@ -7,7 +7,7 @@ import "../style/landing.css";
 
 export class Landing extends React.Component {
   state = {
-    accordionHead: 'read more here...'
+    accordionHead: 'read more Here...'
   }
 
   handleAccordion = (e) => {
@@ -17,10 +17,10 @@ export class Landing extends React.Component {
       readmore[i].addEventListener('click', function () {
         this.classList.toggle('active');
 
-        if (this.state.accordionHead === 'read more here...') {
+        if (this.state.accordionHead === 'read more Here...') {
           this.setState({ accordionHead: 'show less...' })
         } else {
-          this.setState({ accordionHead: 'read more here...' })
+          this.setState({ accordionHead: 'read more Here...' })
         }
 
         let panel = this.nextElementSibling;
