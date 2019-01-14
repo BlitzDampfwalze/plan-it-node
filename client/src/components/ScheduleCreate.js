@@ -38,18 +38,20 @@ class ScheduleCreate extends Component {
             <li>
               <label htmlFor="location"></label>
               <input type="text" id="location"
-                onChange={this.handleScheduleChange} />
+                onChange={this.handleScheduleChange}
+                placeholder="Location: e.g., place &amp; city" />
             </li>
             <li>
               <label htmlFor="date"></label>
               <input type="datetime-local" id="date"
-                // defaultValue={currentDate} 
+                // defaultValue={currentDate}
                 onChange={this.handleScheduleChange} />
             </li>
             <li>
               <label htmlFor="details"></label>
               <input type="text" id="details"
-                onChange={this.handleScheduleChange} />
+                onChange={this.handleScheduleChange}
+                placeholder="details of activity, place, etc..." />
             </li>
           </ul>
           <button>Create</button>

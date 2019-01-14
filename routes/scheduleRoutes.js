@@ -67,10 +67,17 @@ module.exports = app => {
   app.get('/api/events/:event_id/schedule', authenticate, (req, res) => {
     Schedule.find(
       { event: req.params.event_id }
-    ).then((schedules) => {
-      res.send(schedules)
-    }) //{} syntax vs res.json(...map etc.)
-      .catch(err => { res.status(500).send(err) });
+    )
+      .sort({ date: 1 })
+      .exec(function (err, schedules) {
+        if (err) { return res.status(500).send(err) }
+        // console.log('schedules', schedules)
+        return res.send(schedules)
+      })
+      // .then((schedules) => {
+      //   res.send(schedules)
+      // })
+      // .catch(err => { res.status(500).send(err) });
   });
 
   // app.get('/api/schedules/:id',
