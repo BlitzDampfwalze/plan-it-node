@@ -5,6 +5,8 @@ import ScheduleInput from './Schedule-Input';
 import { required, nonEmpty, email } from '../validators';
 import { Redirect, withRouter } from 'react-router-dom'
 
+import editIcon from '../style/assets/baseline-edit-24px.svg'
+import cancelIcon from '../style/assets/iconfinder_cancel_326554.svg'
 import { scheduleUpdate } from '../actions/schedule';
 
 import moment from 'moment'
@@ -98,7 +100,8 @@ export class Schedule extends Component {
     }
 
     // console.log('schedule state', this.state)
-    let editButton = this.state.edit ? "Cancel" : "Edit"
+    //schedule item editing button displays a 'pencil' to edit if not true or an 'x' to cancel <span>&#x2718;</span> : <span>&#x270E;</span>
+    let editButton = this.state.edit ? <img src={cancelIcon} alt="cancel" /> : <img src={editIcon} alt="edit" />
 
     let editSchedule = this.state.edit ?
       // <ul>
@@ -152,7 +155,7 @@ export class Schedule extends Component {
             <li className="schedule-item schedule-location">{this.props.location}</li>
           </ul>
           <li className="schedule-item schedule-details">{this.props.details}</li>
-          <button onClick={this.handleScheduleEdit}>{editButton}</button>
+          <div className="edit-schedule-button" onClick={this.handleScheduleEdit}>{editButton}</div>
         </ul>
         <div className="edit-schedule">{editSchedule}</div>
       </div>

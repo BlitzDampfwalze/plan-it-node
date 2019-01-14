@@ -66,7 +66,7 @@ export class EventCard extends Component {
     // }
 
     return (
-      <div className="event-card-container">
+      <div className="event-card-container created-cards">
         <img className="event-card-image card-item"
           // alt={`no image set by creator for ${this.props.title}`}
           src={this.props.imageUrl} height="175" width="275" />

@@ -1,6 +1,17 @@
+.eventcards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  margin-left: 315px;
+}
+
 .event-card-container {
   background-color:rgba(145, 147, 165, 0.8);
   margin: 10px;
+
+  display: flex;
+  flex-flow: column;
+
 }
 
 .card-item {
@@ -15,7 +26,8 @@
 
 .event-create-container { 
   /* margin: 25px;   */
-  position: sticky;
+  /* position: sticky; */
+  position: fixed;
 
 }
 
@@ -23,3 +35,6 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+
+

@@ -28,3 +28,10 @@
 #Details {
   width: 91%;
 }
+
+.edit-schedule-button {
+  background-color: rgba(0,0,0,0);
+  border: none;
+  display:block;
+  margin:auto;
+}
