@@ -244,146 +244,142 @@ describe('Plan-it API resource', function () {
 
 
 
-describe('POST /recipes', () => {
-  it('should create new recipe', (done) => {
+  describe('POST /api/events/:event_id/tasks/user/:user_id', () => {
+    it('should create new task', (done) => {
 
-    const newRecipe = {
-      userID: userOneId,
-      title: "pies",
-      dishType: "dessert",
-      ingredients: "flour, water, apples",
-      instructions: "instructions alsdjflasdf",
-      readyInMinutes: 20,
-      servings: 6,
-      source: 'website'
-    }
+      const newTask = {
+        user: userOneId,
+        event: eventOneId,
+        taskDetails: 'new task test 1-13 6.24pm',
+        completed: false,
+      }
 
-    request(app)
-      .post('/recipes')
-      .set('x-auth', users[0].tokens[0].token)
-      .send(newRecipe)
-      .expect(200)
-      .expect((res) => {
-        expect(res.body.dishType).toBe('dessert');
-        expect(res.body.ingredients).toBe(newRecipe.ingredients);
-        expect(res.body.instructions).toBe('instructions alsdjflasdf');
-        expect(res.body.readyInMinutes).toBe(20);
-      })
-      .end(err => {
-        if (err) {
-          return done(err);
-        }
+      request(app)
+        .post(`/api/events/${eventOneId}/tasks/user/${userOneId}`)
+        .set('x-auth', users[0].tokens[0].token)
+        .send(newTask)
+        .expect(200)
+        .expect((res) => {
+          // expect(res.body.user._id).toBe(userOneId);
+          // expect(res.body.event).toBe(newTask.event);
+          expect(res.body.taskDetails).toBe('new task test 1-13 6.24pm');
+          expect(res.body.completed).toBe(false);
+        })
+        .end(err => {
+          if (err) {
+            return done(err);
+          }
 
-        Recipe.find()
-          .then(recipes => {
-            expect(recipes.length).toBe(3);
-          })
-          .then(() => Recipe.find(newRecipe)
-            .then(recipes => {
-              expect(recipes.length).toBe(1);
-              expect(recipes[0].dishType).toBe(newRecipe.dishType);
-              expect(recipes[0].ingredients).toBe(newRecipe.ingredients);
-              expect(recipes[0].instructions).toBe(newRecipe.instructions);
-              expect(recipes[0].readyInMinutes).toBe(newRecipe.readyInMinutes);
-              done();
-            })).catch((err) => done(err));
-      });
-  })
+          Task.find()
+            .then(tasks => {
+              expect(tasks.length).toBe(3);
+            })
+            .then(() => Task.find(newTask)
+              .then(tasks => {
+                expect(tasks.length).toBe(1);
+                // expect(tasks[0].dishType).toBe(newRecipe.dishType);
+                // expect(tasks[0].ingredients).toBe(newRecipe.ingredients);
+                // expect(tasks[0].instructions).toBe(newRecipe.instructions);
+                // expect(tasks[0].readyInMinutes).toBe(newRecipe.readyInMinutes);
+                done();
+              })).catch((err) => done(err));
+        });
+    })
 
-  it('should not create recipe with invalid body data', (done) => {
-    request(app)
-      .post('/recipes')
-      .set('x-auth', users[0].tokens[0].token)
-      .send({})
-      .expect(500)
-      .end((err, res) => {
-        if (err) {
-          return done(err);
-        }
-        Recipe.find()
-          .then((recipes) => {
-            expect(recipes.length).toBe(2);
-            done();
-          })
-          .catch((e) => done(e));
-      });
-  });
-})
-
-describe('GET /recipes', () => {
-  it('should get all recipes', (done) => {
-    request(app)
-      .get('/recipes')
-      .set('x-auth', users[0].tokens[0].token)
-      .expect(200)
-      .expect((res) => {
-        expect(res.body.recipes.length).toBe(2);
-      })
-      .end(done);
-  });
-});
-
-describe('GET /recipes/:id', () => {
-  it('should return recipe doc', (done) => {
-    console.log(recipes)
-    request(app)
-      .get(`/recipes/${recipes[0]._id.toHexString()}`)
-      .set('x-auth', users[0].tokens[0].token)
-      .expect(200)
-      .expect((res) => {
-        expect(res.body.recipe.title).toBe(recipes[0].title);
-      })
-      .end(done);
+    // it('should not create recipe with invalid body data', (done) => {
+    //   request(app)
+    //     .post('/recipes')
+    //     .set('x-auth', users[0].tokens[0].token)
+    //     .send({})
+    //     .expect(500)
+    //     .end((err, res) => {
+    //       if (err) {
+    //         return done(err);
+    //       }
+    //       Recipe.find()
+    //         .then((recipes) => {
+    //           expect(recipes.length).toBe(2);
+    //           done();
+    //         })
+    //         .catch((e) => done(e));
+    //     });
+    // });
   });
 
-  it('should return 404 if recipe not found', (done) => {
-    const hexId = new ObjectID().toHexString();
+  // describe('GET /recipes', () => {
+  //   it('should get all recipes', (done) => {
+  //     request(app)
+  //       .get('/recipes')
+  //       .set('x-auth', users[0].tokens[0].token)
+  //       .expect(200)
+  //       .expect((res) => {
+  //         expect(res.body.recipes.length).toBe(2);
+  //       })
+  //       .end(done);
+  //   });
+  // });
 
-    request(app)
-      .get(`/recipes/${hexId}`)
-      .set('x-auth', users[0].tokens[0].token)
-      .expect(404)
-      .end(done);
-  });
+  // describe('GET /recipes/:id', () => {
+  //   it('should return recipe doc', (done) => {
+  //     console.log(recipes)
+  //     request(app)
+  //       .get(`/recipes/${recipes[0]._id.toHexString()}`)
+  //       .set('x-auth', users[0].tokens[0].token)
+  //       .expect(200)
+  //       .expect((res) => {
+  //         expect(res.body.recipe.title).toBe(recipes[0].title);
+  //       })
+  //       .end(done);
+  //   });
 
-  it('should return 404 for non-object ids', (done) => {
-    request(app)
-      .get('/recipes/123abc')
-      .set('x-auth', users[0].tokens[0].token)
-      .expect(404)
-      .end(done);
-  });
-});
+  //   it('should return 404 if recipe not found', (done) => {
+  //     const hexId = new ObjectID().toHexString();
 
-describe('DELETE /recipes/:id', () => {
-  it('should remove a recipe', (done) => {
-    const hexId = recipes[0]._id.toHexString();
+  //     request(app)
+  //       .get(`/recipes/${hexId}`)
+  //       .set('x-auth', users[0].tokens[0].token)
+  //       .expect(404)
+  //       .end(done);
+  //   });
 
-    request(app)
-      .delete(`/recipes/${hexId}`)
-      .set('x-auth', users[0].tokens[0].token)
-      .expect(204)
-      .end((err, res) => {
-        if (err) {
-          return done(err);
-        }
+  //   it('should return 404 for non-object ids', (done) => {
+  //     request(app)
+  //       .get('/recipes/123abc')
+  //       .set('x-auth', users[0].tokens[0].token)
+  //       .expect(404)
+  //       .end(done);
+  //   });
+  // });
 
-        Recipe.findById(hexId)
-          .then(recipe => {
-            expect(recipe).toBeFalsy();
-            done();
-          })
-          .catch(e => done(e));
-      });
-  });
+  // describe('DELETE /recipes/:id', () => {
+  //   it('should remove a recipe', (done) => {
+  //     const hexId = recipes[0]._id.toHexString();
 
-  it('should return 404 if object id is invalid', done => {
-    request(app)
-      .delete('/recipes/123abc')
-      .set('x-auth', users[0].tokens[0].token)
-      .expect(404)
-      .end(done);
-  });
-});
+  //     request(app)
+  //       .delete(`/recipes/${hexId}`)
+  //       .set('x-auth', users[0].tokens[0].token)
+  //       .expect(204)
+  //       .end((err, res) => {
+  //         if (err) {
+  //           return done(err);
+  //         }
+
+  //         Recipe.findById(hexId)
+  //           .then(recipe => {
+  //             expect(recipe).toBeFalsy();
+  //             done();
+  //           })
+  //           .catch(e => done(e));
+  //       });
+  //   });
+
+  //   it('should return 404 if object id is invalid', done => {
+  //     request(app)
+  //       .delete('/recipes/123abc')
+  //       .set('x-auth', users[0].tokens[0].token)
+  //       .expect(404)
+  //       .end(done);
+  //   });
+  // });
 
 });  //end of Plan-it API resource before eaches//
