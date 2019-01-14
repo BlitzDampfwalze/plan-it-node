@@ -39,22 +39,22 @@ class CreateEvent extends Component {
           <div className="card-item create-card-heading">Create New Event</div>
           <img className="event-card-image card-item"
             // alt={`no image set by creator for ${this.props.title}`}
-            src={this.props.imageUrl} height="175" width="275" />
+            src='https://upload.wikimedia.org/wikipedia/commons/5/54/1_hallstatt_austria.jpg' height="175" width="275" />
           <div className="card-item create-card-item">
             <label htmlFor="title">Title:</label>
-            <input type="title" id="title" onChange={this.handleChange} />
+            <input type="title" id="title" value={this.state.title} onChange={this.handleChange} />
           </div>
           <div className="card-item create-card-item">
             <label htmlFor="description">Description:</label>
-            <input type="description" id="description" onChange={this.handleChange} />
+            <input type="description" id="description" value={this.state.description} onChange={this.handleChange} />
           </div>
           <div className="card-item create-card-item">
             <label htmlFor="image">Image URL:</label>
-            <input type="description" id="imageUrl" onChange={this.handleChange} />
+            <input type="description" id="imageUrl" value={this.state.imageUrl} onChange={this.handleChange} />
           </div>
           <div className="card-item create-card-item">
             <label htmlFor="password">Password:</label>
-            <input type="password" id="password" onChange={this.handleChange} />
+            <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
           </div>
           <button className="card-item create-card-item">Create</button>
         </form>

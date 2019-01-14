@@ -41,7 +41,7 @@ export class Landing extends React.Component {
         <div className="landing-overlay">
           <h1 className="landing-h1">Plan-it</h1>
           <div className="landing-subhead">
-            <h2 className="landing-h2">Brining effectiveness to your group's travel planning</h2>
+            <h2 className="landing-h2">Bringing effectiveness to your group's travel planning</h2>
             <div className="landing-more-wrapper">
               <div className="accordion" onClick={this.handleAccordion}>{this.state.accordionHead}</div>
               <div className="panel">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</div>

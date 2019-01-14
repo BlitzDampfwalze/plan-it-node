@@ -24,6 +24,11 @@ class ScheduleCreate extends Component {
       return alert('Date, Time, and Description cannot be blank')
     }
     this.props.createSchedule(this.state);
+    this.setState({
+      date: '',
+      details: '',
+      location: ''
+    })
   }
 
   render() {
@@ -39,17 +44,20 @@ class ScheduleCreate extends Component {
               <label htmlFor="location"></label>
               <input type="text" id="location"
                 onChange={this.handleScheduleChange}
-                placeholder="Location: e.g., place &amp; city" />
+                placeholder="Location: e.g., place &amp; city"
+                value={this.state.location} />
             </li>
             <li>
               <label htmlFor="date"></label>
               <input type="datetime-local" id="date"
                 // defaultValue={currentDate}
+                value={this.state.date}
                 onChange={this.handleScheduleChange} />
             </li>
             <li>
               <label htmlFor="details"></label>
               <input type="text" id="details"
+                value={this.state.details}
                 onChange={this.handleScheduleChange}
                 placeholder="details of activity, place, etc..." />
             </li>
