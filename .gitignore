@@ -6,3 +6,4 @@ api-calls.js
 ignored-server.js
 tests/test.js
 client/node_modules
+cra-server-ex.graffle
