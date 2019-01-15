@@ -1,0 +1,21 @@
+.task-form {
+  display: flex;
+  flex-direction: column; 
+  padding-top: 0.37rem;
+}
+
+/* .create-task-heading {
+  text-align: center;
+} */
+
+select {
+  width: 100%;
+}
+
+.select-user {
+  display: flex;
+}
+
+.desc-input {
+  width: 100%;
+}

@@ -149,15 +149,19 @@ export class Schedule extends Component {
 
     return (
       <div className="schedule-wrapper">
-        <ul>
-          <ul className="schedule-parent-date">
-            <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
-            <li className="schedule-item schedule-location">{this.props.location}</li>
-          </ul>
-          <li className="schedule-item schedule-details">{this.props.details}</li>
+
+        <ul className="schedule-parent-date">
+          <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
           <div className="edit-schedule-button" onClick={this.handleScheduleEdit}>{editButton}</div>
         </ul>
+
+        <ul className="schedule-parent-details">
+          <li className="schedule-item schedule-location">{this.props.location}</li>
+          <li className="schedule-item schedule-details">{this.props.details}</li>
+        </ul>
+
         <div className="edit-schedule">{editSchedule}</div>
+
       </div>
 
 

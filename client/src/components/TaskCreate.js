@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { createTask } from '../actions/event-room'
 
+import "../style/taskcreate.css";
+
 class TaskCreate extends Component {
   state = {
     taskDetails: '',
@@ -49,23 +51,28 @@ class TaskCreate extends Component {
 
 
       return (
-        <div className="container">
-          <form onSubmit={this.handleSubmit}>
-            <div>Create New *TASK*</div>
+        <form className="task-form" onSubmit={this.handleSubmit}>
+          <div className="create-task-heading">Create New *TASK*</div>
+
+          <div className="select-user">
+            {/* <h2>Select User:</h2> */}
             <select id="user" onChange={this.handleChange}>
               {selection}
             </select >
-            <div>
-              <label htmlFor="taskDetails">description</label>
-              <input type="text" id="taskDetails" onChange={this.handleChange} />
-            </div>
-            {/* <div>
+          </div>
+
+          <div>
+            <label htmlFor="taskDetails">
+              {/* Description: */}
+            </label>
+            <textarea className="desc-input" placeholder="e.g., research accomodations, restaurants, sites, museums, etc..." type="text" id="taskDetails" rows="5" onChange={this.handleChange}></textarea>
+          </div>
+          {/* <div>
               <label htmlFor="password">Password</label>
               <input type="password" id="password" onChange={this.handleChange} />
             </div> */}
-            <button>Create</button>
-          </form>
-        </div>
+          <button>Create</button>
+        </form>
       )
     }
     return (<div>Loading...</div>)

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import UserTasks from './UserTasks';
 
 import "../style/eventroom.css";
+import "../style/tasks.css";
 
 class Tasks extends Component {
 
@@ -30,7 +31,7 @@ class Tasks extends Component {
     //////////
     // console.log("User's Tasks props:", this.props.tasks)
     return (
-      <div>
+      <div className="user-tasks">
         <div className="tasks-username">{this.props.tasks[0].user.username}</div>
         {tasks}
         {/* <button className="card-item" data-event-id={this.props._id} onClick={e => {

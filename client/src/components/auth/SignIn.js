@@ -42,11 +42,11 @@ class SignIn extends Component {
           <div>Login In heading</div>
           <div className="auth-item">
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
+            <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
           </div>
           <div className="auth-item">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
+            <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
           </div>
           <button className="auth-item">Login</button>
         </form>

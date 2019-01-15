@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import { updateTask } from '../actions/event-room'
 
+import "../style/tasks.css";
+
 class UserTasks extends Component {
   constructor(props) {
     super(props);

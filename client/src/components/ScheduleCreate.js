@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import { createSchedule } from '../actions/event-room'
 
+import "../style/schedule.css";
+import "../style/schedulecreate.css";
+
 class ScheduleCreate extends Component {
   state = {
     date: '',
@@ -36,10 +39,10 @@ class ScheduleCreate extends Component {
     // console.log('this is current date', currentDate)
 
     return (
-      <div className="container">
-        <form onSubmit={this.handleScheduleSubmit}>
+      <div>
+        <form className="schedule-create-container" onSubmit={this.handleScheduleSubmit}>
           <div>Create New *SCHEDULE*</div>
-          <ul>
+          <ul className="schedule-create-inputs">
             <li>
               <label htmlFor="location"></label>
               <input type="text" id="location"

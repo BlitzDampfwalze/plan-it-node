@@ -7,20 +7,25 @@ import "../style/landing.css";
 
 export class Landing extends React.Component {
   state = {
-    accordionHead: 'read more here...'
+    accordionHead: 'read more...'
   }
 
-  handleAccordion = (e) => {
-    let readmore = document.getElementsByClassName('accordion');
+  handleAccordion = () => {
+    const readmore = document.getElementsByClassName('accordion');
+
     let i = null;
+
     for (i = 0; i < readmore.length; i++) {
       readmore[i].addEventListener('click', function () {
         this.classList.toggle('active');
 
-        if (this.state.accordionHead === 'read more here...') {
-          this.setState({ accordionHead: 'show less...' })
+        if (this.classList.contains('active')) {
+          // $('.accordion').text('show less...')
+          this.setState({ accordionHead: 'show less' })
         } else {
-          this.setState({ accordionHead: 'read more here...' })
+          // $('.accordion').text('read more...')
+          this.setState({ accordionHead: 'read more...' })
+
         }
 
         let panel = this.nextElementSibling;
@@ -30,7 +35,6 @@ export class Landing extends React.Component {
           panel.style.maxHeight = panel.scrollHeight + "px";
         }
       });
-
     }
   }
 
@@ -44,7 +48,9 @@ export class Landing extends React.Component {
             <h2 className="landing-h2">Bringing effectiveness to your group's travel planning</h2>
             <div className="landing-more-wrapper">
               <div className="accordion" onClick={this.handleAccordion}>{this.state.accordionHead}</div>
-              <div className="panel">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</div>
+              <div className="panel">
+                <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+              </div>
             </div>
           </div>
         </div>

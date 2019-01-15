@@ -1,6 +1,6 @@
 .event-room-wrapper {
   display: flex;
-  justify-content: center;
+  font-size: 1.1rem;
 }
 
 .event-title {
@@ -11,9 +11,9 @@
   padding: 15px;
 }
 
-.tasks-wrapper, .schedule-container, .chat-wrapper {
-  margin: 8px;
-  padding: 8px;
+.schedule-container, .chat-wrapper {
+  margin: 0.45rem;
+  padding: 0.65rem;
   border-radius: 3px;
   background-color: rgba(145, 164, 204, 0.5);
 }

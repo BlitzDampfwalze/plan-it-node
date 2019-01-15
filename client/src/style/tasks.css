@@ -1,0 +1,12 @@
+.tasks-container {
+display: flex;
+flex-direction: column;
+margin: 0.45rem 0.45rem 0.45rem 0.9rem;
+padding: 0.65rem;
+border-radius: 3px;
+background-color: rgba(145, 164, 204, 0.5);
+}
+
+.user-tasks {
+  margin: 0.3rem 0;
+}

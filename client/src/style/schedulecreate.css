@@ -1,0 +1,13 @@
+.schedule-create-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-create-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-create-inputs input {
+  width: 100%;
+}

@@ -16,9 +16,14 @@
 .schedule-details {
   min-width: 175px;
 }
+.schedule-parent-date {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.97rem;
+}
 
 .schedule-parent-date {
-  display: block;
+  display: flex;
 }
 
 .edit-schedule {
@@ -33,5 +38,5 @@
   background-color: rgba(0,0,0,0);
   border: none;
   display:block;
-  margin:auto;
+  /* margin:auto; */
 }
