@@ -6,6 +6,11 @@ export const updateSchedule = data => ({
   data
 })
 
+export const deleteScheduleInState = data => ({
+  type: 'DELETE_SCHEDULE',
+  data
+})
+
 export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
@@ -54,5 +59,30 @@ export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
     .catch(err => {
       console.log(err)
       // dispatch(fetchErr(err));
+    });
+};
+
+export const scheduleDelete = (id) => (dispatch, getState) => {
+  const token = getState().auth.authToken;
+  // dispatch(authRequest());
+  return fetch(`${API_ORIGIN}/api/events/${id}`, {
+    method: 'DELETE',
+    headers: {
+      // auth token as credentials
+      'x-auth': token
+    }
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => {
+      console.log('delete res.json', res)
+      // res.json()
+    })
+    .then(() => {
+      console.log('delete data', id)
+      dispatch(deleteScheduleInState(id))
+    })
+    .catch(err => {
+      console.log('delete event err', err)
+      // dispatch(fetchDataError(err));
     });
 };

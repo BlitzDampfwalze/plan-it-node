@@ -2,11 +2,15 @@
 display: flex;
 flex-direction: column;
 margin: 0.45rem 0.45rem 0.45rem 0.9rem;
-padding: 0.65rem;
+padding: 1.15rem;
 border-radius: 3px;
-background-color: rgba(145, 164, 204, 0.5);
+background-color: rgba(255, 255, 255, 0.8);
 }
 
 .user-tasks {
   margin: 0.3rem 0;
+}
+
+.tasks-wrapper {
+  min-width: 275px;
 }

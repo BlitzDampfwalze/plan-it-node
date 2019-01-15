@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { reduxForm, Field, SubmissionError, focus } from 'redux-form';
-import ScheduleInput from './Schedule-Input';
+import ScheduleInput from './ScheduleInput';
 import { required, nonEmpty, email } from '../validators';
 import { Redirect, withRouter } from 'react-router-dom'
 
 import editIcon from '../style/assets/baseline-edit-24px.svg'
 import cancelIcon from '../style/assets/iconfinder_cancel_326554.svg'
-import { scheduleUpdate } from '../actions/schedule';
+import deleteIcon from '../style/assets/icons8-delete-bin-24.png'
+import { scheduleUpdate, scheduleDelete } from '../actions/schedule';
 
 import moment from 'moment'
 
@@ -19,9 +20,9 @@ export class Schedule extends Component {
     super(props);
 
     this.state = {
-      date: props.date,
-      details: props.details,
-      location: props.location,
+      date: null,
+      details: '',
+      location: '',
       edit: false
     }
 
@@ -73,12 +74,21 @@ export class Schedule extends Component {
       });
   }
 
-  handleScheduleEdit = (e) => {
+  handleScheduleEdit = () => {
     this.setState({ edit: !this.state.edit })
   }
 
   handleScheduleUpdate = (values) => {
     this.props.dispatch(scheduleUpdate(values, this.props._id))
+    this.setState({
+      date: null,
+      details: '',
+      location: '',
+    })
+  }
+
+  handleScheduleDelete = () => {
+    this.props.dispatch(scheduleDelete(this.props._id))
   }
 
   render() {
@@ -114,6 +124,7 @@ export class Schedule extends Component {
       <form
         onSubmit={this.props.handleSubmit(values =>
           this.handleScheduleUpdate(values)
+          // .then(() => {resetForm();})
         )}>
         {successMessage}
         {errorMessage}
@@ -121,21 +132,22 @@ export class Schedule extends Component {
           name="Date"
           type="datetime-local"
           component={ScheduleInput}
-          label="Date"
+          label="Date:"
           validate={[required, nonEmpty]}
         />
         <Field
           name="Location"
           type="text"
           component={ScheduleInput}
-          label="Location"
+          label="Location:"
+          value placholder="location..."
           validate={[required, nonEmpty]}
         />
         <Field
           name="Details"
           type="text"
           component={ScheduleInput}
-          label="Details"
+          label="Details:"
           validate={[required, nonEmpty]}
         />
         <button
@@ -153,6 +165,7 @@ export class Schedule extends Component {
         <ul className="schedule-parent-date">
           <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
           <div className="edit-schedule-button" onClick={this.handleScheduleEdit}>{editButton}</div>
+          <div className="delete-schedule-button" onClick={this.handleScheduleDelete}><img src={deleteIcon} alt="delete" /></div>
         </ul>
 
         <ul className="schedule-parent-details">

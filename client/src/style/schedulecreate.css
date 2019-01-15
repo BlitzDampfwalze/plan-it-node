@@ -1,6 +1,11 @@
 .schedule-create-container {
   display: flex;
   flex-direction: column;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
 }
 
 .schedule-create-inputs {
@@ -10,4 +15,27 @@
 
 .schedule-create-inputs input {
   width: 100%;
+}
+
+.schedule-inputs {
+  margin: 5px 0;
+}
+
+.schedule-create-inputs label {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.schedule-create-container h2 {
+  font-size: 0.98rem;
+  font-weight: bold;
+}
+
+.schedule-create-container button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-weight: bold;
+  border-radius: 3px;
 }

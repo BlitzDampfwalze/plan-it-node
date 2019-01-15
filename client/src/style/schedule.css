@@ -1,10 +1,10 @@
 .schedule-location {
-  min-width: 175px;
+  min-width: 170px;
 
 }
 
 .schedule-date {
-  min-width: 325px;
+  min-width: 450px;
 
 }
 
@@ -38,5 +38,31 @@
   background-color: rgba(0,0,0,0);
   border: none;
   display:block;
-  /* margin:auto; */
+  /* float: right; */
+  margin: auto 0.7rem auto;
+}
+
+.edit-schedule-button img, .delete-schedule-button img  {
+  width: 62%;
+  height: 62%;
+}
+
+.delete-schedule-button {
+  background-color: rgba(0,0,0,0);
+  border: none;
+  display:block;
+  margin: auto;
+}
+
+.form-error {
+  color: salmon;
+  width: 100%;
+}
+
+.form-input #Details, .form-input #Location, .form-input #Date {
+  width: 100%;
+}
+
+.form-input label {
+  /* display: none; */
 }

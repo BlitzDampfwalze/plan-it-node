@@ -78,6 +78,12 @@ export default (state = initialState, action) => {
         schedules: updatedSchedule
       }
 
+    case 'DELETE_SCHEDULE':
+      // console.log('state ids', state.events)
+      const newState = state.schedules.filter((schedule) => schedule._id !== action.data)
+      // console.log('S T A T E', newState)
+      return { ...state, schedules: newState }
+
     case 'FETCH_TASKS_SUCCESS':
       return Object.assign({}, state, {
         tasks: action.data,

@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class ScheduleInput extends React.Component {
+
     componentDidUpdate(prevProps) {
         if (!prevProps.meta.active && this.props.meta.active) {
             this.input.focus();

@@ -35,6 +35,9 @@ class TaskCreate extends Component {
       return alert('Description cannot be blank')
     }
     this.props.createTask(this.state);
+    this.setState({
+      taskDetails: ''
+    })
   }
 
   render() {
@@ -65,7 +68,7 @@ class TaskCreate extends Component {
             <label htmlFor="taskDetails">
               {/* Description: */}
             </label>
-            <textarea className="desc-input" placeholder="e.g., research accomodations, restaurants, sites, museums, etc..." type="text" id="taskDetails" rows="5" onChange={this.handleChange}></textarea>
+            <textarea className="desc-input" value={this.state.taskDetails} placeholder="e.g., research accomodations, restaurants, sites, museums, etc..." type="text" id="taskDetails" rows="5" onChange={this.handleChange}></textarea>
           </div>
           {/* <div>
               <label htmlFor="password">Password</label>

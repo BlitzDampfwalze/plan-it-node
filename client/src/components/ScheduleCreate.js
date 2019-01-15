@@ -41,31 +41,31 @@ class ScheduleCreate extends Component {
     return (
       <div>
         <form className="schedule-create-container" onSubmit={this.handleScheduleSubmit}>
-          <div>Create New *SCHEDULE*</div>
+          {/* <h2>Add Item to the Schedule</h2> */}
           <ul className="schedule-create-inputs">
             <li>
-              <label htmlFor="location"></label>
-              <input type="text" id="location"
+              <label htmlFor="location">Location</label>
+              <input type="text" id="location" className="schedule-inputs"
                 onChange={this.handleScheduleChange}
                 placeholder="Location: e.g., place &amp; city"
                 value={this.state.location} />
             </li>
             <li>
-              <label htmlFor="date"></label>
-              <input type="datetime-local" id="date"
+              <label htmlFor="date">Date</label>
+              <input type="datetime-local" id="date" className="schedule-inputs"
                 // defaultValue={currentDate}
                 value={this.state.date}
                 onChange={this.handleScheduleChange} />
             </li>
             <li>
-              <label htmlFor="details"></label>
-              <input type="text" id="details"
+              <label htmlFor="details">Details</label>
+              <input type="text" id="details" className="schedule-inputs"
                 value={this.state.details}
                 onChange={this.handleScheduleChange}
                 placeholder="details of activity, place, etc..." />
             </li>
           </ul>
-          <button>Create</button>
+          <button>Add Item to the Schedule</button>
         </form>
       </div>
     )
