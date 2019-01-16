@@ -139,7 +139,7 @@ module.exports = app => {
     if (!ObjectID.isValid(req.params.task_id)) {
       return res.status(404).send('Invalid ID');
     }
-
+    //for loop over deleting many without taking in the task-id params,
     Task.findByIdAndRemove(req.params.task_id)
       .then(() => {
         res.sendStatus(204);
