@@ -74,10 +74,10 @@ module.exports = app => {
         // console.log('schedules', schedules)
         return res.send(schedules)
       })
-      // .then((schedules) => {
-      //   res.send(schedules)
-      // })
-      // .catch(err => { res.status(500).send(err) });
+    // .then((schedules) => {
+    //   res.send(schedules)
+    // })
+    // .catch(err => { res.status(500).send(err) });
   });
 
   // app.get('/api/schedules/:id',
@@ -100,8 +100,8 @@ module.exports = app => {
   //       });
   //   });
 
-  app.delete('/api/schedule/:schedule_id', authenticate, (req, res) => {
-
+  app.delete('/api/events/:event_id/schedule/:schedule_id', authenticate, (req, res) => {
+    console.log('REQ PARAMS', req.params)
     if (!ObjectID.isValid(req.params.schedule_id)) {
       return res.status(404).send('Invalid ID');
     }

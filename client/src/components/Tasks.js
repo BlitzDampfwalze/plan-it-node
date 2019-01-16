@@ -12,6 +12,13 @@ class Tasks extends Component {
   //   console.log(event_id)
   //   this.props.deleteEvent(event_id, this.props.token)
   // }
+  handleClear = () => {
+    console.log(this.props)
+    if (this.props.tasks[0].completed === true) {
+      console.log(this.props.tasks[0].completed)
+    }
+
+  }
 
   render() {
     // const users = this.props.user
@@ -38,7 +45,9 @@ class Tasks extends Component {
           console.log(e.currentTarget.getAttribute('data-event-id'))
           this.onDelete(e.currentTarget.getAttribute('data-event-id'))
         }}>Delete Completed</button> */}
-        <button>Clear completed</button>
+        <button
+          onClick={this.handleClear}
+        >Clear completed</button>
       </div>
     )
   }

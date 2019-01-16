@@ -51,6 +51,7 @@ class UserTasks extends Component {
       <div>
         {taskCheckBox}
         {this.props.taskDetails}
+        {/* <button >delete</button> */}
       </div>
     )
   }

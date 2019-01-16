@@ -64,8 +64,9 @@ export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
 
 export const scheduleDelete = (id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
+  const event_id = getState().event_room.eventID;
   // dispatch(authRequest());
-  return fetch(`${API_ORIGIN}/api/events/${id}`, {
+  return fetch(`${API_ORIGIN}/api/events/${event_id}/schedule/${id}`, {
     method: 'DELETE',
     headers: {
       // auth token as credentials
@@ -78,7 +79,7 @@ export const scheduleDelete = (id) => (dispatch, getState) => {
       // res.json()
     })
     .then(() => {
-      console.log('delete data', id)
+      // console.log('delete data', id)
       dispatch(deleteScheduleInState(id))
     })
     .catch(err => {

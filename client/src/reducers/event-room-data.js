@@ -79,7 +79,7 @@ export default (state = initialState, action) => {
       }
 
     case 'DELETE_SCHEDULE':
-      // console.log('state ids', state.events)
+      console.log('schedule to delete ids', action.data)
       const newState = state.schedules.filter((schedule) => schedule._id !== action.data)
       // console.log('S T A T E', newState)
       return { ...state, schedules: newState }
