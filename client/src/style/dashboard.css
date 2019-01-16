@@ -10,7 +10,7 @@
 }
 
 
-.background-image-overlay {
+/* .background-image-overlay { */
   /* background: url(./assets/blurred-map.jpg) no-repeat;
   background-position: center;
   background-size: cover;
@@ -23,7 +23,7 @@
 
   /* background: #2a2b30; */
   /* opacity: 0.65; */
-}
+/* } */
 
 .eventcards-wrapper {
   display: flex;
