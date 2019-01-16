@@ -33,6 +33,11 @@ export const updateTasks = data => ({
   data
 })
 
+export const deleteTaskInState = data => ({
+  type: 'DELETE_TASK',
+  data
+})
+
 
 
 export const FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
@@ -234,5 +239,31 @@ export const updateTask = (task_id, completion, details) => (dispatch, getState)
     .catch(err => {
       console.log(err)
       // dispatch(fetchErr(err));
+    });
+};
+
+export const deleteTask = (id) => (dispatch, getState) => {
+  const token = getState().auth.authToken;
+  const event_id = getState().event_room.eventID;
+  // dispatch(authRequest());
+  return fetch(`${API_ORIGIN}/api/events/${event_id}/tasks/${id}`, {
+    method: 'DELETE',
+    headers: {
+      // auth token as credentials
+      'x-auth': token
+    }
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => {
+      console.log('delete res.json', res)
+      // res.json()
+    })
+    .then(() => {
+      // console.log('delete data', id)
+      dispatch(deleteTaskInState(id))
+    })
+    .catch(err => {
+      console.log('delete event err', err)
+      // dispatch(fetchDataError(err));
     });
 };

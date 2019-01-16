@@ -101,7 +101,6 @@ module.exports = app => {
   //   });
 
   app.delete('/api/events/:event_id/schedule/:schedule_id', authenticate, (req, res) => {
-    console.log('REQ PARAMS', req.params)
     if (!ObjectID.isValid(req.params.schedule_id)) {
       return res.status(404).send('Invalid ID');
     }

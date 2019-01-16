@@ -134,7 +134,7 @@ module.exports = app => {
   //       });
   //   });
 
-  app.delete('/api/tasks/:task_id', authenticate, (req, res) => {
+  app.delete('/api/events/:event_id/tasks/:task_id', authenticate, (req, res) => {
 
     if (!ObjectID.isValid(req.params.task_id)) {
       return res.status(404).send('Invalid ID');

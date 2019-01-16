@@ -65,6 +65,18 @@ export default (state = initialState, action) => {
         tasks: updatedTasks
       }
 
+    case 'DELETE_TASK':
+      console.log('task to delete', action.data)
+      const newStateTasks = state.tasks.filter((task) => task._id !== action.data)
+      // console.log('S T A T E', newState)
+      return { ...state, tasks: newStateTasks }
+
+    case 'FETCH_TASKS_SUCCESS':
+      return Object.assign({}, state, {
+        tasks: action.data,
+        error: null
+      });
+
     case 'UPDATE_SCHEDULE':
       const updatedSchedule = state.schedules.map((item) => {
         if (item._id === action.data._id) {
