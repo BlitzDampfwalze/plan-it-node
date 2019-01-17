@@ -20,12 +20,19 @@ export class Schedule extends Component {
     super(props);
 
     this.state = {
-      date: null,
-      details: '',
-      location: '',
+      dateEdit: null,
+      detailsEdit: '',
+      locationEdit: '',
       edit: false
     }
 
+  }
+
+  handleScheduleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+    console.log(this.state)
   }
 
   // onSubmit(values) {
@@ -76,6 +83,7 @@ export class Schedule extends Component {
 
   handleScheduleEdit = () => {
     this.setState({ edit: !this.state.edit })
+
   }
 
   handleScheduleUpdate = (values) => {
@@ -92,6 +100,7 @@ export class Schedule extends Component {
   }
 
   render() {
+
 
     let successMessage;
     if (this.props.submitSucceeded) {
@@ -128,7 +137,7 @@ export class Schedule extends Component {
         )}>
         {successMessage}
         {errorMessage}
-        <Field
+        {/* <Field
           name="Date"
           type="datetime-local"
           component={ScheduleInput}
@@ -149,7 +158,30 @@ export class Schedule extends Component {
           component={ScheduleInput}
           label="Details:"
           validate={[required, nonEmpty]}
-        />
+        /> */}
+        <ul className="schedule-edit-inputs">
+          <li>
+            <label htmlFor="locationEdit">Location</label>
+            <input type="text" id="locationEdit" className="schedule-inputs"
+              onChange={this.handleScheduleChange}
+              placeholder="Location: e.g., place &amp; city"
+              value={this.state.location} />
+          </li>
+          <li>
+            <label htmlFor="dateEdit">Date</label>
+            <input type="datetime-local" id="dateEdit" className="schedule-inputs"
+              // defaultValue={currentDate}
+              value={this.state.date}
+              onChange={this.handleScheduleChange} />
+          </li>
+          <li>
+            <label htmlFor="detailsEdit">Details</label>
+            <input type="text" id="detailsEdit" className="schedule-inputs"
+              value={this.state.details}
+              onChange={this.handleScheduleChange}
+              placeholder="details of activity, place, etc..." />
+          </li>
+        </ul>
         <button
           type="submit"
           disabled={this.props.pristine || this.props.submitting}>
@@ -187,17 +219,12 @@ const mapStateToProps = (state) => ({
   // return {
 
   // token: state.auth.authToken,
-  // events: state.protected_data.events,
+  schedules: state.event_room.schedules
   // userID: state.auth.userID
   // protectedData: state.protected_data.data
   // }
 })
-// const mapDispatchToProps = (dispatch) => {
-//   // return {
-//   //   deleteEvent: (id, token) => dispatch(deleteEvent(id, token)),
-//   //   joinEventRoom: (event_id) => dispatch(joinEventRoom(event_id))
-//   // }
-// }
+
 
 Schedule = connect(mapStateToProps)(Schedule);
 

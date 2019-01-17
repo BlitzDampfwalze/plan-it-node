@@ -3,19 +3,33 @@
   background-size: cover;
   height: 100vh;
   width: 100%;
+  padding-top: 	3.125rem;
   /* z-index: -1; */
   
 }
 
 .auth-form {
-  /* display: flex; */
-  border: 3px black solid;
+  display: flex;
+  flex-direction: column;
+  background:rgba(255,255,255, 0.91);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* border: 3px black solid; */
   max-width: 350px;
-  margin: 50px auto;
-  padding: 20px;
+  margin: 0 auto;
+  padding: 1.25rem;
 }
 
 .auth-item {
   display: flex;
   flex-direction: column;
+  padding-bottom: 0.8rem;
+}
+
+.auth-submit-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-weight: bold;
+  border-radius: 3px;
 }

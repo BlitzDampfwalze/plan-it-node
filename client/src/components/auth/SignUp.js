@@ -44,7 +44,7 @@ class SignUp extends Component {
     return (
       <div className="auth-container">
         <form className="auth-form" onSubmit={this.handleSubmit}>
-          <div>Sign Up heading</div>
+          {/* <div>Sign Up heading</div> */}
           <div className="auth-item">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
@@ -57,7 +57,7 @@ class SignUp extends Component {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
           </div>
-          <button className="auth-item">Sign-up</button>
+          <button className="auth-item auth-submit-button">Sign-up</button>
         </form>
       </div>
     )

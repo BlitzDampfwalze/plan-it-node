@@ -67,7 +67,7 @@ export class EventRoom extends React.Component {
               <ScheduleCreate />
             </div>
 
-            <div className="chat-wrapper"><Chat /></div>
+            {/* <div className="chat-wrapper"><Chat /></div> //under development */}
 
           </div>
 

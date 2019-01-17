@@ -21,8 +21,10 @@ export default class ScheduleInput extends React.Component {
                 <div className="form-warning">{this.props.meta.warning}</div>
             );
         }
+        console.log('props', this.props.input)
 
         return (
+
             <div className="form-input">
                 <label htmlFor={this.props.input.name}>
                     {this.props.label}
@@ -33,7 +35,7 @@ export default class ScheduleInput extends React.Component {
                     {...this.props.input}
                     id={this.props.input.name}
                     type={this.props.type}
-                    ref={input => (this.input = input)} 
+                    ref={input => (this.input = input)}
                 />
             </div>
         );

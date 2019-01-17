@@ -14,7 +14,6 @@ class ScheduleCreate extends Component {
   }
 
   handleScheduleChange = (e) => {
-
     this.setState({
       [e.target.id]: e.target.value
     })
