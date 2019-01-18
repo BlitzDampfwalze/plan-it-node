@@ -33,8 +33,6 @@ ul {
 }
 
 .nav-item:hover {
-  /* border-radius: 3px; */
-  /* box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2); */
   text-shadow: 1.75px 1.75px rgba(0, 0, 0, 0.589);
   background-color:rgb(161, 162, 175);
   transition: all 1500ms ease-out;
