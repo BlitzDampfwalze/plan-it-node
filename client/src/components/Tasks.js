@@ -56,7 +56,7 @@ class Tasks extends Component {
           console.log(e.currentTarget.getAttribute('data-event-id'))
           this.onDelete(e.currentTarget.getAttribute('data-event-id'))
         }}>Delete Completed</button> */}
-        <button onClick={this.handleClear}>Clear completed</button>
+        <button className="clear-completed-button" onClick={this.handleClear}>Clear completed</button>
       </div>
     )
   }

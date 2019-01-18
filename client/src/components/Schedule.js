@@ -20,7 +20,7 @@ export class Schedule extends Component {
     super(props);
 
     this.state = {
-      dateEdit: null,
+      dateEdit: '',
       detailsEdit: '',
       locationEdit: '',
       edit: false
@@ -35,63 +35,18 @@ export class Schedule extends Component {
     console.log(this.state)
   }
 
-  // onSubmit(values) {
-  //   return fetch('/api/messages', {
-  //     method: 'POST',
-  //     body: JSON.stringify(values),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //     .then(res => {
-  //       if (!res.ok) {
-  //         if (
-  //           res.headers.has('content-type') &&
-  //           res.headers
-  //             .get('content-type')
-  //             .startsWith('application/json')
-  //         ) {
-  //           // It's a nice JSON error returned by us, so decode it
-  //           return res.json().then(err => Promise.reject(err));
-  //         }
-  //         // It's a less informative error returned by express
-  //         return Promise.reject({
-  //           code: res.status,
-  //           message: res.statusText
-  //         });
-  //       }
-  //       return;
-  //     })
-  //     .then(() => console.log('Submitted with values', values))
-  //     .catch(err => {
-  //       const { reason, message, location } = err;
-  //       if (reason === 'ValidationError') {
-  //         // Convert ValidationErrors into SubmissionErrors for Redux Form
-  //         return Promise.reject(
-  //           new SubmissionError({
-  //             [location]: message
-  //           })
-  //         );
-  //       }
-  //       return Promise.reject(
-  //         new SubmissionError({
-  //           _error: 'Error submitting message'
-  //         })
-  //       );
-  //     });
-  // }
-
   handleScheduleEdit = () => {
     this.setState({ edit: !this.state.edit })
 
   }
 
-  handleScheduleUpdate = (values) => {
-    this.props.dispatch(scheduleUpdate(values, this.props._id))
+  handleScheduleUpdate = () => {
+    this.props.dispatch(scheduleUpdate(this.state, this.props._id))
     this.setState({
-      date: null,
+      date: '',
       details: '',
       location: '',
+      edit: false
     })
   }
 
@@ -120,7 +75,7 @@ export class Schedule extends Component {
 
     // console.log('schedule state', this.state)
     //schedule item editing button displays a 'pencil' to edit if not true or an 'x' to cancel <span>&#x2718;</span> : <span>&#x270E;</span>
-    let editButton = this.state.edit ? <img src={cancelIcon} alt="cancel" /> : <img src={editIcon} alt="edit" />
+    let editButton = this.state.edit ? <span><img src={cancelIcon} alt="cancel" /><span className="tooltiptext">Cancel</span></span> : <span><img src={editIcon} alt="edit" /><span className="tooltiptext">Edit</span></span>
 
     let editSchedule = this.state.edit ?
       // <ul>
@@ -130,13 +85,9 @@ export class Schedule extends Component {
       //   </ul>
       //   <li className="schedule-item schedule-details">{this.props.details}</li>
       // </ul>
-      <form
-        onSubmit={this.props.handleSubmit(values =>
-          this.handleScheduleUpdate(values)
-          // .then(() => {resetForm();})
-        )}>
-        {successMessage}
-        {errorMessage}
+      <form onSubmit={this.handleScheduleUpdate}>
+        {/* {successMessage}
+        {errorMessage} */}
         {/* <Field
           name="Date"
           type="datetime-local"
@@ -182,11 +133,7 @@ export class Schedule extends Component {
               placeholder="details of activity, place, etc..." />
           </li>
         </ul>
-        <button
-          type="submit"
-          disabled={this.props.pristine || this.props.submitting}>
-          Save
-            </button>
+        <button>Save</button>
       </form>
       :
       null;
@@ -196,8 +143,10 @@ export class Schedule extends Component {
 
         <ul className="schedule-parent-date">
           <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
-          <div className="edit-schedule-button" onClick={this.handleScheduleEdit}>{editButton}</div>
-          <div className="delete-schedule-button" onClick={this.handleScheduleDelete}><img src={deleteIcon} alt="delete" /></div>
+          <li className="schedule-buttons-wrapper">
+            <div className="edit-schedule-button" onClick={this.handleScheduleEdit}>{editButton}</div>
+            <div className="delete-schedule-button" onClick={this.handleScheduleDelete}><img src={deleteIcon} alt="delete" /><span className="tooltiptext">Delete</span></div>
+          </li>
         </ul>
 
         <ul className="schedule-parent-details">
@@ -226,9 +175,7 @@ const mapStateToProps = (state) => ({
 })
 
 
-Schedule = connect(mapStateToProps)(Schedule);
+export default connect(mapStateToProps)(Schedule);
 
-export default reduxForm({
-  form: 'schedule'
-})(Schedule);
+
 

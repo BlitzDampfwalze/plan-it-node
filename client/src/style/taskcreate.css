@@ -1,7 +1,13 @@
 .task-form {
   display: flex;
   flex-direction: column; 
-  padding-top: 0.37rem;
+  /* padding-top: 0.37rem; */
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
 }
 
 /* .create-task-heading {
@@ -10,12 +16,29 @@
 
 select {
   width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.1rem 0;
 }
 
 .select-user {
   display: flex;
 }
 
+#user {
+  font-size: 1rem;  
+  font-weight: bold;
+}
+
 .desc-input {
   width: 100%;
+  margin-bottom: 5px;
+}
+
+.task-form button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-weight: bold;
+  border-radius: 3px;
 }

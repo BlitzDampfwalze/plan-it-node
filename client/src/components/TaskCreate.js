@@ -55,10 +55,9 @@ class TaskCreate extends Component {
 
       return (
         <form className="task-form" onSubmit={this.handleSubmit}>
-          <div className="create-task-heading">Create New *TASK*</div>
-
+          <div>Assign task to user:</div>
           <div className="select-user">
-            {/* <h2>Select User:</h2> */}
+
             <select id="user" onChange={this.handleChange}>
               {selection}
             </select >
@@ -74,7 +73,7 @@ class TaskCreate extends Component {
               <label htmlFor="password">Password</label>
               <input type="password" id="password" onChange={this.handleChange} />
             </div> */}
-          <button>Create</button>
+          <button>Create New Task</button>
         </form>
       )
     }

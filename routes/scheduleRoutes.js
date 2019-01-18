@@ -59,6 +59,7 @@ module.exports = app => {
         location: req.body.location
       }
     ).then(schedule => {
+      console.log('SCHEDULE', schedule)
       res.send(schedule);
     })
       .catch(err => { res.status(500).send(err) });

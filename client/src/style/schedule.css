@@ -34,18 +34,20 @@
 }
 
 .edit-schedule {
-  display: block;
+  padding-bottom: 0.8rem;
 }
 
 #Details {
   width: 91%;
 }
+.schedule-buttons-wrapper {
+display: flex;
+}
 
 .edit-schedule-button {
   background-color: rgba(0,0,0,0);
   border: none;
-  display:block;
-  /* float: right; */
+  /* display:block; */
   margin: auto 0.7rem auto;
 }
 
@@ -58,8 +60,30 @@
   background-color: rgba(0,0,0,0);
   border: none;
   display: block;
-  margin: auto;
+  margin: auto 0.7rem auto;
 }
+.delete-schedule-button .tooltiptext, .edit-schedule-button .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-size: 0.7rem;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.delete-schedule-button:hover .tooltiptext, .edit-schedule-button:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* .delete-schedule-button:hover .tooltiptext {
+  visibility: visible;
+} */
 
 .form-error {
   color: salmon;
@@ -76,4 +100,14 @@
 
 .schedule-wrapper {
   border-top: 1px solid black;
+}
+
+.schedule-edit-inputs, .schedule-edit-inputs li {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-edit-inputs label {
+  font-size: 0.9rem;
+  font-weight: bold;
 }

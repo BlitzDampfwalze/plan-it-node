@@ -14,7 +14,7 @@ export const deleteScheduleInState = data => ({
 export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
-  // console.log('inputs:', completion, 'taskID:', task_id, event_id)
+  console.log('inputs:', inputs, 'taskID:', inputs.dateEdit, inputs.detailsEdit, inputs.locationEdit)
   fetch(`${API_ORIGIN}/api/events/${event_id}/schedule/${schedule_id}`, {
     method: 'PUT',
     headers: {
@@ -22,9 +22,9 @@ export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
       'x-auth': token
     },
     body: JSON.stringify({
-      'date': inputs.Date,
-      'details': inputs.Details,
-      'location': inputs.Location
+      'date': inputs.dateEdit,
+      'details': inputs.detailsEdit,
+      'location': inputs.locationEdit
     })
 
 
@@ -47,9 +47,9 @@ export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
       // return test
       return res.json();
     })
-    .then((data) => {
-      console.log('Schedule PUT DATA', data)
-      dispatch(updateSchedule(data))
+    .then((updatedSchedule) => {
+      console.log('Schedule PUT DATA', updatedSchedule)
+      dispatch(updateSchedule(updatedSchedule))
     })
 
     // .then((event) => {
