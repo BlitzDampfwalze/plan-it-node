@@ -62,7 +62,7 @@ export const createEvent = (event_id, token) => dispatch => {
       dispatch(addEventToState(data))
     })
     .catch(err => {
-      console.log(err)
+      window.alert(`${err}: Password, Title, Description Required!`)
       // dispatch(fetchErr(err));
     });
 };
@@ -89,7 +89,7 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
       dispatch(getPopulatedEvent(event_id, token))
     })
     .catch(err => {
-      console.log(err)
+      window.alert(err)
       // dispatch(fetchErr(err));
     });
 };
@@ -114,7 +114,7 @@ export const getPopulatedEvent = (event_id, token) => (dispatch) => {
       dispatch(storeEventRoomInfo(data))
     })
     .catch(err => {
-      console.log(err)
+      window.alert(err)
       // dispatch(fetchErr(err));
     });
 

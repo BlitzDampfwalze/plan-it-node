@@ -36,7 +36,7 @@ class CreateEvent extends Component {
     return (
       <div className="event-create-container event-card-container">
         <form onSubmit={this.handleSubmit}>
-          <div className="card-item create-card-heading">Create New Event</div>
+          <div className="card-item create-card-heading">Create New Trip</div>
           <img className="event-card-image card-item"
             alt={`no image set by creator for ${this.props.title}`}
             src='https://upload.wikimedia.org/wikipedia/commons/5/54/1_hallstatt_austria.jpg' height="175" width="275" />

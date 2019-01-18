@@ -1,4 +1,4 @@
-import {addEventToState, deleteEventInState} from './dashboard';
+import {addEventToState, deleteEventInState} from '../actions/dashboard';
 
 describe('addList', () => {
   it('Should return the action', () => {

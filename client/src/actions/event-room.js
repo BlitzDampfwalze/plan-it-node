@@ -140,7 +140,7 @@ export const createSchedule = (inputs) => (dispatch, getState) => {
     //   storeAuthInfo(user, dispatch)
     // })
     .catch(err => {
-      console.log(err)
+      window.alert(err)
       // dispatch(fetchErr(err));
     });
 };
@@ -187,7 +187,7 @@ export const createTask = (inputs) => (dispatch, getState) => {
     //   storeAuthInfo(user, dispatch)
     // })
     .catch(err => {
-      console.log(err)
+      window.alert(err)
       // dispatch(fetchErr(err));
     });
 };
@@ -221,7 +221,7 @@ export const updateTask = (task_id, completion, details) => (dispatch, getState)
       // dispatch(updateTasks(data))
     })
     .catch(err => {
-      console.log(err)
+      window.alert(err)
       // dispatch(fetchErr(err));
     });
 };

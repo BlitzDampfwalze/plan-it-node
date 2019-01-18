@@ -52,7 +52,7 @@ module.exports = app => {
             task.user = user;
             res.status(200).send(task)
           })
-          .catch(err => console.log(err))
+          .catch(err => window.alert(err))
       })
       .catch(err => { res.status(500).send(err) });
   });

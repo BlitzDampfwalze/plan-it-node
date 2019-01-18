@@ -13,7 +13,7 @@ const authenticate = (req, res, next) => {
       next();
     })
     .catch((err) => {
-      console.log(err)
+      window.alert(err)
       res.status(401).send(err);
     });
 };

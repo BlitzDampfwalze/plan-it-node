@@ -21,7 +21,7 @@ module.exports = app => {
         res.send({ id: user._id, email: user.email, username: user.username, token })
       })
       .catch(err => {
-        console.log(err)
+        window.alert(err)
         if (err.code === 11000) {
           return res.status(409).send({ message: 'username/email taken' })
         }

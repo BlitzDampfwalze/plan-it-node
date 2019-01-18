@@ -66,7 +66,7 @@ export const signin = user => dispatch => {
       storeAuthInfo(user, dispatch)
     })
     .catch(err => {
-      console.log(err)
+      window.alert(err)
     });
 };
 
@@ -91,6 +91,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
       // them and sign us out
+      window.alert(err)
       dispatch(authError(err));
       // dispatch(clearAuth());
       // clearAuthToken(token);
@@ -108,14 +109,15 @@ export const signup = user => dispatch => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .catch(err => {
-      const { reason, message, location } = err;
-      if (reason === 'ValidationError') {
-        // Convert ValidationErrors into SubmissionErrors for Redux Form
-        return Promise.reject(
-          new SubmissionError({
-            [location]: message
-          })
-        );
-      }
+      window.alert(err)
+      // const { reason, message, location } = err;
+      // if (reason === 'ValidationError') {
+      //   // Convert ValidationErrors into SubmissionErrors for Redux Form
+      //   return Promise.reject(
+      //     new SubmissionError({
+      //       [location]: message
+      //     })
+      //   );
+      // }
     });
 };
