@@ -217,7 +217,8 @@ export const updateTask = (task_id, completion, details) => (dispatch, getState)
     })
     .then((data) => {
       console.log('TASK PUT DATA', data)
-      dispatch(updateTasks(data))
+      dispatch(fetchTasks(event_id))
+      // dispatch(updateTasks(data))
     })
     .catch(err => {
       console.log(err)
@@ -237,16 +238,7 @@ export const deleteTask = (id) => (dispatch, getState) => {
     }
   })
     .then(res => normalizeResponseErrors(res))
-    .then(res => {
-      console.log('delete res.json', res)
-    })
-    .then(() => {
-      dispatch(deleteTaskInState(id))
-        .then(() => {
-          dispatch(fetchTasks(event_id))
-        })
-
-    })
+    .then(() => { dispatch(deleteTaskInState(id)) })
     .catch(err => {
       console.log('delete event err', err)
       // dispatch(fetchDataError(err));

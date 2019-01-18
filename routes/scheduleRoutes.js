@@ -57,7 +57,8 @@ module.exports = app => {
         date: req.body.date,
         details: req.body.details,
         location: req.body.location
-      }
+      },
+      { new: true }
     ).then(schedule => {
       console.log('SCHEDULE', schedule)
       res.send(schedule);

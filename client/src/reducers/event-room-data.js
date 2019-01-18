@@ -1,6 +1,4 @@
-import { updateLocale } from "moment";
-
-// import { fetchSchedules, fetchTasks } from "../actions/event-room";
+// import { updateLocale } from "moment";
 
 const initialState = {
   loading: false,
@@ -8,9 +6,7 @@ const initialState = {
   event: {},
   error: null,
   schedules: [],
-  tasks: [],
-  // eventUsers: [],
-
+  tasks: []
 };
 
 export default (state = initialState, action) => {
@@ -22,7 +18,6 @@ export default (state = initialState, action) => {
       });
 
     case 'SET_EVENT':
-      // console.log('Set Event DATA', action.data)
       return Object.assign({}, state, {
         event: action.data,
         eventID: action.data._id,
@@ -46,7 +41,6 @@ export default (state = initialState, action) => {
       }
 
     case 'ADD_TO_TASKS':
-      // console.log('STATE of Tasks', state.tasks)
       return {
         ...state, tasks: [...state.tasks, action.data]
       }
@@ -66,9 +60,7 @@ export default (state = initialState, action) => {
       }
 
     case 'DELETE_TASK':
-      console.log('task to delete', action.data)
       const newStateTasks = state.tasks.filter((task) => task._id !== action.data)
-      // console.log('S T A T E', newState)
       return { ...state, tasks: newStateTasks }
 
     case 'FETCH_TASKS_SUCCESS':
@@ -91,9 +83,7 @@ export default (state = initialState, action) => {
       }
 
     case 'DELETE_SCHEDULE':
-      console.log('schedule to delete ids', action.data)
       const newState = state.schedules.filter((schedule) => schedule._id !== action.data)
-      // console.log('S T A T E', newState)
       return { ...state, schedules: newState }
 
     case 'FETCH_TASKS_SUCCESS':

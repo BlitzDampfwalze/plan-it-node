@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import UserTasks from './UserTasks';
 
-import { deleteTask } from '../actions/event-room';
+import { deleteTask, fetchTasks } from '../actions/event-room';
 
 import "../style/eventroom.css";
 import "../style/tasks.css";
@@ -11,11 +11,8 @@ import "../style/tasks.css";
 class Tasks extends Component {
 
   handleClear = () => {
-    console.log(this.props)
-    let deleteIDs = [];
-    const ids = this.props.tasks.map(task => {
+    this.props.tasks.map(task => {
       if (task.completed === true) {
-        deleteIDs.push(task._id)
         this.props.dispatch(deleteTask(task._id))
       }
     })
@@ -37,6 +34,8 @@ class Tasks extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({})
+const mapStateToProps = (state) => ({
+  eventRoom: state.event_room.event
+})
 
 export default connect(mapStateToProps)(Tasks);

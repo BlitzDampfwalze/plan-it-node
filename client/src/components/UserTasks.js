@@ -28,7 +28,11 @@ class UserTasks extends Component {
 
   render() {
 
-    const taskCheckBox = <input type="checkbox" id="checkBox" checked={this.state.checkBox} onChange={this.handleCheckBox}></input>
+    const taskCheckBox = <input type="checkbox" id="checkBox"
+      // checked={this.state.checkBox} 
+      checked={this.props.completed}
+      onChange={this.handleCheckBox}>
+    </input>
 
     return (
       <div className="individual-task-wrapper">
