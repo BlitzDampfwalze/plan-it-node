@@ -44,13 +44,16 @@ export class Dashboard extends React.Component {
 
 
         return (
-          <div className="dashboard-wrapper">
-            <div className="background-image-overlay"></div>
-            <EventCardCreate />
-            <div className="eventcards-wrapper">
-              {events}
+          // <div className="dashboard-container">
+            <div className="dashboard-wrapper">
+              <div className="background-image-overlay"></div>
+              <EventCardCreate />
+              <div className="eventcards-wrapper">
+                {events}
+              </div>
             </div>
-          </div>
+          // </div>
+
         );
 
       }

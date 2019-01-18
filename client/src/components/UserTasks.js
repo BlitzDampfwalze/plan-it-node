@@ -48,10 +48,9 @@ class UserTasks extends Component {
     // console.log('checkbox', checkbox.checked)
     // if (taskCheckBox !== undefined) {
     return (
-      <div>
+      <div className="individual-task-wrapper">
         {taskCheckBox}
-        {this.props.taskDetails}
-        {/* <button >delete</button> */}
+        <div className="task-text">{this.props.taskDetails}</div>
       </div>
     )
   }

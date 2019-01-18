@@ -25,8 +25,6 @@
 }
 
 .event-create-container { 
-  /* margin: 25px;   */
-  /* position: sticky; */
   position: fixed;
 
 }
@@ -36,5 +34,18 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 625px) {
+  .event-create-container { 
+    position: relative;
+    margin-top: 0;
+    max-width: 295px;  
+  }
 
+  .eventcards-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    max-width: 315px;
+  }
+}
 

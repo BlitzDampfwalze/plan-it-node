@@ -32,3 +32,27 @@
   padding: 0.35rem;
   border-radius: 3px;
 }
+
+.individual-task-wrapper {
+  display: flex;
+}
+
+.task-text {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1055px) {
+  .tasks-wrapper {
+    min-width: 100px;
+  }
+
+
+}
+
+@media screen and (max-width: 655px) {
+  .tasks-container {
+    max-width: 0;
+    min-width: 280px;
+    }
+
+}

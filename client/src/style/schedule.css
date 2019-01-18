@@ -1,11 +1,9 @@
 .schedule-location {
   min-width: 170px;
-
 }
 
 .schedule-date {
   min-width: 450px;
-
 }
 
 .schedule-details, .schedule-date, .schedule-location {
@@ -18,11 +16,9 @@
 }
 
 .schedule-details {
-  min-width: 175px;
-  /* display: flex;
-  justify-content: flex-end; */
   text-align: right;
 }
+
 .schedule-parent-date {
   display: flex;
   justify-content: space-between;
@@ -31,6 +27,7 @@
 
 .schedule-parent-details {
   justify-content: space-between;
+  font-size: 1.05rem;
 }
 
 .edit-schedule {
@@ -47,7 +44,6 @@ display: flex;
 .edit-schedule-button {
   background-color: rgba(0,0,0,0);
   border: none;
-  /* display:block; */
   margin: auto 0.7rem auto;
 }
 
@@ -81,22 +77,10 @@ display: flex;
   visibility: visible;
 }
 
-/* .delete-schedule-button:hover .tooltiptext {
-  visibility: visible;
-} */
-
 .form-error {
   color: salmon;
   width: 100%;
 }
-
-.form-input #Details, .form-input #Location, .form-input #Date {
-  width: 100%;
-}
-
-/* .form-input label { */
-  /* display: none; */
-/* } */
 
 .schedule-wrapper {
   border-top: 1px solid black;
@@ -110,4 +94,16 @@ display: flex;
 .schedule-edit-inputs label {
   font-size: 0.9rem;
   font-weight: bold;
+}
+
+@media screen and (max-width: 880px) {
+
+  .schedule-location {
+    min-width: 0;
+  }
+  
+  .schedule-date {
+    min-width: 0;
+    margin-right: 10px;
+  }
 }

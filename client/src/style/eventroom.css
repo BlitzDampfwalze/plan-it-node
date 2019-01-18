@@ -1,6 +1,5 @@
 .event-room-wrapper {
   display: flex;
-  /* flex-wrap: wrap; */
   font-size: 1.1rem;
 }
 
@@ -11,8 +10,6 @@
   color: black;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.65);
-  /* top: 45px;
-  position: sticky; */
 }
 
 .schedule-container, .chat-wrapper {
@@ -24,15 +21,10 @@
 
 
 .event-room-container {
-  /* background-color: rgb(218, 233, 255);
-  height: 100vh;
-  width: 100vw; */
-
   background: url(./assets/blurred-map.jpg) no-repeat;
   background-position: center;
   background-size: cover;
   height: 100vh;
-  /* height: 100%; */
   width: 100%;
 }
 
@@ -46,3 +38,14 @@
   width: 250px;
 }
 
+@media screen and (max-width: 650px) {
+.event-room-wrapper {
+  display: block;
+  font-size: 1.1rem;
+  }
+
+  .event-room-container {
+    height: 100%;
+  }
+
+}

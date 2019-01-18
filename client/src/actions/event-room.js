@@ -261,6 +261,10 @@ export const deleteTask = (id) => (dispatch, getState) => {
     .then(() => {
       // console.log('delete data', id)
       dispatch(deleteTaskInState(id))
+        .then(() => {
+          dispatch(fetchTasks(event_id))
+        })
+
     })
     .catch(err => {
       console.log('delete event err', err)
