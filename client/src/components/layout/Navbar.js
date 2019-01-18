@@ -25,9 +25,6 @@ export class Navbar extends React.Component {
         <div className="nav-left nav-item" onClick={this.handleLogoClick}>Plan-it</div>
         <div className="nav-right">
           {links}
-          {/* <li className="list-item" onClick={this.handleAboutClick}>About</li>
-            <li className="list-item" onClick={this.handleLoginClick}>Login</li>
-            <li className="list-item" onClick={this.handleSignupClick}>Sign-up</li> */}
         </div>
       </nav>
     )

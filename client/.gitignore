@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 /src/components/auth/Login.js.ignore
 
+#inDev
+validators-inDev.js
+/inDev

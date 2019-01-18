@@ -6,10 +6,7 @@ import "../../style/navbar.css";
 
 
 const SignedOutLinks = () => {
-  // console.log('state', getState().loggedIn)
-  // if (this.props.loggedIn) {
-  //   return null;
-  // }
+  
   return (
     <ul>
       <li className="nav-item"><NavLink to='/'>About</NavLink></li>

@@ -15,27 +15,13 @@ import EventCardCreate from './EventCardCreate';
 import "../style/dashboard.css";
 
 export class Dashboard extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  // }
 
   componentDidMount() {
     this.props.dispatch(fetchEvents());
   }
 
-  // addList(title) {
-  //     this.props.dispatch(addList(title));
-  // }
-
   render() {
     if (this.props.loggedIn) {
-
-      // const lists = this.props.lists.map((list, index) => (
-      //     <li className="list-wrapper" key={index}>
-      //         <List index={index} {...list} />
-      //     </li>
-      // ));
 
       if (this.props.events !== undefined) {
         const events = this.props.events.map((event, index) => (
@@ -44,7 +30,6 @@ export class Dashboard extends React.Component {
 
 
         return (
-          // <div className="dashboard-container">
             <div className="dashboard-wrapper">
               <div className="background-image-overlay"></div>
               <EventCardCreate />
@@ -52,30 +37,11 @@ export class Dashboard extends React.Component {
                 {events}
               </div>
             </div>
-          // </div>
-
         );
-
       }
-
-      // (
-      // <div className="board">
-      //     <h2>{this.props.title}</h2>
-      //     <ul className="lists">
-      //         {lists}
-      //         <li className="add-list-wrapper">
-      //             <AddForm
-      //                 type="list"
-      //                 onAdd={title => this.addList(title)}
-      //             />
-      //         </li>
-      //     </ul>
-      // </div>
-      // );
     }
     return <Redirect to="/signin" />;
   }
-
 }
 
 const mapStateToProps = (state) => ({
@@ -85,6 +51,5 @@ const mapStateToProps = (state) => ({
   loggedIn: state.auth.username !== null
 
 });
-
 
 export default connect(mapStateToProps)(withRouter(Dashboard));

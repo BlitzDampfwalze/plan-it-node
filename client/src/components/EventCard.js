@@ -58,12 +58,6 @@ export class EventCard extends Component {
   }
 
   render() {
-    // if(!this.props.imageUrl) {
-    //     return <div></div>
-    // }
-    // else {
-    //   return <img className="event-card-image card-item" src={this.props.imageUrl} height="175" width="275" />
-    // }
 
     return (
       <div className="event-card-container created-cards">
@@ -85,8 +79,6 @@ export class EventCard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // const { events } = state.protected_data;
-  // console.log(events, 'events')
   return {
     token: state.auth.authToken,
     events: state.protected_data.events,
@@ -94,14 +86,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-
     deleteEvent: (id, token) => dispatch(deleteEvent(id, token)),
     joinEventRoom: (event_id) => dispatch(joinEventRoom(event_id)),
-    // storeUserOnJoin: (user) => dispatch(storeUserOnJoin(user))
-
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EventCard));
-
-{/* <Link to="/dashboard/user">{this.props.navbar.text}</Link> */ }

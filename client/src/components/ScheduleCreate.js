@@ -34,13 +34,12 @@ class ScheduleCreate extends Component {
   }
 
   render() {
-    const currentDate = new Date().toISOString().split('.')[0];
+    // const currentDate = new Date().toISOString().split('.')[0];
     // console.log('this is current date', currentDate)
 
     return (
       <div>
         <form className="schedule-create-container" onSubmit={this.handleScheduleSubmit}>
-          {/* <h2>Add Item to the Schedule</h2> */}
           <ul className="schedule-create-inputs">
             <li>
               <label htmlFor="location">Location</label>

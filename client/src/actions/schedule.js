@@ -29,33 +29,16 @@ export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
 
 
   })
-
-    // .then(res => normalizeResponseErrors(res))
-    // .then(res => res.json())
-    // .then((data) => console.log(data))
-    // .then((data) => dispatch(addItemToSchedule(data)))
-    // .catch(err => {
-    //   dispatch(fetchDataError(err));
-    // });
-
-    // .then(res => console.log(res.json(), 'create res'))
-
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);
       }
-      // return test
       return res.json();
     })
     .then((updatedSchedule) => {
       console.log('Schedule PUT DATA', updatedSchedule)
       dispatch(updateSchedule(updatedSchedule))
     })
-
-    // .then((event) => {
-    //   console.log('user signin res', user)
-    //   storeAuthInfo(user, dispatch)
-    // })
     .catch(err => {
       console.log(err)
       // dispatch(fetchErr(err));
@@ -76,10 +59,8 @@ export const scheduleDelete = (id) => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => {
       console.log('delete res.json', res)
-      // res.json()
     })
     .then(() => {
-      // console.log('delete data', id)
       dispatch(deleteScheduleInState(id))
     })
     .catch(err => {

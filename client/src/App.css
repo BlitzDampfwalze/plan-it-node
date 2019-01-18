@@ -4,46 +4,6 @@ header {
   z-index: 2;
 }
 
-/* footer {
-  position: relative;
-  top: 485px;
-} */
-
 .App {
   text-align: center;
 }
-
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-} */
-
-/* .App-headerNab {
-  display: flex;
-  position: fixed;
-  background-color: #282c34;
-  padding: 25px;
-  font-size: 20px;
-  color: white;
-} */
-  /* min-height: 100vh; */
-  
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* font-size: calc(10px + 2vmin); */
-  
-
-
-/* .App-link {
-  color: #61dafb;
-} */
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

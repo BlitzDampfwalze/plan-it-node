@@ -1,13 +1,8 @@
-import jwtDecode from "jwt-decode";
-
 import { API_ORIGIN } from '../config';
 import { normalizeResponseErrors } from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
 import { loadAuthToken } from '../local-storage';
 import { SubmissionError } from 'redux-form';
-
-// const TOKEN = 'authToken'
-// const ID = 'id'
 
 
 export const setHeaderText = () => ({
@@ -43,13 +38,10 @@ export const authError = error => ({
 
 
 const storeAuthInfo = (user, dispatch) => {
-  const decodedToken = jwtDecode(user.token);
-  // console.log('decodedToken', decodedToken)
-  // console.log('store user', user)
-  // console.log('user id ', decodedToken._id)
+
   dispatch(setAuthToken(user.token));
   dispatch(authSuccess(user));
-  // dispatch(logSession({ user: decodedToken.username }));
+
   saveAuthToken(user.token);
 
 };
@@ -67,9 +59,6 @@ export const signin = user => dispatch => {
       if (!res.ok) {
         return Promise.reject(res.statusText);
       }
-      // let test = res.json();
-      // console.log(test, "test")
-      // return test
       return res.json();
     })
     .then((user) => {
@@ -78,7 +67,6 @@ export const signin = user => dispatch => {
     })
     .catch(err => {
       console.log(err)
-      // dispatch(fetchErr(err));
     });
 };
 

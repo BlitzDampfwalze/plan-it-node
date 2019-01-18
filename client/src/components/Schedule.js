@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { reduxForm, Field, SubmissionError, focus } from 'redux-form';
-import ScheduleInput from './ScheduleInput';
-import { required, nonEmpty, email } from '../validators';
-import { Redirect, withRouter } from 'react-router-dom'
 
 import editIcon from '../style/assets/baseline-edit-24px.svg'
 import cancelIcon from '../style/assets/iconfinder_cancel_326554.svg'
@@ -73,43 +69,12 @@ export class Schedule extends Component {
       );
     }
 
-    // console.log('schedule state', this.state)
-    //schedule item editing button displays a 'pencil' to edit if not true or an 'x' to cancel <span>&#x2718;</span> : <span>&#x270E;</span>
     let editButton = this.state.edit ? <span><img src={cancelIcon} alt="cancel" /><span className="tooltiptext">Cancel</span></span> : <span><img src={editIcon} alt="edit" /><span className="tooltiptext">Edit</span></span>
 
     let editSchedule = this.state.edit ?
-      // <ul>
-      //   <ul className="schedule-parent-date">
-      //     <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
-      //     <li className="schedule-item schedule-location">{this.props.location}</li>
-      //   </ul>
-      //   <li className="schedule-item schedule-details">{this.props.details}</li>
-      // </ul>
+
       <form onSubmit={this.handleScheduleUpdate}>
-        {/* {successMessage}
-        {errorMessage} */}
-        {/* <Field
-          name="Date"
-          type="datetime-local"
-          component={ScheduleInput}
-          label="Date:"
-          validate={[required, nonEmpty]}
-        />
-        <Field
-          name="Location"
-          type="text"
-          component={ScheduleInput}
-          label="Location:"
-          value placholder="location..."
-          validate={[required, nonEmpty]}
-        />
-        <Field
-          name="Details"
-          type="text"
-          component={ScheduleInput}
-          label="Details:"
-          validate={[required, nonEmpty]}
-        /> */}
+
         <ul className="schedule-edit-inputs">
           <li>
             <label htmlFor="locationEdit">Location</label>
@@ -133,7 +98,9 @@ export class Schedule extends Component {
               placeholder="details of activity, place, etc..." />
           </li>
         </ul>
+
         <button>Save</button>
+
       </form>
       :
       null;
@@ -158,22 +125,14 @@ export class Schedule extends Component {
 
       </div>
 
-
     )
   }
 
 }
 
 const mapStateToProps = (state) => ({
-  // return {
-
-  // token: state.auth.authToken,
   schedules: state.event_room.schedules
-  // userID: state.auth.userID
-  // protectedData: state.protected_data.data
-  // }
 })
-
 
 export default connect(mapStateToProps)(Schedule);
 

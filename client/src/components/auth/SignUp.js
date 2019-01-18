@@ -7,15 +7,12 @@ import { signup } from '../../actions'
 import "../../style/auth.css";
 
 class SignUp extends Component {
-  // constructor(props) {
-  //   super(props);
+
   state = {
     email: '',
     password: '',
     username: ''
   }
-  // }
-
 
   handleChange = (e) => {
     this.setState({
@@ -25,15 +22,7 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state)
-    // const user = {
-    //   email: this.state.email,
-    //   password: this.state.password,
-    //   username: this.state.username
-    // };
-    // this.props.dispatch(signup(this.state));
     this.props.signup(this.state);
-    // signup(user)
     this.setState({ email: '', password: '', username: '' });
     return <Redirect to='/signin' />;
 

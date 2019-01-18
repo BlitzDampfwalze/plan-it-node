@@ -11,12 +11,6 @@ class TaskCreate extends Component {
     user: ''
   }
 
-  componentDidMount() {
-    // if (this.props.users !== undefined) {
-    //   this.setState({ user: this.props.users[0]._id })
-    // }
-  }
-
   handleChange = (e) => {
     if (this.state.user === '') {
       this.setState({
@@ -42,43 +36,36 @@ class TaskCreate extends Component {
 
   render() {
     if (this.props.users !== undefined) {
-      // console.log('USERS in room:', this.props.users)
       const selection = this.props.users.map((user, index) => {
         return (
           <option key={index} id={user} value={user._id}>{user.username}</option>
         )
-
       })
-
-
-
 
       return (
         <form className="task-form" onSubmit={this.handleSubmit}>
+
           <div>Assign task to user:</div>
           <div className="select-user">
-
             <select id="user" onChange={this.handleChange}>
               {selection}
             </select >
           </div>
 
           <div>
-            <label htmlFor="taskDetails">
-              {/* Description: */}
-            </label>
+            <label htmlFor="taskDetails"></label>
             <textarea className="desc-input" value={this.state.taskDetails} placeholder="e.g., research accomodations, restaurants, sites, museums, etc..." type="text" id="taskDetails" rows="5" onChange={this.handleChange}></textarea>
           </div>
-          {/* <div>
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" onChange={this.handleChange} />
-            </div> */}
+
           <button>Create New Task</button>
+
         </form>
       )
+
     }
     return (<div>Loading...</div>)
   }
+
 }
 
 const mapStateToProps = (state) => {

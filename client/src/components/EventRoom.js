@@ -6,7 +6,6 @@ import { fetchSchedules, fetchTasks } from '../actions/event-room';
 
 import Tasks from './Tasks';
 import Schedule from './Schedule';
-import Chat from './Chat';
 import ScheduleCreate from './ScheduleCreate';
 import TaskCreate from './TaskCreate';
 
@@ -58,11 +57,6 @@ export class EventRoom extends React.Component {
             </div>
 
             <div className="schedule-container">
-              {/* <ul className="schedule-headings"> */}
-              {/* <li className="schedule-location">Location:</li> */}
-              {/* <li className="schedule-date">Date:</li> */}
-              {/* <li className="schedule-details">Details:</li> */}
-              {/* </ul> */}
               {schedules}
               <ScheduleCreate />
             </div>
@@ -80,10 +74,6 @@ export class EventRoom extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  // const event = state.event_room.event
-  // console.log('correct event iD?', event)
-  // return {
-  // events: state.protected_data.events,
   loading: state.event_room.loading,
   eventID: state.event_room.eventID,
   event: state.event_room.event,
@@ -91,7 +81,6 @@ const mapStateToProps = (state) => ({
   tasks: state.event_room.tasks,
   protectedData: state.protected_data.data,
   loggedIn: state.auth.username !== null
-  // }
 })
 
 export default connect(mapStateToProps)(withRouter(EventRoom));
