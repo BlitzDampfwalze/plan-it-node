@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { Redirect, withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-import { deleteEvent, joinEventRoom, storeUserOnJoin } from '../actions/dashboard';
+import { deleteEvent, joinEventRoom } from '../actions/dashboard';
 
 import "../style/eventcard.css";
 
@@ -19,7 +19,6 @@ export class EventCard extends Component {
 
     if (!room.password) {
       this.props.joinEventRoom(room._id)
-      // this.props.storeUserOnJoin(this.props.userObject)
 
       return this.props.history.push(`/events/${event_id}`)
     }
@@ -29,8 +28,6 @@ export class EventCard extends Component {
       return alert('must enter a value')
     } else if (password === room.password) {
       this.props.joinEventRoom(room._id)
-      // this.props.storeUserOnJoin(this.props.userObject)
-
 
       return this.props.history.push(`/events/${event_id}`)
     } else {
@@ -44,12 +41,12 @@ export class EventCard extends Component {
     const room = this.props.events.find(event => {
       return event._id === event_id
     });
-    if (!room.password) {
-      this.props.deleteEvent(event_id, this.props.token)
-    }
+    // if (!room.password) {
+    //   this.props.deleteEvent(event_id, this.props.token)
+    // }
     let password = prompt('Please enter the password here:');
     if (password === null || password === '') {
-      return alert('must enter a value')
+      return alert('must enter the value')
     } else if (password === room.password) {
       this.props.deleteEvent(event_id, this.props.token)
     } else {
@@ -62,7 +59,7 @@ export class EventCard extends Component {
     return (
       <div className="event-card-container created-cards">
         <img className="event-card-image card-item"
-          // alt={`no image set by creator for ${this.props.title}`}
+          alt={`no image set by creator for ${this.props.title}`}
           src={this.props.imageUrl} height="175" width="275" />
         <div className="event-card-title card-item">{this.props.title}</div>
         <div className="event-card-description card-item">{this.props.description}</div>

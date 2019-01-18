@@ -24,7 +24,7 @@ class SignUp extends Component {
     e.preventDefault();
     this.props.signup(this.state);
     this.setState({ email: '', password: '', username: '' });
-    return <Redirect to='/signin' />;
+    return this.props.history.push('/dashboard')
 
   }
 
