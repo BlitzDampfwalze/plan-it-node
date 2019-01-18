@@ -13,7 +13,7 @@ User Dashboard | Trip Planning Room
 ![Wireframe of Trip Planning Room](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/wireframe-room.jpg)
 
 ## Working Prototype
-You can access a working prototype here: https://dashboard.heroku.com/apps/plan-it-react-capstone
+You can access a working prototype here: https://plan-it-react-capstone.herokuapp.com/
 #### Demo Login: demo@demo.com Password: testing
 
 ## Business Objects
