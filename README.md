@@ -1,4 +1,8 @@
-## "Plan-It" | React Node Project 
+## "Plan-It" | React Node Project
+
+## Working Prototype
+You can access a working prototype here: https://plan-it-react-capstone.herokuapp.com/
+#### Demo Login: demo@demo.com Password: testing
 
 ## Screenshots
 
@@ -12,9 +16,7 @@ User Dashboard | Trip Planning Room
 ![Wireframe of Dashboard](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/wireframe-dashboard.jpg)
 ![Wireframe of Trip Planning Room](https://github.com/BlitzDampfwalze/plan-it-node/blob/master/read-me-images/wireframe-room.jpg)
 
-## Working Prototype
-You can access a working prototype here: https://plan-it-react-capstone.herokuapp.com/
-#### Demo Login: demo@demo.com Password: testing
+
 
 ## Business Objects
 * User 
@@ -62,7 +64,7 @@ This is v1.0 of the app, but pursuing future enhancements include:
 * Chat functionality for users within a given room
 * Ability to archive tasks for future review
 * More & customized validation
-* Additionally styling
+* Additional styling
 * Permission levels
 * Weather api to display forecasted weather for a given location and date
 * Expense pane to track and budget expenses for the trip
