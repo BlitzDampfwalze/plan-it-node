@@ -14,7 +14,7 @@ User Dashboard | Trip Planning Room
 
 ## Working Prototype
 You can access a working prototype here: https://dashboard.heroku.com/apps/plan-it-react-capstone
-#####Demo Login: demo@demo.com Password: testing
+#### Demo Login: demo@demo.com Password: testing
 
 ## Business Objects
 * User 
@@ -61,6 +61,9 @@ App is strongly built to be usuable on mobile devices, as well as responsive acr
 This is v1.0 of the app, but pursuing future enhancements include:
 * Chat functionality for users within a given room
 * Ability to archive tasks for future review
+* More & customized validation
+* Additionally styling
+* Permission levels
 * Weather api to display forecasted weather for a given location and date
 * Expense pane to track and budget expenses for the trip
 * Image api to populate newly created rooms
