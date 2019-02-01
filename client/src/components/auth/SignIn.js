@@ -9,8 +9,8 @@ import "../../style/auth.css";
 
 class SignIn extends Component {
   state = {
-    email: '',
-    password: ''
+    email: 'demo@demo.com',
+    password: 'testing'
   }
 
   handleChange = (e) => {
@@ -41,13 +41,14 @@ class SignIn extends Component {
         <form className="auth-form" onSubmit={this.handleSubmit}>
           {/* <div>Login In heading</div> */}
           <div className="auth-item">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email (demo@demo.ccom)</label>
             <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
           </div>
           <div className="auth-item">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password (Password: testing)</label>
             <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
           </div>
+
           <button className="auth-item auth-submit-button">Login</button>
         </form>
       </div>

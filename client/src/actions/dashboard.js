@@ -43,11 +43,11 @@ export const fetchDataError = error => ({
 
 export const createEvent = (event_id, token) => dispatch => {
   dispatch(authRequest());
-  fetch(`${API_ORIGIN}/api/events`, {
+  fetch(`${API_ORIGIN}/api/events`,{
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      'x-auth': token
+      'x-auth': token 
     },
     body: JSON.stringify(event_id)
   })
