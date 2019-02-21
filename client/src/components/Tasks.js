@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import UserTasks from './UserTasks';
 
-import { deleteTask, fetchTasks } from '../actions/event-room';
+import { deleteTask } from '../actions/event-room';
 
 import "../style/eventroom.css";
 import "../style/tasks.css";
@@ -13,7 +13,7 @@ class Tasks extends Component {
   handleClear = () => {
     this.props.tasks.map(task => {
       if (task.completed === true) {
-        this.props.dispatch(deleteTask(task._id))
+        return this.props.dispatch(deleteTask(task._id))
       }
     })
   }

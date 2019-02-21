@@ -4,24 +4,26 @@ const { User } = require('../models/User');
 const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
+
   //User sign-up route
   app.post('/api/users', (req, res) => {
     console.log(req.body);
-    // const body = pick(req.body, ['email', 'password', 'username']);
-    // const user = new User(req.body); //no need to create user manually; above is validated
-    let user;
-    User
-      .create(req.body)
-      // .save()
-      .then((newUser) => {
-        user = newUser
-        return newUser.generateAuthToken();
+    const body = pick(req.body, ['email', 'password', 'username']);
+    const user = new User(body); 
+    // let user;
+    // User
+    user
+      // .create(req.body)
+      .save()
+      // .then((newUser) => {
+      //   user = newUser
+      .then(() => {
+        return user.generateAuthToken();
       })
       .then(token => {
         res.send({ id: user._id, email: user.email, username: user.username, token })
       })
       .catch(err => {
-        window.alert(err)
         if (err.code === 11000) {
           return res.status(409).send({ message: 'username/email taken' })
         }
@@ -53,7 +55,6 @@ module.exports = app => {
   // The user exchanges a valid JWT for a new one with a later expiration
   app.post('/api/users/refresh', authenticate, (req, res) => {
     req.user.generateAuthToken().then(token => {
-      // res.json({ id: req.user._id, email: req.user.email, username: req.user.username, token:token[0] })
       res.json({ id: req.user._id, email: req.user.email, username: req.user.username, token })
     })
 
@@ -70,26 +71,6 @@ module.exports = app => {
       },
     );
   });
-
-  // app.get('/api/users/:user_id', authenticate, (req, res) => {
-
-  // })
-
-  // app.get('/api/users/:user_id/events/:event_id/tasks', authenticate, (req, res) => {
-  //   User.find(
-  //     {
-  //       user: req.params.user_id
-  //     }
-  //   )
-  //     .then(({ tasks }) => {
-  //       console.log('TASKS', tasks)
-  //       res.send(tasks)
-  //     })
-  //     .catch(err => { res.status(500).send(err) })
-  // })
-
-
-
 
 };
 

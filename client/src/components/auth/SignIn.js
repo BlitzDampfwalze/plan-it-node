@@ -9,8 +9,8 @@ import "../../style/auth.css";
 
 class SignIn extends Component {
   state = {
-    email: 'demo@demo.com',
-    password: 'testing'
+    email: '',
+    password: ''
   }
 
   handleChange = (e) => {
@@ -21,13 +21,12 @@ class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    const user = {
+      const user = {
       email: this.state.email,
       password: this.state.password
     };
 
-    this.props.signin(this.state);
+    this.props.signin(user);
     this.setState({ email: '', password: '' });
   }
 
@@ -41,7 +40,7 @@ class SignIn extends Component {
         <form className="auth-form" onSubmit={this.handleSubmit}>
           {/* <div>Login In heading</div> */}
           <div className="auth-item">
-            <label htmlFor="email">Email (demo@demo.ccom)</label>
+            <label htmlFor="email">Email (demo@demo.com)</label>
             <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
           </div>
           <div className="auth-item">

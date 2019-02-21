@@ -9,7 +9,6 @@ import { scheduleUpdate, scheduleDelete } from '../actions/schedule';
 import moment from 'moment'
 
 import "../style/schedule.css";
-import { set } from 'mongoose';
 
 export class Schedule extends Component {
   constructor(props) {

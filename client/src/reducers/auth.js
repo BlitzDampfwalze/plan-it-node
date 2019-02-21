@@ -3,11 +3,23 @@ const initialState = {
   userObject: null,
   username: null,
   userID: '',
-  error: null
+  error: null,
+  signup_success: null,
+  signup_fail: null
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+
+    case 'SIGNUP_SUCCESS':
+      return Object.assign({}, state, {
+        signup_success: true
+      });
+
+    case 'SIGNUP_FAIL':
+      return Object.assign({}, state, {
+        signup_fail: true
+      });
 
     case 'CLEAR_AUTH':
       return Object.assign({}, state, {

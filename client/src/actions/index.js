@@ -2,7 +2,6 @@ import { API_ORIGIN } from '../config';
 import { normalizeResponseErrors } from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
 import { loadAuthToken } from '../local-storage';
-import { SubmissionError } from 'redux-form';
 
 
 export const setHeaderText = () => ({
@@ -35,6 +34,14 @@ export const authError = error => ({
   error
 });
 
+export const signupFail = () => ({
+  type: 'SIGNUP_FAIL'
+})
+
+export const signupSuccess = () => ({
+  type: 'SIGNUP_SUCCESS'
+})
+
 
 
 const storeAuthInfo = (user, dispatch) => {
@@ -62,7 +69,7 @@ export const signin = user => dispatch => {
       return res.json();
     })
     .then((user) => {
-      console.log('user signin res', user)
+      // console.log('user signin res', user)
       storeAuthInfo(user, dispatch)
     })
     .catch(err => {
@@ -81,8 +88,14 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       'x-auth': token
     }
   })
-    .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    // .then(res => normalizeResponseErrors(res))
+    // .then(res => res.json())
     .then((user) => {
       console.log('refresh token', user)
       storeAuthInfo(user, dispatch)
@@ -91,10 +104,9 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       // We couldn't get a refresh token because our current credentials
       // are invalid or expired, or something else went wrong, so clear
       // them and sign us out
-      window.alert(err)
       dispatch(authError(err));
-      // dispatch(clearAuth());
-      // clearAuthToken(token);
+      dispatch(clearAuth());
+      clearAuthToken(token);
     });
 };
 
@@ -106,18 +118,17 @@ export const signup = user => dispatch => {
     },
     body: JSON.stringify(user)
   })
-    .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        dispatch(signupFail())
+        return Promise.reject('username/email taken');
+      }
+      return res.json();
+    })
+    .then(() => {
+      dispatch(signupSuccess())
+    })
     .catch(err => {
       window.alert(err)
-      // const { reason, message, location } = err;
-      // if (reason === 'ValidationError') {
-      //   // Convert ValidationErrors into SubmissionErrors for Redux Form
-      //   return Promise.reject(
-      //     new SubmissionError({
-      //       [location]: message
-      //     })
-      //   );
-      // }
     });
 };

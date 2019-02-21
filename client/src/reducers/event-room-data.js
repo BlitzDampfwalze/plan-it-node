@@ -63,12 +63,6 @@ export default (state = initialState, action) => {
       const newStateTasks = state.tasks.filter((task) => task._id !== action.data)
       return { ...state, tasks: newStateTasks }
 
-    case 'FETCH_TASKS_SUCCESS':
-      return Object.assign({}, state, {
-        tasks: action.data,
-        error: null
-      });
-
     case 'UPDATE_SCHEDULE':
       const updatedSchedule = state.schedules.map((item) => {
         if (item._id === action.data._id) {

@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
-
 import "../style/landing.css";
 
 export class Landing extends React.Component {
