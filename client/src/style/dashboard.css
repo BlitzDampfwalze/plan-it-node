@@ -1,4 +1,4 @@
-.dashboard-wrapper {
+main {
   background: url(./assets/blurred-map.jpg) no-repeat;
   background-position: center;
   background-size: cover;
@@ -11,7 +11,7 @@
   flex-wrap: wrap;
 }
 @media screen and (max-width: 1261px) {
-  .dashboard-wrapper {
+  main {
     background: url(./assets/blurred-map.jpg) repeat;
     background-position: center;
     background-size: cover;
@@ -19,4 +19,5 @@
     width: 100%;
   }
 }
+
 

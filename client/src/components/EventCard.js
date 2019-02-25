@@ -61,14 +61,16 @@ export class EventCard extends Component {
         <img className="event-card-image card-item"
           alt={`no image set by creator for ${this.props.title}`}
           src={this.props.imageUrl} height="175" width="275" />
-        <div className="event-card-title card-item">{this.props.title}</div>
+        <div className="event-card-title">{this.props.title}</div>
         <div className="event-card-description card-item">{this.props.description}</div>
-        <button className="card-item" data-event-id={this.props._id} onClick={e => {
-          this.onJoin(e.currentTarget.getAttribute('data-event-id'))
-        }}>JOIN</button>
-        <button className="card-item" data-event-id={this.props._id} onClick={e => {
-          this.onDelete(e.currentTarget.getAttribute('data-event-id'))
-        }}>DELETE</button>
+        <div className="card-buttons-wrapper">
+          <button data-event-id={this.props._id} onClick={e => {
+            this.onJoin(e.currentTarget.getAttribute('data-event-id'))
+          }}>Join</button>
+          <button data-event-id={this.props._id} onClick={e => {
+            this.onDelete(e.currentTarget.getAttribute('data-event-id'))
+          }}>Delete</button>
+        </div>
       </div>
     )
   }
