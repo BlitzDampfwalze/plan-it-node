@@ -30,11 +30,6 @@ export const storeEventRoomInfo = (data) => ({
   data
 });
 
-// export const storeUserOnJoin = (user) => ({
-//   type: 'STORE_USER_TO_EVENT',
-//   user
-// })
-
 export const FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
 export const fetchDataError = error => ({
   type: FETCH_DATA_ERROR,
@@ -63,12 +58,10 @@ export const createEvent = (event_id, token) => dispatch => {
     })
     .catch(err => {
       window.alert(`${err}: Password, Title, Description Required!`)
-      // dispatch(fetchErr(err));
     });
 };
 
 export const joinEventRoom = (event_id) => (dispatch, getState) => {
-  // dispatch(request());
   const token = getState().auth.authToken;
   const user_id = getState().auth.userID;
 
@@ -90,7 +83,6 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
     })
     .catch(err => {
       window.alert(err)
-      // dispatch(fetchErr(err));
     });
 };
 
@@ -115,7 +107,6 @@ export const getPopulatedEvent = (event_id, token) => (dispatch) => {
     })
     .catch(err => {
       window.alert(err)
-      // dispatch(fetchErr(err));
     });
 
 }

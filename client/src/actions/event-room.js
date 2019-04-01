@@ -15,7 +15,6 @@ export const fetchSchedulesSuccess = data => ({
 export const fetchTasksSuccess = data => ({
   type: 'FETCH_TASKS_SUCCESS',
   data
-  // tasksByUser
 });
 
 export const addItemToSchedule = data => ({
@@ -47,14 +46,12 @@ export const fetchDataError = error => ({
 });
 
 
-
 export const fetchSchedules = (event_id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
-  // const event_id = getState().event_room_data.event._id
   return fetch(`${API_ORIGIN}/api/events/${event_id}/schedule`, {
     method: 'GET',
     headers: {
-      // Provide our auth token as credentials
+      // Provide auth token as credentials
       'x-auth': token
     }
   })
@@ -62,7 +59,6 @@ export const fetchSchedules = (event_id) => (dispatch, getState) => {
     .then(res => res.json())
     .then((data) => {
       dispatch(fetchSchedulesSuccess(data))
-      // fetchTasks(event_id)
     })
 
     .catch(err => {
@@ -72,26 +68,16 @@ export const fetchSchedules = (event_id) => (dispatch, getState) => {
 
 export const fetchTasks = (event_id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
-  // const event_id = getState().event_room_data.event._id
   return fetch(`${API_ORIGIN}/api/events/${event_id}/tasks`, {
     method: 'GET',
     headers: {
-      // Provide our auth token as credentials
+      // Provide auth token as credentials
       'x-auth': token
     }
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then((data) => {
-      // console.log('TASKS DATA DATA TASKS', data)
-      // console.log('DATA from Tasks fetch', data)
-      // const Users = [...new Set(data.map(task => task.user.username))]
-      // console.log('USERS:::', Users)
-      // const tasksByUser = Users.map(user => {
-      //   return data.filter(task => task.user.username === user)
-      // })
-      // console.log('DATA from Tasks fetch', tasksByUser)
-      // dispatch(fetchTasksSuccess(tasksByUser))
       dispatch(fetchTasksSuccess(data))
     })
     .catch(err => {
@@ -102,7 +88,6 @@ export const fetchTasks = (event_id) => (dispatch, getState) => {
 export const createSchedule = (inputs) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
-  // console.log('inputs:', inputs, 'eventID:', event_id, 'token:', token)
   fetch(`${API_ORIGIN}/api/events/${event_id}/schedule`, {
     method: 'POST',
     headers: {
@@ -110,46 +95,24 @@ export const createSchedule = (inputs) => (dispatch, getState) => {
       'x-auth': token
     },
     body: JSON.stringify(inputs)
-
   })
-
-    // .then(res => normalizeResponseErrors(res))
-    // .then(res => res.json())
-    // .then((data) => console.log(data))
-    // .then((data) => dispatch(addItemToSchedule(data)))
-    // .catch(err => {
-    //   dispatch(fetchDataError(err));
-    // });
-
-    // .then(res => console.log(res.json(), 'create res'))
-
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);
       }
-      // return test
       return res.json();
     })
     .then((data) => {
-      // console.log('DATA DATA TASKS', data)
       dispatch(addItemToSchedule(data))
     })
-
-    // .then((event) => {
-    //   console.log('user signin res', user)
-    //   storeAuthInfo(user, dispatch)
-    // })
     .catch(err => {
       window.alert(err)
-      // dispatch(fetchErr(err));
     });
 };
 
 export const createTask = (inputs) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
-
-  console.log('inputs:', inputs)
   fetch(`${API_ORIGIN}/api/events/${event_id}/tasks/user/${inputs.user}`, {
     method: 'POST',
     headers: {
@@ -157,38 +120,18 @@ export const createTask = (inputs) => (dispatch, getState) => {
       'x-auth': token
     },
     body: JSON.stringify(inputs)
-
   })
-
-    // .then(res => normalizeResponseErrors(res))
-    // .then(res => res.json())
-    // .then((data) => console.log(data))
-    // .then((data) => dispatch(addItemToSchedule(data)))
-    // .catch(err => {
-    //   dispatch(fetchDataError(err));
-    // });
-
-    // .then(res => console.log(res.json(), 'create res'))
-
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);
       }
-      // return test
       return res.json();
     })
     .then((data) => {
-      console.log('Task DATA dispatching to store:', data)
       dispatch(addTaskToList(data))
     })
-
-    // .then((event) => {
-    //   console.log('user signin res', user)
-    //   storeAuthInfo(user, dispatch)
-    // })
     .catch(err => {
       window.alert(err)
-      // dispatch(fetchErr(err));
     });
 };
 
@@ -218,18 +161,15 @@ export const updateTask = (task_id, completion, details) => (dispatch, getState)
     .then((data) => {
       console.log('TASK PUT DATA', data)
       dispatch(fetchTasks(event_id))
-      // dispatch(updateTasks(data))
     })
     .catch(err => {
       window.alert(err)
-      // dispatch(fetchErr(err));
     });
 };
 
 export const deleteTask = (id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
-  // dispatch(authRequest());
   return fetch(`${API_ORIGIN}/api/events/${event_id}/tasks/${id}`, {
     method: 'DELETE',
     headers: {
@@ -241,6 +181,5 @@ export const deleteTask = (id) => (dispatch, getState) => {
     .then(() => { dispatch(deleteTaskInState(id)) })
     .catch(err => {
       console.log('delete event err', err)
-      // dispatch(fetchDataError(err));
     });
 };

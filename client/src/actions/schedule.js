@@ -48,7 +48,6 @@ export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
 export const scheduleDelete = (id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
-  // dispatch(authRequest());
   return fetch(`${API_ORIGIN}/api/events/${event_id}/schedule/${id}`, {
     method: 'DELETE',
     headers: {
@@ -57,14 +56,10 @@ export const scheduleDelete = (id) => (dispatch, getState) => {
     }
   })
     .then(res => normalizeResponseErrors(res))
-    .then(res => {
-      console.log('delete res.json', res)
-    })
     .then(() => {
       dispatch(deleteScheduleInState(id))
     })
     .catch(err => {
       console.log('delete event err', err)
-      // dispatch(fetchDataError(err));
     });
 };

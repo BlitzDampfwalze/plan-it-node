@@ -1,5 +1,5 @@
 import { API_ORIGIN } from '../config';
-import { normalizeResponseErrors } from './utils';
+// import { normalizeResponseErrors } from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
 import { loadAuthToken } from '../local-storage';
 
@@ -69,7 +69,6 @@ export const signin = user => dispatch => {
       return res.json();
     })
     .then((user) => {
-      // console.log('user signin res', user)
       storeAuthInfo(user, dispatch)
     })
     .catch(err => {
@@ -84,7 +83,7 @@ export const refreshAuthToken = () => (dispatch, getState) => {
   return fetch(`${API_ORIGIN}/api/users/refresh`, {
     method: 'POST',
     headers: {
-      // Provide our existing token as credentials to get a new one
+      // Provide existing token as credentials to get a new one
       'x-auth': token
     }
   })
@@ -94,16 +93,13 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       }
       return res.json();
     })
-    // .then(res => normalizeResponseErrors(res))
-    // .then(res => res.json())
     .then((user) => {
-      console.log('refresh token', user)
       storeAuthInfo(user, dispatch)
     })
     .catch(err => {
-      // We couldn't get a refresh token because our current credentials
-      // are invalid or expired, or something else went wrong, so clear
-      // them and sign us out
+      // Couldn't get a refresh token because current credentials
+      // are invalid or expired, or something else went wrong, clear
+      // them and sign out
       dispatch(authError(err));
       dispatch(clearAuth());
       clearAuthToken(token);
