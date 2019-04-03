@@ -16,7 +16,7 @@ var socket_io = require('socket.io'); //for socket.io
 const app = express();
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/public'));
+  app.use(express.static('client/build/public'));
 }
 
 var serverSocket = http.Server(app); //for socket.io
@@ -37,6 +37,10 @@ require('./routes/scheduleRoutes')(app);
 require('./routes/chatRoutes')(app);
 require('./routes/userRoutes')(app);
 
+// app.use('*', function (req, res) {
+  // res.redirect('/');
+  // res.status(404).json({ message: 'Not Found' });
+// });
 
 let server;
 
