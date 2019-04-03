@@ -51,7 +51,6 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
         <div className="root-container">
           <header className="App-header">
             <Navbar />
@@ -69,7 +68,6 @@ class App extends Component {
             <Footer />
           </footer>
         </div>
-      </BrowserRouter>
     );
   }
 }
