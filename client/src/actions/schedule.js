@@ -14,7 +14,6 @@ export const deleteScheduleInState = data => ({
 export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
   const event_id = getState().event_room.eventID;
-  console.log('inputs:', inputs, 'taskID:', inputs.dateEdit, inputs.detailsEdit, inputs.locationEdit)
   fetch(`${API_ORIGIN}/api/events/${event_id}/schedule/${schedule_id}`, {
     method: 'PUT',
     headers: {
@@ -60,6 +59,6 @@ export const scheduleDelete = (id) => (dispatch, getState) => {
       dispatch(deleteScheduleInState(id))
     })
     .catch(err => {
-      console.log('delete event err', err)
+      console.log('delete event error', err)
     });
 };
