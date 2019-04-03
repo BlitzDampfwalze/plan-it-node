@@ -108,7 +108,7 @@ export class Schedule extends Component {
       <div className="schedule-wrapper">
 
         <ul className="schedule-parent-date">
-          <li className="schedule-item schedule-date">{moment(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
+          <li className="schedule-item schedule-date">{moment.utc(this.props.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</li>
           <li className="schedule-buttons-wrapper">
             <div className="edit-schedule-button" onClick={this.handleScheduleEdit}>{editButton}</div>
             <div className="delete-schedule-button" onClick={this.handleScheduleDelete}><img src={deleteIcon} alt="delete" /><span className="tooltiptext">Delete</span></div>

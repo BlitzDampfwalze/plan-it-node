@@ -84,12 +84,12 @@ module.exports = app => {
     }
 
     Event.findById(req.params.id).populate('users')
-    .then(event => {
-      if (!event) {
-        return res.sendStatus(404);
-      }
-      res.send( event );
-    })
+      .then(event => {
+        if (!event) {
+          return res.sendStatus(404);
+        }
+        res.status(200).send(event);
+      })
       .catch(err => {
         console.error(err);
         res.status(500).json({ error: 'something went wrong' });
