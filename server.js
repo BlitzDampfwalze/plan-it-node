@@ -16,7 +16,7 @@ var socket_io = require('socket.io'); //for socket.io
 const app = express();
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build/public'));
+  app.use(express.static('client/build'));
 }
 
 var serverSocket = http.Server(app); //for socket.io
