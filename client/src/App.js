@@ -51,23 +51,26 @@ class App extends Component {
 
   render() {
     return (
+      <BrowserRouter>
         <div className="root-container">
           <header className="App-header">
             <Navbar />
           </header>
           <main>
-            {/* <Switch> */}
+
+            <Switch>
               <Route exact path='/' component={Landing} />
               <Route path='/dashboard' component={Dashboard} />
               <Route exact path='/events/:id' component={EventRoom} />
               <Route path='/signin' component={SignIn} />
               <Route path='/signup' component={SignUp} />
-            {/* </Switch> */}
+            </Switch>
           </main>
           <footer>
             <Footer />
           </footer>
         </div>
+      </BrowserRouter>
     );
   }
 }
