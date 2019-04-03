@@ -51,13 +51,12 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter basename="/plan-it">
+      <BrowserRouter>
         <div className="root-container">
           <header className="App-header">
             <Navbar />
           </header>
           <main>
-
             <Switch>
               <Route exact path='/' component={Landing} />
               <Route path='/dashboard' component={Dashboard} />
