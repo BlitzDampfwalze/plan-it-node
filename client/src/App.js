@@ -51,7 +51,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/plan-it">
         <div className="root-container">
           <header className="App-header">
             <Navbar />
