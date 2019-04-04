@@ -27,7 +27,7 @@ app.options('*', cors());
 
 // app.use(express.json()); 
 
-// app.use(express.static('public'));
+app.use(express.static('client/build'));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
@@ -38,8 +38,8 @@ require('./routes/chatRoutes')(app);
 require('./routes/userRoutes')(app);
 
 // app.use('*', function (req, res) {
-  // res.redirect('/');
-  // res.status(404).json({ message: 'Not Found' });
+// res.redirect('/');
+// res.status(404).json({ message: 'Not Found' });
 // });
 
 let server;
