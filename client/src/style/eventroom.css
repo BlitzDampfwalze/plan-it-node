@@ -1,6 +1,7 @@
 .event-room-wrapper {
   display: flex;
   font-size: 1.1rem;
+  justify-content: center;
 }
 
 .event-title {

@@ -53,10 +53,10 @@ class CreateEvent extends Component {
             <input type="description" id="imageUrl" value={this.state.imageUrl} onChange={this.handleChange} />
           </div>
           <div className="card-item create-card-item">
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password" className="password-label">Set Password: <span className="tooltiptext">Choose a password that others will use to join the room.</span></label>
             <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
           </div>
-          <button className="card-item create-card-item">Create</button>
+            <div className="card-item create-card-item create-card-button">Create</div>
         </form>
       </div>
     )

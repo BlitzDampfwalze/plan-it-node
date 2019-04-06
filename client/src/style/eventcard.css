@@ -2,13 +2,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1rem;
-  margin-left: 315px;
+  margin-left: 355px;
 }
 
 .event-card-container {
   background-color:rgba(145, 147, 165, 0.8);
   margin: 10px;
-
+  /* margin: 15px; */
+  /* padding: 12px; */
   display: flex;
   flex-flow: column;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -20,12 +21,20 @@
   font-weight: bold;
 }
 
+label {
+  margin-bottom: 3px;
+}
 .card-item {
   margin: 10px;
 }
 
 .created-cards .card-item, .event-card-title {
   text-align: center;
+}
+
+.event-card-image {
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 5px 17px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
 }
 
 .card-buttons-wrapper button {
@@ -51,13 +60,63 @@
 
 .event-create-container { 
   position: fixed;
-
 }
 
 .create-card-heading {
+  text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
+  text-shadow: 1.2px 1.2px rgba(255, 255, 255, 0.589);
+  background-color:rgb(161, 162, 175);
+  transition: all 1500ms ease-out;
 }
+
+
+.create-card-button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 5px;
+}
+
+/* /// Tool Tip hover CSS /// */
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+} 
+
+.password-label:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+/* /// End of Tool Tip hover CSS /// */
 
 @media screen and (max-width: 625px) {
   .event-create-container { 
