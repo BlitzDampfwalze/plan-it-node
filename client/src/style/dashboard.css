@@ -10,6 +10,7 @@ main {
   display: flex;
   flex-wrap: wrap;
 }
+
 @media screen and (max-width: 1261px) {
   main {
     background: url(./assets/blurred-map.jpg) repeat;

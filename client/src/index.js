@@ -11,6 +11,9 @@ import App from './App';
 
 import './index.css';
 
+// importing custom fontawesome library
+import './fontawesome.js';
+
 import * as serviceWorker from "./serviceWorker";
 
 

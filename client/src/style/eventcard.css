@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1rem;
-  margin-left: 355px;
+  margin-left: 375px;
+  padding-top: 35px;
 }
 
 .event-card-container {
@@ -60,14 +61,15 @@ label {
 
 .event-create-container { 
   position: fixed;
+  margin: 45px;
 }
 
 .create-card-heading {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.75rem;
   font-weight: bold;
-  text-shadow: 1.2px 1.2px rgba(255, 255, 255, 0.589);
-  background-color:rgb(161, 162, 175);
+  text-shadow: 1px 0.45px rgba(255, 255, 255, 0.589);
+  /* background-color:rgb(161, 162, 175); */
   transition: all 1500ms ease-out;
 }
 
@@ -83,25 +85,38 @@ label {
   padding: 5px;
 }
 
+.password-label {
+  display: flex; 
+  justify-content: space-between;
+}
+
 /* /// Tool Tip hover CSS /// */
+
+.password-info-icon {
+  /* hack to fill transparent back ground color */
+  background: white;
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+}
+
 .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: #555;
+  background-color: rgba(0, 0, 0, 0.75);
   color: #fff;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
+  font-size: 0.9rem;
+  line-height: 1.3em;
+
+  /* Position the tooltip */
   position: absolute;
   z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
-  opacity: 0;
-  transition: opacity 0.3s;
 }
 
-.tooltiptext::after {
+/* .tooltiptext::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -110,15 +125,15 @@ label {
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
-} 
+}  */
 
-.password-label:hover .tooltiptext {
+.password-info-icon:hover .tooltiptext {
   visibility: visible;
-  opacity: 1;
+  /* opacity: 1; */
 }
 /* /// End of Tool Tip hover CSS /// */
 
-@media screen and (max-width: 625px) {
+@media screen and (max-width: 681px) {
   .event-create-container { 
     position: relative; 
     margin: 0px auto;

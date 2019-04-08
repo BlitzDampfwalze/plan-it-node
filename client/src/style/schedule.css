@@ -1,9 +1,9 @@
 .schedule-location {
-  min-width: 170px;
+  min-width: 270px;
 }
 
 .schedule-date {
-  min-width: 450px;
+  min-width: 500px;
 }
 
 .schedule-details, .schedule-date, .schedule-location {
@@ -96,7 +96,7 @@ display: flex;
   font-weight: bold;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 970px) {
 
   .schedule-location {
     min-width: 0;
