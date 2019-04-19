@@ -64,6 +64,7 @@ export const signin = user => dispatch => {
   })
     .then(res => {
       if (!res.ok) {
+        console.log(res, 'CONSOLE.LOG custom message rejection')
         return Promise.reject(res.statusText);
       }
       return res.json();
@@ -72,7 +73,8 @@ export const signin = user => dispatch => {
       storeAuthInfo(user, dispatch)
     })
     .catch(err => {
-      window.alert(err)
+      console.log('error', err)
+      window.alert('Incorrect Password or Email')
     });
 };
 
@@ -121,7 +123,8 @@ export const signup = user => dispatch => {
       }
       return res.json();
     })
-    .then(() => {
+    .then((user) => {
+      storeAuthInfo(user, dispatch)
       dispatch(signupSuccess())
     })
     .catch(err => {

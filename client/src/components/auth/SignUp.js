@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-
 import { Redirect } from 'react-router-dom'
-
 import { signup } from '../../actions'
 
 import "../../style/auth.css";
@@ -23,21 +21,11 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // () => {
-    this.props.signup(this.state)
-    // }
-    // this.setState({ email: '', password: '', username: '' });
-    // if (this.state.password.length > 4) {
-    //   return this.props.history.push('/dashboard')
-    // }
-    // else {
-
-    // }
+    this.props.dispatch(signup(this.state))
   }
 
   render() {
-    // if this.state.... based on data set in reducer
-    // return <Redirect to='/dashboard'/>
+
     if (this.props.signup_success !== null) {
       return <Redirect to='/dashboard' />
     }
@@ -45,7 +33,6 @@ class SignUp extends Component {
     return (
       <div className="auth-container">
         <form className="auth-form" onSubmit={this.handleSubmit}>
-          {/* <div>Sign Up heading</div> */}
           <div className="auth-item">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
@@ -66,16 +53,10 @@ class SignUp extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(this.props.signup_success)
   return {
     signup_success: state.auth.signup_success
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signup: (user) => dispatch(signup(user))
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps)(SignUp)

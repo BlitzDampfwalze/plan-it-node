@@ -65,7 +65,7 @@ class CreateEvent extends Component {
               <label htmlFor="password" >Set Password:</label>
               <div className="password-info-icon">
                 <span className="tooltiptext">Choose a password that others will use to join the room.</span>
-                <FontAwesomeIcon icon="info-circle" size="s" className="info-icon" />
+                <FontAwesomeIcon icon="info-circle" size="1x" className="info-icon" />
               </div>
             </div>
 

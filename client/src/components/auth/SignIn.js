@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-
 import { signin } from '../../actions'
-
 import { Redirect } from 'react-router-dom';
 
 import "../../style/auth.css";

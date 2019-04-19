@@ -5,18 +5,12 @@ const { authenticate } = require('../middleware/authenticate');
 
 module.exports = app => {
 
-  //User sign-up route
+  //--// User sign-up route //--//
   app.post('/api/users', (req, res) => {
-    console.log(req.body);
     const body = pick(req.body, ['email', 'password', 'username']);
-    const user = new User(body); 
-    // let user;
-    // User
+    const user = new User(body);
     user
-      // .create(req.body)
-      .save()
-      // .then((newUser) => {
-      //   user = newUser
+    .save()
       .then(() => {
         return user.generateAuthToken();
       })
@@ -31,12 +25,12 @@ module.exports = app => {
       });
   });
 
-  //User authentication route
+  //--// User authentication route //--//
   app.get('/api/users/auth', authenticate, (req, res) => {
     res.send(req.user);
   });
 
-  //User login route
+  //--// User sign-in/login route //--//
   app.post('/api/users/login', (req, res) => {
     const body = pick(req.body, ['email', 'password']);
     User.findByCredentials(body.email, body.password)
@@ -47,20 +41,19 @@ module.exports = app => {
         });
       })
       .catch(err => {
-        res.status(401).send(err);
+        res.status(401).send({ message: 'login error' });
       });
   });
 
 
-  // The user exchanges a valid JWT for a new one with a later expiration
+//--// User exchanges a valid JWT for a new one with a later expiration //--//
   app.post('/api/users/refresh', authenticate, (req, res) => {
     req.user.generateAuthToken().then(token => {
       res.json({ id: req.user._id, email: req.user.email, username: req.user.username, token })
     })
-
   });
 
-  //Logout route
+ //--// Logout route //--//
   app.delete('/api/users/me/token', authenticate, (req, res) => {
     req.user.removeToken(req.token).then(
       () => {
