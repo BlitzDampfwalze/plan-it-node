@@ -1,8 +1,3 @@
-const _ = {
-  pick: require('lodash.pick'),
-  isboolean: require('lodash.isboolean')
-};
-
 const { ObjectID } = require('mongodb');
 const { Event } = require('../models/Event');
 const { authenticate } = require('../middleware/authenticate');
@@ -15,8 +10,7 @@ module.exports = app => {
       title: req.body.title,
       description: req.body.description,
       password: req.body.password,
-      imageUrl: req.body.imageUrl,
-      // userCreator: req.body.user._id
+      imageUrl: req.body.imageUrl
     });
 
 
@@ -41,9 +35,8 @@ module.exports = app => {
           event.save()
         };
         event.populate('users')
-        // console.log('EVENT object', event)
         res.status(200).send(event);
-
+        
       })
       .catch(err => {
         console.log(err, "err")
@@ -67,13 +60,12 @@ module.exports = app => {
       .catch(err => { res.status(500).send(err) });
   });
 
-  app.get('/api/events',
-    // authenticate, 
-    (req, res) => {
+  app.get('/api/events', authenticate, (req, res) => {
       Event.find()
+      .sort({title: 1})
         .then((events) => {
           res.send(events)
-        }) //{} syntax vs res.json(...map etc.)
+        })
         .catch(err => { res.status(500).send(err) });
     });
 
