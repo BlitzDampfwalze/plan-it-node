@@ -1,7 +1,7 @@
 import { API_ORIGIN } from '../config';
 // import { normalizeResponseErrors } from './utils';
 import { saveAuthToken, clearAuthToken } from '../local-storage';
-// import { loadAuthToken } from '../local-storage';
+import { loadAuthToken } from '../local-storage';
 
 
 export const setHeaderText = () => ({
@@ -100,5 +100,34 @@ export const signup = user => dispatch => {
     })
     .catch(err => {
       window.alert(err)
+    });
+};
+
+export const refreshAuthToken = () => (dispatch, getState) => {
+  dispatch(authRequest());
+  const token = loadAuthToken();
+  return fetch(`${API_ORIGIN}/api/users/refresh`, {
+    method: 'POST',
+    headers: {
+      // Provide existing token as credentials to get a new one
+      'x-auth': token
+    }
+  })
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then((user) => {
+      storeAuthInfo(user, dispatch)
+    })
+    .catch(err => {
+      // Couldn't get a refresh token because current credentials
+      // are invalid or expired, or something else went wrong, clear
+      // them and sign out
+      dispatch(authError(err));
+      dispatch(clearAuth());
+      clearAuthToken(token);
     });
 };

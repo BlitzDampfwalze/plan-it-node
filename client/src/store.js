@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux'
 
 import { loadAuthToken } from './local-storage';
-import { setAuthToken } from './actions';
+import { setAuthToken, refreshAuthToken } from './actions';
 
 import navbar from './reducers/navbar'
 import auth from './reducers/auth'
@@ -26,6 +26,7 @@ const authToken = loadAuthToken();
 if (authToken) {
   const token = authToken;
   store.dispatch(setAuthToken(token));
+  store.dispatch(refreshAuthToken(token));
 }
 
 export default store;
