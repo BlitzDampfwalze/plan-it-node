@@ -48,8 +48,7 @@ display: flex;
 }
 
 .edit-schedule-button img, .delete-schedule-button img  {
-  width: 62%;
-  height: 62%;
+  height: 18px;
 }
 
 .delete-schedule-button {

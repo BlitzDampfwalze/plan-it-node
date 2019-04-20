@@ -116,7 +116,7 @@ export const fetchEvents = () => (dispatch, getState) => {
   return fetch(`${API_ORIGIN}/api/events`, {
     method: 'GET',
     headers: {
-      // Provide our auth token as credentials
+      // Provide auth token as credentials
       'x-auth': token
     }
   })

@@ -37,3 +37,10 @@ ul {
   background-color:rgb(161, 162, 175);
   transition: all 1500ms ease-out;
 }
+
+@media screen and (max-width: 445px) {
+  .nav-item {
+    padding: 11px;
+    font-size: 1rem;
+  }
+}

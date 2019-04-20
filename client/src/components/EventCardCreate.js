@@ -41,6 +41,7 @@ class CreateEvent extends Component {
   render() {
 
     return (
+      <div id="create-new-event-wrapper">
       <div className="event-create-container event-card-container">
         <form onSubmit={this.handleSubmit}>
           <div className="card-item create-card-heading">Create New Trip</div>
@@ -73,6 +74,7 @@ class CreateEvent extends Component {
           </div>
           <div className="card-item create-card-item create-card-button">Create</div>
         </form>
+      </div>
       </div>
     )
   }

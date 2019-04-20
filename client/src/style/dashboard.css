@@ -7,8 +7,20 @@ main {
 }
 
 .eventcards-wrapper {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
+  z-index: 1;
+}
+
+.background-image-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: #2a2b30;
+  opacity: 0.38;
 }
 
 @media screen and (max-width: 1261px) {

@@ -44,6 +44,7 @@ export class EventRoom extends React.Component {
 
       return (
         <div className="event-room-container">
+        <div className="background-image-overlay"></div>
           <h1 className="event-title">{this.props.event.title}</h1>
 
           <div className="event-room-wrapper">

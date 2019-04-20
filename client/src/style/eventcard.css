@@ -9,11 +9,10 @@
 .event-card-container {
   background-color:rgba(145, 147, 165, 0.8);
   margin: 10px;
-  /* margin: 15px; */
-  /* padding: 12px; */
   display: flex;
   flex-flow: column;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.19);
   border-radius: 3px;
 }
 
@@ -34,16 +33,17 @@ label {
 }
 
 .event-card-image {
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 5px 17px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 3px;
+  /* box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 5px 17px 0 rgba(0, 0, 0, 0.19); */
+  border-radius: 1.5px;
 }
 
 .card-buttons-wrapper button {
   width: 100%;
-  background-color: black;
+  background-color: rgb(35, 35, 54);
   border: none;
   color: white;
-  padding: 5px;
+  padding: 3px;
+  margin: 5px;
 }
 
 .card-buttons-wrapper {
@@ -67,10 +67,10 @@ label {
 .create-card-heading {
   text-align: center;
   font-size: 1.75rem;
-  font-weight: bold;
-  text-shadow: 1px 0.45px rgba(255, 255, 255, 0.589);
+  font-weight: 700;
+  /* text-shadow: 1px 0.45px rgba(255, 255, 255, 0.589); */
   /* background-color:rgb(161, 162, 175); */
-  transition: all 1500ms ease-out;
+  /* transition: all 1500ms ease-out; */
 }
 
 
@@ -79,7 +79,7 @@ label {
   margin-right: auto;
   width: 50%;
   text-align: center;
-  background-color: black;
+  background-color: rgb(28, 28, 48);
   border: none;
   color: white;
   padding: 5px;
@@ -90,8 +90,7 @@ label {
   justify-content: space-between;
 }
 
-/* /// Tool Tip hover CSS /// */
-
+/* /// Tool Tip hover /// */
 .password-info-icon {
   /* hack to fill transparent back ground color */
   background: white;
@@ -116,20 +115,9 @@ label {
   z-index: 1;
 }
 
-/* .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}  */
-
 .password-info-icon:hover .tooltiptext {
   visibility: visible;
-  /* opacity: 1; */
+  left: 50%;
 }
 /* /// End of Tool Tip hover CSS /// */
 
@@ -138,6 +126,10 @@ label {
     position: relative; 
     margin: 0px auto;
     max-width: 295px;  
+  }
+
+  #create-new-event-wrapper {
+    padding-top: 25px;
   }
 
   .eventcards-wrapper {
