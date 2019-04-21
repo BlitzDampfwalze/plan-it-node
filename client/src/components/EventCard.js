@@ -80,7 +80,7 @@ export class EventCard extends Component {
 const mapStateToProps = (state) => {
   return {
     token: state.auth.authToken,
-    events: state.protected_data.events,
+    events: state.event_room.events,
   }
 }
 const mapDispatchToProps = (dispatch) => {

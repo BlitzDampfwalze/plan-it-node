@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
   event: state.event_room.event,
   schedules: state.event_room.schedules,
   tasks: state.event_room.tasks,
-  protectedData: state.protected_data.data,
+  protectedData: state.event_room.data,
   loggedIn: state.auth.username !== null
 })
 

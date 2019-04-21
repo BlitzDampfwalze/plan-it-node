@@ -1,12 +1,12 @@
-// import { updateLocale } from "moment";
-
 const initialState = {
   loading: false,
   eventID: '',
   event: {},
+  events: [],
   error: null,
   schedules: [],
-  tasks: []
+  tasks: [],
+  data: ''
 };
 
 export default (state = initialState, action) => {
@@ -23,6 +23,15 @@ export default (state = initialState, action) => {
         eventID: action.data._id,
         loading: false,
       });
+
+    case 'ADD_EVENT':
+      return {
+        ...state, events: [...state.events, action.data]
+      }
+
+    case 'DELETE_EVENT':
+      const newStateEvents = state.events.filter((event) => event._id !== action.data)
+      return { ...state, events: newStateEvents }
 
     // case 'STORE_USER_TO_EVENT':
     //   return Object.assign({}, state, {
@@ -77,8 +86,8 @@ export default (state = initialState, action) => {
       }
 
     case 'DELETE_SCHEDULE':
-      const newState = state.schedules.filter((schedule) => schedule._id !== action.data)
-      return { ...state, schedules: newState }
+      const newStateSchedule = state.schedules.filter((schedule) => schedule._id !== action.data)
+      return { ...state, schedules: newStateSchedule }
 
     case 'FETCH_TASKS_SUCCESS':
       return Object.assign({}, state, {
@@ -86,6 +95,17 @@ export default (state = initialState, action) => {
         error: null
       });
 
+
+    case 'FETCH_DATA_ERROR':
+      return Object.assign({}, state, {
+        error: action.error
+      });
+
+    case 'STORE_FETCHED_EVENTS':
+      return Object.assign({}, state, {
+        events: action.data,
+        error: null
+      });
 
     case 'FETCH_DATA_ERROR':
       return Object.assign({}, state, {

@@ -46,8 +46,7 @@ export class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => ({
 
-  events: state.protected_data.events,
-  protectedData: state.protected_data.data,
+  events: state.event_room.events,
   loggedIn: state.auth.username !== null
 
 });

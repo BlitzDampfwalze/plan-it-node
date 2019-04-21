@@ -42,13 +42,13 @@ class App extends Component {
   //   );
   // }
 
-  stopPeriodicRefresh() {
-    if (!this.refreshInterval) {
-      return;
-    }
+  // stopPeriodicRefresh() {
+  //   if (!this.refreshInterval) {
+  //     return;
+  //   }
 
-    clearInterval(this.refreshInterval);
-  }
+  //   clearInterval(this.refreshInterval);
+  // }
 
   render() {
     return (

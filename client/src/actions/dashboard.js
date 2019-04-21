@@ -9,9 +9,9 @@ export const request = () => ({
   type: 'REQUEST'
 });
 
-export const FETCH_PROTECTED_DATA_SUCCESS = 'FETCH_PROTECTED_DATA_SUCCESS';
-export const fetchProtectedDataSuccess = data => ({
-  type: FETCH_PROTECTED_DATA_SUCCESS,
+export const STORE_FETCHED_EVENTS = 'STORE_FETCHED_EVENTS';
+export const storeFetchedEvents = data => ({
+  type: STORE_FETCHED_EVENTS,
   data
 });
 
@@ -122,7 +122,7 @@ export const fetchEvents = () => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then((data) => dispatch(fetchProtectedDataSuccess(data)))
+    .then((data) => dispatch(storeFetchedEvents(data)))
     .catch(err => {
       dispatch(fetchDataError(err));
     });
