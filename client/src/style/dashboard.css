@@ -23,14 +23,11 @@ main {
   opacity: 0.38;
 }
 
-@media screen and (max-width: 1261px) {
+@media screen and (max-width: 1336px) {
   main {
-    background: url(./assets/blurred-map.jpg) repeat;
-    background-position: center;
-    background-size: cover;
     height: 100%;
-    width: 100%;
-  }
+  }  
 }
+
 
 

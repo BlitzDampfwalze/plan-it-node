@@ -11,12 +11,11 @@
 
 .landing-h1 {
   top: 35px;
-  position: sticky;
   font-size: 3.75rem;
   font-weight: bold;
   color: black;
   text-align: center;
-  padding: 4%;
+  padding: 3%;
 }
 
 .landing-overlay:hover h1, .landing-overlay:hover h2 {
@@ -25,8 +24,7 @@
 }
 
 .landing-subhead {
-  position: sticky;
-  padding: 4% 0;
+  padding: 2% 0;
 }
 
 
@@ -60,6 +58,7 @@
   height: 100%;
   transition: 0.9s;
   padding: 15px;
+  line-height: 2.5rem;
 }
 
 .landing-more-wrapper:hover {
@@ -68,12 +67,4 @@
   border-radius: 8px;
   background-color: rgba(39, 43, 51, 0.5);
   border: 0.5px solid #272b33;
-}
-
-.panel {
-  padding: 0 18px 5px;
-  max-height: 0;
-  line-height: 1.6em;
-  overflow: hidden;
-  transition: max-height 0.6s ease-out;
 }

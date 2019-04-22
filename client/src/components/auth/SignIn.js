@@ -45,7 +45,7 @@ class SignIn extends Component {
             <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
           </div>
 
-          <button className="auth-item auth-submit-button">Login</button>
+          <div className="auth-button-wrapper"><button className="auth-item auth-submit-button">Login</button></div>
         </form>
       </div>
     )

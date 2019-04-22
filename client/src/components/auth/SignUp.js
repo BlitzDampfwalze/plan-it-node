@@ -43,9 +43,9 @@ class SignUp extends Component {
           </div>
           <div className="auth-item">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" pattern=".{5,10}" required title="Password should be 5 to 10 characters" value={this.state.password} onChange={this.handleChange} />
+            <input type="password" id="password" pattern=".{6,10}" required title="Password should be 6 to 10 characters" value={this.state.password} onChange={this.handleChange} />
           </div>
-          <button className="auth-item auth-submit-button">Sign-up</button>
+          <div className="auth-button-wrapper"><button className="auth-item auth-submit-button">Sign-up</button></div>
         </form>
       </div>
     )
