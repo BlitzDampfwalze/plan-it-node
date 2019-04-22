@@ -1,17 +1,8 @@
 import { API_ORIGIN } from '../config';
 import { normalizeResponseErrors } from './utils';
 
-export const authRequest = () => ({
-  type: 'AUTH_REQUEST'
-});
-
-export const request = () => ({
-  type: 'REQUEST'
-});
-
-export const STORE_FETCHED_EVENTS = 'STORE_FETCHED_EVENTS';
 export const storeFetchedEvents = data => ({
-  type: STORE_FETCHED_EVENTS,
+  type: 'STORE_FETCHED_EVENTS',
   data
 });
 
@@ -30,14 +21,12 @@ export const storeEventRoomInfo = (data) => ({
   data
 });
 
-export const FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
 export const fetchDataError = error => ({
-  type: FETCH_DATA_ERROR,
+  type: 'FETCH_DATA_ERROR',
   error
 });
 
 export const createEvent = (event_id, token) => dispatch => {
-  dispatch(authRequest());
   fetch(`${API_ORIGIN}/api/events`,{
     method: 'POST',
     headers: {
@@ -78,7 +67,7 @@ export const joinEventRoom = (event_id) => (dispatch, getState) => {
       }
       return res.json();
     })
-    .then((data) => {
+    .then(() => {
       dispatch(getPopulatedEvent(event_id, token))
     })
     .catch(err => {
@@ -92,9 +81,9 @@ export const getPopulatedEvent = (event_id, token) => (dispatch) => {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
+      // Provide auth token as credentials
       'x-auth': token
     },
-
   })
     .then(res => {
       if (!res.ok) {
@@ -130,7 +119,6 @@ export const fetchEvents = () => (dispatch, getState) => {
 
 export const deleteEvent = (id) => (dispatch, getState) => {
   const token = getState().auth.authToken;
-  dispatch(authRequest());
   return fetch(`${API_ORIGIN}/api/events/${id}`, {
     method: 'DELETE',
     headers: {
@@ -139,12 +127,7 @@ export const deleteEvent = (id) => (dispatch, getState) => {
     }
   })
     .then(res => normalizeResponseErrors(res))
-    .then(res => {
-      console.log('delete res.json', res)
-      // res.json()
-    })
     .then(() => {
-      console.log('delete data', id)
       dispatch(deleteEventInState(id))
     })
     .catch(err => {

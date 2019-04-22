@@ -1,14 +1,8 @@
 import { API_ORIGIN } from '../config';
 import { normalizeResponseErrors } from './utils';
 
-export const authRequest = () => ({
-  type: 'AUTH_REQUEST'
-});
-
-
-export const FETCH_SCHEDULES_SUCCESS = 'FETCH_SCHEDULES_SUCCESS';
 export const fetchSchedulesSuccess = data => ({
-  type: FETCH_SCHEDULES_SUCCESS,
+  type: 'FETCH_SCHEDULES_SUCCESS',
   data
 });
 
@@ -37,11 +31,8 @@ export const deleteTaskInState = data => ({
   data
 })
 
-
-
-export const FETCH_DATA_ERROR = 'FETCH_DATA_ERROR';
 export const fetchDataError = error => ({
-  type: FETCH_DATA_ERROR,
+  type: 'FETCH_DATA_ERROR',
   error
 });
 

@@ -37,13 +37,9 @@ export class EventCard extends Component {
   }
 
   onDelete = (event_id) => {
-    console.log(event_id)
     const room = this.props.events.find(event => {
       return event._id === event_id
     });
-    // if (!room.password) {
-    //   this.props.deleteEvent(event_id, this.props.token)
-    // }
     let password = prompt('Please enter the password here:');
     if (password === null || password === '') {
       return alert('must enter the value')

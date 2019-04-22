@@ -28,7 +28,6 @@ class CreateEvent extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('event create props', this.props.token)
     this.props.createEvent(this.state, this.props.token)
     this.setState({
       imageUrl: '',

@@ -40,7 +40,6 @@ export const scheduleUpdate = (inputs, schedule_id) => (dispatch, getState) => {
     })
     .catch(err => {
       window.alert(err)
-      // dispatch(fetchErr(err));
     });
 };
 

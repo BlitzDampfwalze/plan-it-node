@@ -9,10 +9,8 @@ export const setHeaderText = () => ({
   text: 'example/test text'
 })
 
-
-export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
-  type: CLEAR_AUTH
+  type: 'CLEAR_AUTH'
 });
 
 export const setAuthToken = authToken => ({
